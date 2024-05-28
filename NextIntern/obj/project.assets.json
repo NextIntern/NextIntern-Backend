@@ -517,19 +517,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\dangh\\.nuget\\packages\\": {}
+    "C:\\Users\\dungp\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\CODE\\Projects\\NextIntern\\Backend\\NextIntern\\NextIntern.csproj",
+      "projectUniqueName": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\NextIntern.csproj",
       "projectName": "NextIntern",
-      "projectPath": "D:\\CODE\\Projects\\NextIntern\\Backend\\NextIntern\\NextIntern.csproj",
-      "packagesPath": "C:\\Users\\dangh\\.nuget\\packages\\",
-      "outputPath": "D:\\CODE\\Projects\\NextIntern\\Backend\\NextIntern\\obj\\",
+      "projectPath": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\NextIntern.csproj",
+      "packagesPath": "C:\\Users\\dungp\\.nuget\\packages\\",
+      "outputPath": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\dangh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\dungp\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -588,7 +588,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
