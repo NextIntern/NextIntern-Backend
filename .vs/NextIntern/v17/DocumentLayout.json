@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "D:\\Code\\DotNet\\NextIntern-Backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.csproj|solutionrelative:nextintern\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.API.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.API.csproj|solutionrelative:nextintern\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.csproj|solutionrelative:nextintern\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.csproj|solutionrelative:nextintern\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -37,8 +41,8 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 224,
-          "SelectedChildIndex": 5,
+          "DockedWidth": 268,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,7 +50,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
+              "Title": "Startup.cs",
+              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\Startup.cs",
+              "RelativeDocumentMoniker": "NextIntern\\Startup.cs",
+              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\Startup.cs",
+              "RelativeToolTip": "NextIntern\\Startup.cs",
+              "ViewState": "AQIAAAIAAAAAAAAAAAAewBsAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T03:42:39.559Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Class1.cs",
               "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Infrastructure\\Class1.cs",
               "RelativeDocumentMoniker": "NextIntern.Infrastructure\\Class1.cs",
@@ -59,7 +76,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Class1.cs",
               "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Application\\Class1.cs",
               "RelativeDocumentMoniker": "NextIntern.Application\\Class1.cs",
@@ -72,7 +89,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Class1.cs",
               "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Domain\\Class1.cs",
               "RelativeDocumentMoniker": "NextIntern.Domain\\Class1.cs",
@@ -85,7 +102,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "NextIntern.http",
               "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\NextIntern.http",
               "RelativeDocumentMoniker": "NextIntern\\NextIntern.http",
@@ -98,7 +115,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "WeatherForecastController.cs",
               "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\Controllers\\WeatherForecastController.cs",
               "RelativeDocumentMoniker": "NextIntern\\Controllers\\WeatherForecastController.cs",
@@ -111,7 +128,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "WeatherForecast.cs",
               "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\WeatherForecast.cs",
               "RelativeDocumentMoniker": "NextIntern\\WeatherForecast.cs",
@@ -121,7 +138,13 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-28T02:13:40.517Z",
               "EditorCaption": ""
-            },
+            }
+          ]
+        },
+        {
+          "DockedWidth": 180,
+          "SelectedChildIndex": 0,
+          "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -130,7 +153,7 @@
               "RelativeDocumentMoniker": "NextIntern\\Program.cs",
               "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\Program.cs",
               "RelativeToolTip": "NextIntern\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-28T02:13:17.789Z",
               "EditorCaption": ""
