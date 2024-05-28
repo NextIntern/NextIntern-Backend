@@ -1,4 +1,4 @@
-namespace NextIntern
+namespace NextIntern.API
 {
     public class WeatherForecast
     {

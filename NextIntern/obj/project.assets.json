@@ -522,9 +522,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\NextIntern.csproj",
-      "projectName": "NextIntern",
-      "projectPath": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\NextIntern.csproj",
+      "projectUniqueName": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\NextIntern.API.csproj",
+      "projectName": "NextIntern.API",
+      "projectPath": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\NextIntern.API.csproj",
       "packagesPath": "C:\\Users\\dungp\\.nuget\\packages\\",
       "outputPath": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\obj\\",
       "projectStyle": "PackageReference",

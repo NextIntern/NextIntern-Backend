@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace NextIntern.Controllers
+namespace NextIntern.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]

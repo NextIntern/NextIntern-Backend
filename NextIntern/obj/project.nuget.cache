@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Yu0zA1eMDsTbLHC9j4HwVgrODuc4lhmBDTS7eqKd69UtEYvPB//fmbETz6Zpl0x0zWE18ZfB5OxcfBJhp3hSOw==",
+  "dgSpecHash": "Ts0XOJ5k5NiYS8K7UaAswmyQagjN8Pktz+SevE69DV78S51GNSFC3pzGUuuVIolpgVdI/TYMgv+0kgRUf3LXuw==",
   "success": true,
-  "projectFilePath": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\NextIntern.csproj",
+  "projectFilePath": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\NextIntern.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dungp\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\dungp\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
