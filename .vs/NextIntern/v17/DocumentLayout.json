@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "D:\\Code\\DotNet\\NextIntern-Backend\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.API.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern\\configuration\\applicationsecurityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.API.csproj|solutionrelative:nextintern\\configuration\\applicationsecurityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.API.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.API.csproj|solutionrelative:nextintern\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{425FE093-3886-4A4C-B702-ECE7E7767CF0}|NextIntern.Infrastructure\\NextIntern.Infrastructure.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern.infrastructure\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{425FE093-3886-4A4C-B702-ECE7E7767CF0}|NextIntern.Infrastructure\\NextIntern.Infrastructure.csproj|solutionrelative:nextintern.infrastructure\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,24 +19,100 @@
       "RelativeMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.API.csproj|solutionrelative:nextintern\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.API.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern\\filters\\exceptionfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.API.csproj|solutionrelative:nextintern\\filters\\exceptionfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.API.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern\\controllers\\intern\\interncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.API.csproj|solutionrelative:nextintern\\controllers\\intern\\interncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08AC0E57-51A2-46ED-8514-6FA077EF051C}|NextIntern.Application\\NextIntern.Application.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern.application\\intern\\getallqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08AC0E57-51A2-46ED-8514-6FA077EF051C}|NextIntern.Application\\NextIntern.Application.csproj|solutionrelative:nextintern.application\\intern\\getallqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08AC0E57-51A2-46ED-8514-6FA077EF051C}|NextIntern.Application\\NextIntern.Application.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern.application\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08AC0E57-51A2-46ED-8514-6FA077EF051C}|NextIntern.Application\\NextIntern.Application.csproj|solutionrelative:nextintern.application\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08AC0E57-51A2-46ED-8514-6FA077EF051C}|NextIntern.Application\\NextIntern.Application.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern.application\\intern\\getallquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08AC0E57-51A2-46ED-8514-6FA077EF051C}|NextIntern.Application\\NextIntern.Application.csproj|solutionrelative:nextintern.application\\intern\\getallquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{425FE093-3886-4A4C-B702-ECE7E7767CF0}|NextIntern.Infrastructure\\NextIntern.Infrastructure.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern.infrastructure\\repositories\\internrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{425FE093-3886-4A4C-B702-ECE7E7767CF0}|NextIntern.Infrastructure\\NextIntern.Infrastructure.csproj|solutionrelative:nextintern.infrastructure\\repositories\\internrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{425FE093-3886-4A4C-B702-ECE7E7767CF0}|NextIntern.Infrastructure\\NextIntern.Infrastructure.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern.infrastructure\\repositories\\repositorybase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{425FE093-3886-4A4C-B702-ECE7E7767CF0}|NextIntern.Infrastructure\\NextIntern.Infrastructure.csproj|solutionrelative:nextintern.infrastructure\\repositories\\repositorybase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{425FE093-3886-4A4C-B702-ECE7E7767CF0}|NextIntern.Infrastructure\\NextIntern.Infrastructure.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern.infrastructure\\persistence\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{425FE093-3886-4A4C-B702-ECE7E7767CF0}|NextIntern.Infrastructure\\NextIntern.Infrastructure.csproj|solutionrelative:nextintern.infrastructure\\persistence\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97ED4E26-AA4F-45C3-94B0-F6DBD7F1F8B4}|NextIntern.Domain\\NextIntern.Domain.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern.domain\\common\\interfaces\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97ED4E26-AA4F-45C3-94B0-F6DBD7F1F8B4}|NextIntern.Domain\\NextIntern.Domain.csproj|solutionrelative:nextintern.domain\\common\\interfaces\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97ED4E26-AA4F-45C3-94B0-F6DBD7F1F8B4}|NextIntern.Domain\\NextIntern.Domain.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern.domain\\irepositories\\iinternrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97ED4E26-AA4F-45C3-94B0-F6DBD7F1F8B4}|NextIntern.Domain\\NextIntern.Domain.csproj|solutionrelative:nextintern.domain\\irepositories\\iinternrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97ED4E26-AA4F-45C3-94B0-F6DBD7F1F8B4}|NextIntern.Domain\\NextIntern.Domain.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern.domain\\irepositories\\iefrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97ED4E26-AA4F-45C3-94B0-F6DBD7F1F8B4}|NextIntern.Domain\\NextIntern.Domain.csproj|solutionrelative:nextintern.domain\\irepositories\\iefrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97ED4E26-AA4F-45C3-94B0-F6DBD7F1F8B4}|NextIntern.Domain\\NextIntern.Domain.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern.domain\\irepositories\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97ED4E26-AA4F-45C3-94B0-F6DBD7F1F8B4}|NextIntern.Domain\\NextIntern.Domain.csproj|solutionrelative:nextintern.domain\\irepositories\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08AC0E57-51A2-46ED-8514-6FA077EF051C}|NextIntern.Application\\NextIntern.Application.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern.application\\common\\mappings\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08AC0E57-51A2-46ED-8514-6FA077EF051C}|NextIntern.Application\\NextIntern.Application.csproj|solutionrelative:nextintern.application\\common\\mappings\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08AC0E57-51A2-46ED-8514-6FA077EF051C}|NextIntern.Application\\NextIntern.Application.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern.application\\common\\mappings\\imapfrom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08AC0E57-51A2-46ED-8514-6FA077EF051C}|NextIntern.Application\\NextIntern.Application.csproj|solutionrelative:nextintern.application\\common\\mappings\\imapfrom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08AC0E57-51A2-46ED-8514-6FA077EF051C}|NextIntern.Application\\NextIntern.Application.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern.application\\common\\behaviours\\unitofworkbehaviour.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08AC0E57-51A2-46ED-8514-6FA077EF051C}|NextIntern.Application\\NextIntern.Application.csproj|solutionrelative:nextintern.application\\common\\behaviours\\unitofworkbehaviour.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08AC0E57-51A2-46ED-8514-6FA077EF051C}|NextIntern.Application\\NextIntern.Application.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern.application\\common\\behaviours\\authorizationbehaviour.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08AC0E57-51A2-46ED-8514-6FA077EF051C}|NextIntern.Application\\NextIntern.Application.csproj|solutionrelative:nextintern.application\\common\\behaviours\\authorizationbehaviour.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08AC0E57-51A2-46ED-8514-6FA077EF051C}|NextIntern.Application\\NextIntern.Application.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern.application\\common\\security\\authorizeattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08AC0E57-51A2-46ED-8514-6FA077EF051C}|NextIntern.Application\\NextIntern.Application.csproj|solutionrelative:nextintern.application\\common\\security\\authorizeattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08AC0E57-51A2-46ED-8514-6FA077EF051C}|NextIntern.Application\\NextIntern.Application.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern.application\\common\\exceptions\\forbiddenaccessexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08AC0E57-51A2-46ED-8514-6FA077EF051C}|NextIntern.Application\\NextIntern.Application.csproj|solutionrelative:nextintern.application\\common\\exceptions\\forbiddenaccessexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.API.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern\\services\\jwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.API.csproj|solutionrelative:nextintern\\services\\jwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.API.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern\\services\\currentuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.API.csproj|solutionrelative:nextintern\\services\\currentuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08AC0E57-51A2-46ED-8514-6FA077EF051C}|NextIntern.Application\\NextIntern.Application.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern.application\\common\\interfaces\\iquerry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08AC0E57-51A2-46ED-8514-6FA077EF051C}|NextIntern.Application\\NextIntern.Application.csproj|solutionrelative:nextintern.application\\common\\interfaces\\iquerry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08AC0E57-51A2-46ED-8514-6FA077EF051C}|NextIntern.Application\\NextIntern.Application.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern.application\\common\\interfaces\\icommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08AC0E57-51A2-46ED-8514-6FA077EF051C}|NextIntern.Application\\NextIntern.Application.csproj|solutionrelative:nextintern.application\\common\\interfaces\\icommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.API.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.API.csproj|solutionrelative:nextintern\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.API.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.API.csproj|solutionrelative:nextintern\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.API.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern\\filters\\exceptionfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.API.csproj|solutionrelative:nextintern\\filters\\exceptionfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.API.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.API.csproj|solutionrelative:nextintern\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{08AC0E57-51A2-46ED-8514-6FA077EF051C}|NextIntern.Application\\NextIntern.Application.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern.application\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{08AC0E57-51A2-46ED-8514-6FA077EF051C}|NextIntern.Application\\NextIntern.Application.csproj|solutionrelative:nextintern.application\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,7 +122,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 224,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,7 +138,345 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ApplicationSecurityConfiguration.cs",
+              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\Configuration\\ApplicationSecurityConfiguration.cs",
+              "RelativeDocumentMoniker": "NextIntern\\Configuration\\ApplicationSecurityConfiguration.cs",
+              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\Configuration\\ApplicationSecurityConfiguration.cs",
+              "RelativeToolTip": "NextIntern\\Configuration\\ApplicationSecurityConfiguration.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAAQwCcAAAA+AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T17:16:53.614Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "InternRepository.cs",
+              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Infrastructure\\Repositories\\InternRepository.cs",
+              "RelativeDocumentMoniker": "NextIntern.Infrastructure\\Repositories\\InternRepository.cs",
+              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Infrastructure\\Repositories\\InternRepository.cs",
+              "RelativeToolTip": "NextIntern.Infrastructure\\Repositories\\InternRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T16:32:38.015Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ExceptionFilter.cs",
+              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\Filters\\ExceptionFilter.cs",
+              "RelativeDocumentMoniker": "NextIntern\\Filters\\ExceptionFilter.cs",
+              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\Filters\\ExceptionFilter.cs",
+              "RelativeToolTip": "NextIntern\\Filters\\ExceptionFilter.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T03:55:55.384Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Startup.cs",
+              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\Startup.cs",
+              "RelativeDocumentMoniker": "NextIntern\\Startup.cs",
+              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\Startup.cs",
+              "RelativeToolTip": "NextIntern\\Startup.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAxwBwAAAAxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T03:50:16.81Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "DependencyInjection.cs",
+              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Infrastructure\\DependencyInjection.cs",
+              "RelativeDocumentMoniker": "NextIntern.Infrastructure\\DependencyInjection.cs",
+              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Infrastructure\\DependencyInjection.cs",
+              "RelativeToolTip": "NextIntern.Infrastructure\\DependencyInjection.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAsAAAA6AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T03:30:02.307Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "GetAllQuery.cs",
+              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Application\\Intern\\GetAllQuery.cs",
+              "RelativeDocumentMoniker": "NextIntern.Application\\Intern\\GetAllQuery.cs",
+              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Application\\Intern\\GetAllQuery.cs",
+              "RelativeToolTip": "NextIntern.Application\\Intern\\GetAllQuery.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAABZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T16:45:24.985Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\appsettings.json",
+              "RelativeDocumentMoniker": "NextIntern\\appsettings.json",
+              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\appsettings.json",
+              "RelativeToolTip": "NextIntern\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-06-02T03:45:02.517Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Infrastructure\\Persistence\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "NextIntern.Infrastructure\\Persistence\\AppDbContext.cs",
+              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Infrastructure\\Persistence\\AppDbContext.cs",
+              "RelativeToolTip": "NextIntern.Infrastructure\\Persistence\\AppDbContext.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAAABoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T16:33:51.861Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "InternController.cs",
+              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\Controllers\\Intern\\InternController.cs",
+              "RelativeDocumentMoniker": "NextIntern\\Controllers\\Intern\\InternController.cs",
+              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\Controllers\\Intern\\InternController.cs",
+              "RelativeToolTip": "NextIntern\\Controllers\\Intern\\InternController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T16:55:41.632Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "GetAllQueryHandler.cs",
+              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Application\\Intern\\GetAllQueryHandler.cs",
+              "RelativeDocumentMoniker": "NextIntern.Application\\Intern\\GetAllQueryHandler.cs",
+              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Application\\Intern\\GetAllQueryHandler.cs",
+              "RelativeToolTip": "NextIntern.Application\\Intern\\GetAllQueryHandler.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T16:49:33.109Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DependencyInjection.cs",
+              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Application\\DependencyInjection.cs",
+              "RelativeDocumentMoniker": "NextIntern.Application\\DependencyInjection.cs",
+              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Application\\DependencyInjection.cs",
+              "RelativeToolTip": "NextIntern.Application\\DependencyInjection.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwBIAAABEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T03:29:49.204Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "IInternRepository.cs",
+              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Domain\\IRepositories\\IInternRepository.cs",
+              "RelativeDocumentMoniker": "NextIntern.Domain\\IRepositories\\IInternRepository.cs",
+              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Domain\\IRepositories\\IInternRepository.cs",
+              "RelativeToolTip": "NextIntern.Domain\\IRepositories\\IInternRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAABGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T16:31:35.271Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "IEFRepository.cs",
+              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Domain\\IRepositories\\IEFRepository.cs",
+              "RelativeDocumentMoniker": "NextIntern.Domain\\IRepositories\\IEFRepository.cs",
+              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Domain\\IRepositories\\IEFRepository.cs",
+              "RelativeToolTip": "NextIntern.Domain\\IRepositories\\IEFRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T16:03:12.055Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "MappingProfile.cs",
+              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Application\\Common\\Mappings\\MappingProfile.cs",
+              "RelativeDocumentMoniker": "NextIntern.Application\\Common\\Mappings\\MappingProfile.cs",
+              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Application\\Common\\Mappings\\MappingProfile.cs",
+              "RelativeToolTip": "NextIntern.Application\\Common\\Mappings\\MappingProfile.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T16:14:18.663Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "IRepository.cs",
+              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Domain\\IRepositories\\IRepository.cs",
+              "RelativeDocumentMoniker": "NextIntern.Domain\\IRepositories\\IRepository.cs",
+              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Domain\\IRepositories\\IRepository.cs",
+              "RelativeToolTip": "NextIntern.Domain\\IRepositories\\IRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T15:39:58.288Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "RepositoryBase.cs",
+              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Infrastructure\\Repositories\\RepositoryBase.cs",
+              "RelativeDocumentMoniker": "NextIntern.Infrastructure\\Repositories\\RepositoryBase.cs",
+              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Infrastructure\\Repositories\\RepositoryBase.cs",
+              "RelativeToolTip": "NextIntern.Infrastructure\\Repositories\\RepositoryBase.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAALAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T16:06:21.745Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "IMapFrom.cs",
+              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Application\\Common\\Mappings\\IMapFrom.cs",
+              "RelativeDocumentMoniker": "NextIntern.Application\\Common\\Mappings\\IMapFrom.cs",
+              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Application\\Common\\Mappings\\IMapFrom.cs",
+              "RelativeToolTip": "NextIntern.Application\\Common\\Mappings\\IMapFrom.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T16:12:25.873Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "IUnitOfWork.cs",
+              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Domain\\Common\\Interfaces\\IUnitOfWork.cs",
+              "RelativeDocumentMoniker": "NextIntern.Domain\\Common\\Interfaces\\IUnitOfWork.cs",
+              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Domain\\Common\\Interfaces\\IUnitOfWork.cs",
+              "RelativeToolTip": "NextIntern.Domain\\Common\\Interfaces\\IUnitOfWork.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T15:12:29.691Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "UnitOfWorkBehaviour.cs",
+              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Application\\Common\\Behaviours\\UnitOfWorkBehaviour.cs",
+              "RelativeDocumentMoniker": "NextIntern.Application\\Common\\Behaviours\\UnitOfWorkBehaviour.cs",
+              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Application\\Common\\Behaviours\\UnitOfWorkBehaviour.cs",
+              "RelativeToolTip": "NextIntern.Application\\Common\\Behaviours\\UnitOfWorkBehaviour.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAB8AAABbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T15:13:12.214Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "AuthorizeAttribute.cs",
+              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Application\\Common\\Security\\AuthorizeAttribute.cs",
+              "RelativeDocumentMoniker": "NextIntern.Application\\Common\\Security\\AuthorizeAttribute.cs",
+              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Application\\Common\\Security\\AuthorizeAttribute.cs",
+              "RelativeToolTip": "NextIntern.Application\\Common\\Security\\AuthorizeAttribute.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T15:02:05.81Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "ForbiddenAccessException.cs",
+              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Application\\Common\\Exceptions\\ForbiddenAccessException.cs",
+              "RelativeDocumentMoniker": "NextIntern.Application\\Common\\Exceptions\\ForbiddenAccessException.cs",
+              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Application\\Common\\Exceptions\\ForbiddenAccessException.cs",
+              "RelativeToolTip": "NextIntern.Application\\Common\\Exceptions\\ForbiddenAccessException.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAA2AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T14:59:07.93Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "AuthorizationBehaviour.cs",
+              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Application\\Common\\Behaviours\\AuthorizationBehaviour.cs",
+              "RelativeDocumentMoniker": "NextIntern.Application\\Common\\Behaviours\\AuthorizationBehaviour.cs",
+              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Application\\Common\\Behaviours\\AuthorizationBehaviour.cs",
+              "RelativeToolTip": "NextIntern.Application\\Common\\Behaviours\\AuthorizationBehaviour.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAxwBUAAABiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T14:57:21.59Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "JwtService.cs",
+              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\Services\\JwtService.cs",
+              "RelativeDocumentMoniker": "NextIntern\\Services\\JwtService.cs",
+              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\Services\\JwtService.cs",
+              "RelativeToolTip": "NextIntern\\Services\\JwtService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T14:53:51.379Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "CurrentUserService.cs",
+              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\Services\\CurrentUserService.cs",
+              "RelativeDocumentMoniker": "NextIntern\\Services\\CurrentUserService.cs",
+              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\Services\\CurrentUserService.cs",
+              "RelativeToolTip": "NextIntern\\Services\\CurrentUserService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAABbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T14:50:32.084Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "IQuerry.cs",
+              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Application\\Common\\Interfaces\\IQuerry.cs",
+              "RelativeDocumentMoniker": "NextIntern.Application\\Common\\Interfaces\\IQuerry.cs",
+              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Application\\Common\\Interfaces\\IQuerry.cs",
+              "RelativeToolTip": "NextIntern.Application\\Common\\Interfaces\\IQuerry.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T12:54:09.13Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "ICommand.cs",
+              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Application\\Common\\Interfaces\\ICommand.cs",
+              "RelativeDocumentMoniker": "NextIntern.Application\\Common\\Interfaces\\ICommand.cs",
+              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Application\\Common\\Interfaces\\ICommand.cs",
+              "RelativeToolTip": "NextIntern.Application\\Common\\Interfaces\\ICommand.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T12:53:59.756Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
               "Title": "WeatherForecast.cs",
               "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\WeatherForecast.cs",
               "RelativeDocumentMoniker": "NextIntern\\WeatherForecast.cs",
@@ -67,7 +489,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 27,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\Program.cs",
               "RelativeDocumentMoniker": "NextIntern\\Program.cs",
@@ -76,71 +498,6 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-02T03:59:05.655Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ExceptionFilter.cs",
-              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\Filters\\ExceptionFilter.cs",
-              "RelativeDocumentMoniker": "NextIntern\\Filters\\ExceptionFilter.cs",
-              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\Filters\\ExceptionFilter.cs",
-              "RelativeToolTip": "NextIntern\\Filters\\ExceptionFilter.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAwAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T03:55:55.384Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Startup.cs",
-              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\Startup.cs",
-              "RelativeDocumentMoniker": "NextIntern\\Startup.cs",
-              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\Startup.cs",
-              "RelativeToolTip": "NextIntern\\Startup.cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAAwBsAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T03:50:16.81Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\appsettings.json",
-              "RelativeDocumentMoniker": "NextIntern\\appsettings.json",
-              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\appsettings.json",
-              "RelativeToolTip": "NextIntern\\appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAABzAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-06-02T03:45:02.517Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "DependencyInjection.cs",
-              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Infrastructure\\DependencyInjection.cs",
-              "RelativeDocumentMoniker": "NextIntern.Infrastructure\\DependencyInjection.cs",
-              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Infrastructure\\DependencyInjection.cs",
-              "RelativeToolTip": "NextIntern.Infrastructure\\DependencyInjection.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAA6AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T03:30:02.307Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "DependencyInjection.cs",
-              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Application\\DependencyInjection.cs",
-              "RelativeDocumentMoniker": "NextIntern.Application\\DependencyInjection.cs",
-              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Application\\DependencyInjection.cs",
-              "RelativeToolTip": "NextIntern.Application\\DependencyInjection.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAoAAAA1AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T03:29:49.204Z",
               "EditorCaption": ""
             }
           ]

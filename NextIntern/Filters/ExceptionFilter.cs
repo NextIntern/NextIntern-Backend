@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using NextIntern.Application.Common.Exceptions;
+using System.ComponentModel.DataAnnotations;
+using System;
 
 namespace NextIntern.API.Filters
 {
@@ -6,7 +10,17 @@ namespace NextIntern.API.Filters
     {
         public void OnException(ExceptionContext context)
         {
-            throw new NotImplementedException();
+            switch (context.Exception)
+            {
+                case ForbiddenAccessException:
+                    context.Result = new ForbidResult();
+                    context.ExceptionHandled = true;
+                    break;
+                case UnauthorizedAccessException:
+                    context.Result = new ForbidResult();
+                    context.ExceptionHandled = true;
+                    break;
+            }
         }
     }
 }

@@ -2,6 +2,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using NextIntern.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+using NextIntern.Domain.IRepositories;
+using NextIntern.Infrastructure.Repositories;
 
 namespace NextIntern.Infrastructure
 {
@@ -20,6 +22,8 @@ namespace NextIntern.Infrastructure
                         b.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
                     });
             });
+
+            services.AddScoped<IInternRepository, InternRepository>();
 
             return services;
         }

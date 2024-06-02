@@ -1,3 +1,4 @@
+using NextIntern.API.Configuration;
 using NextIntern.API.Filters;
 using NextIntern.Application;
 using NextIntern.Infrastructure;
@@ -25,6 +26,7 @@ namespace NextIntern.API
             //Register layer
             services.AddApplication(Configuration);
             services.AddInfrastructure(Configuration);
+            services.ConfigureApplicationSecurity(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
