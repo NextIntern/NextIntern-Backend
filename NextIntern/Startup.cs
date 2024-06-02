@@ -1,3 +1,7 @@
+using NextIntern.API.Filters;
+using NextIntern.Application;
+using NextIntern.Infrastructure;
+
 namespace NextIntern.API
 {
     public class Startup
@@ -11,9 +15,16 @@ namespace NextIntern.API
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers(otp =>
+            {
+                otp.Filters.Add<ExceptionFilter>();
+            });
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
+
+            //Register layer
+            services.AddApplication(Configuration);
+            services.AddInfrastructure(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,7 +1,36 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Code\\DotNet\\NextIntern-Backend\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{425FE093-3886-4A4C-B702-ECE7E7767CF0}|NextIntern.Infrastructure\\NextIntern.Infrastructure.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern.infrastructure\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{425FE093-3886-4A4C-B702-ECE7E7767CF0}|NextIntern.Infrastructure\\NextIntern.Infrastructure.csproj|solutionrelative:nextintern.infrastructure\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.API.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.API.csproj|solutionrelative:nextintern\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.API.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.API.csproj|solutionrelative:nextintern\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.API.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.API.csproj|solutionrelative:nextintern\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.API.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern\\filters\\exceptionfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.API.csproj|solutionrelative:nextintern\\filters\\exceptionfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.API.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{0618D638-524C-40A2-A2C0-A7F6D5E7D5A3}|NextIntern\\NextIntern.API.csproj|solutionrelative:nextintern\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08AC0E57-51A2-46ED-8514-6FA077EF051C}|NextIntern.Application\\NextIntern.Application.csproj|d:\\code\\dotnet\\nextintern-backend\\nextintern.application\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08AC0E57-51A2-46ED-8514-6FA077EF051C}|NextIntern.Application\\NextIntern.Application.csproj|solutionrelative:nextintern.application\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 224,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -22,6 +51,97 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "WeatherForecast.cs",
+              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\WeatherForecast.cs",
+              "RelativeDocumentMoniker": "NextIntern\\WeatherForecast.cs",
+              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\WeatherForecast.cs",
+              "RelativeToolTip": "NextIntern\\WeatherForecast.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T03:59:13.2Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\Program.cs",
+              "RelativeDocumentMoniker": "NextIntern\\Program.cs",
+              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\Program.cs",
+              "RelativeToolTip": "NextIntern\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T03:59:05.655Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ExceptionFilter.cs",
+              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\Filters\\ExceptionFilter.cs",
+              "RelativeDocumentMoniker": "NextIntern\\Filters\\ExceptionFilter.cs",
+              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\Filters\\ExceptionFilter.cs",
+              "RelativeToolTip": "NextIntern\\Filters\\ExceptionFilter.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T03:55:55.384Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Startup.cs",
+              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\Startup.cs",
+              "RelativeDocumentMoniker": "NextIntern\\Startup.cs",
+              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\Startup.cs",
+              "RelativeToolTip": "NextIntern\\Startup.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAAwBsAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T03:50:16.81Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\appsettings.json",
+              "RelativeDocumentMoniker": "NextIntern\\appsettings.json",
+              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\appsettings.json",
+              "RelativeToolTip": "NextIntern\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAABzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-06-02T03:45:02.517Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DependencyInjection.cs",
+              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Infrastructure\\DependencyInjection.cs",
+              "RelativeDocumentMoniker": "NextIntern.Infrastructure\\DependencyInjection.cs",
+              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Infrastructure\\DependencyInjection.cs",
+              "RelativeToolTip": "NextIntern.Infrastructure\\DependencyInjection.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAA6AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T03:30:02.307Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DependencyInjection.cs",
+              "DocumentMoniker": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Application\\DependencyInjection.cs",
+              "RelativeDocumentMoniker": "NextIntern.Application\\DependencyInjection.cs",
+              "ToolTip": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Application\\DependencyInjection.cs",
+              "RelativeToolTip": "NextIntern.Application\\DependencyInjection.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAoAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T03:29:49.204Z",
+              "EditorCaption": ""
             }
           ]
         }
