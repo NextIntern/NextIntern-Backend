@@ -1,6 +1,8 @@
 using NextIntern.API.Configuration;
 using NextIntern.API.Filters;
 using NextIntern.Application;
+using NextIntern.Application.Auth.SignIn;
+using NextIntern.Application.Auth.SignUp;
 using NextIntern.Infrastructure;
 
 namespace NextIntern.API
@@ -27,6 +29,10 @@ namespace NextIntern.API
             services.AddApplication(Configuration);
             services.AddInfrastructure(Configuration);
             services.ConfigureApplicationSecurity(Configuration);
+            services.AddScoped<SignUpCommandHandler>();
+            services.AddScoped<SignInQueryHandler>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

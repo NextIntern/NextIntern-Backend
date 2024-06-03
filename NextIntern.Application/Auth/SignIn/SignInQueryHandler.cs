@@ -17,22 +17,16 @@ namespace NextIntern.Application.Auth.SignIn
 
         public async Task<string> Handle(SignInQuery request, CancellationToken cancellationToken)
         {
-            var intern = await _internRepository.FindAsync(i => i.Username == request.Username);
+            var existingIntern = await _internRepository.FindAsync(i => i.Username == request.Username);
 
-            if (intern is null)
+            if (existingIntern == null || !BCrypt.Net.BCrypt.Verify(request.Password, existingIntern.Password))
             {
-                return "";
+                throw new Exception("Invalid username or password.");
             }
 
-            bool isMatch = BCrypt.Net.BCrypt.Verify(intern.Password, request.Password);
+            string token = _jwtService.CreateToken(existingIntern.InternId.ToString(), existingIntern.Role.RoleName);
 
-            if (isMatch)
-            {
-                return _jwtService.CreateToken(intern.InternId.ToString(), intern.Role.RoleName);
-            }
-
-            return "";
+            return token;
         }
-
     }
 }

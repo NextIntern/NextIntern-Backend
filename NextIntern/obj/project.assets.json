@@ -1776,19 +1776,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\dungp\\.nuget\\packages\\": {}
+    "C:\\Users\\truon\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\NextIntern.API.csproj",
+      "projectUniqueName": "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern\\NextIntern.API.csproj",
       "projectName": "NextIntern.API",
-      "projectPath": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\NextIntern.API.csproj",
-      "packagesPath": "C:\\Users\\dungp\\.nuget\\packages\\",
-      "outputPath": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\obj\\",
+      "projectPath": "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern\\NextIntern.API.csproj",
+      "packagesPath": "C:\\Users\\truon\\.nuget\\packages\\",
+      "outputPath": "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\dungp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\truon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1796,20 +1801,21 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Application\\NextIntern.Application.csproj": {
-              "projectPath": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Application\\NextIntern.Application.csproj"
+            "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern.Application\\NextIntern.Application.csproj": {
+              "projectPath": "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern.Application\\NextIntern.Application.csproj"
             },
-            "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Domain\\NextIntern.Domain.csproj": {
-              "projectPath": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Domain\\NextIntern.Domain.csproj"
+            "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern.Domain\\NextIntern.Domain.csproj": {
+              "projectPath": "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern.Domain\\NextIntern.Domain.csproj"
             },
-            "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Infrastructure\\NextIntern.Infrastructure.csproj": {
-              "projectPath": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Infrastructure\\NextIntern.Infrastructure.csproj"
+            "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern.Infrastructure\\NextIntern.Infrastructure.csproj": {
+              "projectPath": "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern.Infrastructure\\NextIntern.Infrastructure.csproj"
             }
           }
         }
@@ -1869,7 +1875,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

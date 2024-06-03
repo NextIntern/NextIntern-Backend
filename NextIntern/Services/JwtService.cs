@@ -29,7 +29,7 @@ namespace NextIntern.Services
                 expires: DateTime.Now.AddYears(1),
                 signingCredentials: creds);
 
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            return new JwtSecurityTokenHandler().WriteToken(token); 
         }
     }
 }

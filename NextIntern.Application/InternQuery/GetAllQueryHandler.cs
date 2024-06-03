@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using NextIntern.Domain.IRepositories;
 
-namespace NextIntern.Application.Intern
+namespace NextIntern.Application.InternQuery
 {
     public class GetAllQueryHandler : IRequestHandler<GetAllQuery, List<NextIntern.Domain.Entities.Intern>>
     {

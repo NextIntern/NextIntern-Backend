@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using NextIntern.Application.Intern;
+using NextIntern.Application.InternQuery;
 
-namespace NextIntern.API.Controllers.Intern
+namespace NextIntern.API.Controllers.Interns
 {
     [ApiController]
 
