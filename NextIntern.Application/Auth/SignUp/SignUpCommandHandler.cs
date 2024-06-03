@@ -1,4 +1,5 @@
 ﻿using NextIntern.Application.Common.Interfaces;
+using NextIntern.Application.Responses;
 using NextIntern.Domain.Entities;
 using NextIntern.Domain.IRepositories;
 using System;
@@ -20,7 +21,7 @@ namespace NextIntern.Application.Auth.SignUp
             _jwtService = jwtService;
         }
 
-        public async Task<string> Handle(SignUpCommand request, CancellationToken cancellationToken)
+        public async Task<TokenResponse> Handle(SignUpCommand request, CancellationToken cancellationToken)
         {
             var existingIntern = await _internRepository.FindAsync(i => i.Username == request.Username);
 
@@ -48,7 +49,12 @@ namespace NextIntern.Application.Auth.SignUp
 
             await _internRepository.SaveChangesAsync();
 
-            return _jwtService.CreateToken(newIntern.InternId.ToString(), newIntern.Role.RoleName);
+            return new TokenResponse
+            {
+                AccessToken = _jwtService.CreateToken(newIntern.InternId.ToString(), newIntern.Role.RoleName),
+                RefreshToken = _jwtService.GenerateRefreshToken(newIntern.InternId.ToString(), newIntern.Role.RoleName)
+            };
+
         }
     }
 }

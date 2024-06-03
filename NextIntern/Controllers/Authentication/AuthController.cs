@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using NextIntern.Application.Auth.SignIn;
 using NextIntern.Application.Auth.SignUp;
+using NextIntern.Application.Common.Interfaces;
 using NextIntern.Application.InternQuery;
+using System.IdentityModel.Tokens.Jwt;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace NextIntern.API.Controllers.Authentication
@@ -13,9 +15,10 @@ namespace NextIntern.API.Controllers.Authentication
     {
         private readonly SignUpCommandHandler _signUpCommandHandler;
         private readonly SignInQueryHandler _signInQueryHandler;
+        private readonly IJwtService _jwtService;
         private readonly ISender _mediator;
 
-        public AuthController(SignUpCommandHandler signUpCommandHandler, SignInQueryHandler signInQueryHandler, ISender mediator)
+        public AuthController(SignUpCommandHandler signUpCommandHandler, SignInQueryHandler signInQueryHandler, ISender mediator, IJwtService _jwtService)
         {
             _signUpCommandHandler = signUpCommandHandler;
             _signInQueryHandler = signInQueryHandler;
@@ -52,7 +55,6 @@ namespace NextIntern.API.Controllers.Authentication
             {
                 return BadRequest(new { message = ex.Message });
             }
-
         }
     }
 }

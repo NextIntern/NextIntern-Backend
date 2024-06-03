@@ -1,10 +1,11 @@
 ﻿using MediatR;
 using NextIntern.Application.Common.Interfaces;
+using NextIntern.Application.Responses;
 using NextIntern.Domain.IRepositories;
 
 namespace NextIntern.Application.Auth.SignIn
 {
-    public class SignInQueryHandler : IRequestHandler<SignInQuery, string>
+    public class SignInQueryHandler
     {
         private readonly IInternRepository _internRepository;
         private readonly IJwtService _jwtService;
@@ -15,7 +16,7 @@ namespace NextIntern.Application.Auth.SignIn
             _jwtService = jwtService;
         }
 
-        public async Task<string> Handle(SignInQuery request, CancellationToken cancellationToken)
+        public async Task<TokenResponse> Handle(SignInQuery request, CancellationToken cancellationToken)
         {
             var existingIntern = await _internRepository.FindAsync(i => i.Username == request.Username);
 
@@ -24,9 +25,11 @@ namespace NextIntern.Application.Auth.SignIn
                 throw new Exception("Invalid username or password.");
             }
 
-            string token = _jwtService.CreateToken(existingIntern.InternId.ToString(), existingIntern.Role.RoleName);
-
-            return token;
+            return new TokenResponse
+            {
+                AccessToken = _jwtService.CreateToken(existingIntern.InternId.ToString(), existingIntern.Role.RoleName),
+                RefreshToken = _jwtService.GenerateRefreshToken(existingIntern.InternId.ToString(), existingIntern.Role.RoleName)
+            };
         }
     }
 }
