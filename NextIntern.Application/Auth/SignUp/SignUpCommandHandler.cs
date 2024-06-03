@@ -35,6 +35,12 @@ namespace NextIntern.Application.Auth.SignUp
             {
                 Username = request.Username,
                 Password = hashedPassword,
+                FullName = request.FullName,
+                Email = request.Email,
+                Gender = request.Gender,
+                Telephone = request.Telephone,
+                Dob = request.Dob,
+                Address = request.Address,
                 Role = new Role { RoleName = "User" }
             };
 

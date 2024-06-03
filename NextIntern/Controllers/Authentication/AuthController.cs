@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using NextIntern.Application.Auth.SignIn;
 using NextIntern.Application.Auth.SignUp;
 using NextIntern.Application.InternQuery;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace NextIntern.API.Controllers.Authentication
 {
@@ -27,6 +28,8 @@ namespace NextIntern.API.Controllers.Authentication
             try
             {
                 var token = await _signUpCommandHandler.Handle(command, default);
+                if (token == null)
+                    return Unauthorized();
                 return Ok(new { token });
             }
             catch (Exception ex)
@@ -38,11 +41,18 @@ namespace NextIntern.API.Controllers.Authentication
         [HttpPost("signin")]
         public async Task<IActionResult> SignIn([FromBody] SignInQuery query)
         {
-            var token = _signInQueryHandler.Handle(query, default);
-            if (token == null)
-                return Unauthorized();
+            try
+            {
+                var token = await _signInQueryHandler.Handle(query, default);
+                if (token == null)
+                    return Unauthorized();
+                return Ok(new { token });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
 
-            return Ok(new { Token = token });
         }
     }
 }
