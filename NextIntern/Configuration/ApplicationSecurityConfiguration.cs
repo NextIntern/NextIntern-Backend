@@ -22,20 +22,20 @@ namespace NextIntern.API.Configuration
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-                .AddJwtBearer(options =>
-                {
-                    options.TokenValidationParameters = new TokenValidationParameters()
-                    {
-                        ValidateAudience = false,
-                        ValidateIssuer = false,
-                        ValidateIssuerSigningKey = true,
-                        ValidateLifetime = true,
-                        ValidIssuer = configuration.GetSection("Security.Bearer:Authority").Get<string>(),
-                        ValidAudience = configuration.GetSection("Security.Bearer:Audience").Get<string>(),
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("NextIntern")),
-                    };
-                });
+            });
+                //.AddJwtBearer(options =>
+                //{
+                //    options.TokenValidationParameters = new TokenValidationParameters()
+                //    {
+                //        ValidateAudience = false,
+                //        ValidateIssuer = false,
+                //        ValidateIssuerSigningKey = true,
+                //        ValidateLifetime = true,
+                //        ValidIssuer = configuration.GetSection("Security.Bearer:Authority").Get<string>(),
+                //        ValidAudience = configuration.GetSection("Security.Bearer:Audience").Get<string>(),
+                //        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("NextIntern")),
+                //    };
+                //});
 
             services.AddAuthorization(ConfigureAuthorization);
 

@@ -18,6 +18,19 @@
           }
         }
       },
+      "BCrypt.Net-Core/1.6.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/BCrypt.Net-Core.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/BCrypt.Net-Core.dll": {
+            "related": ".pdb"
+          }
+        }
+      },
       "IdentityModel/7.0.0": {
         "type": "package",
         "compile": {
@@ -559,6 +572,7 @@
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "AutoMapper": "13.0.1",
+          "BCrypt.Net-Core": "1.6.0",
           "MediatR": "12.2.0",
           "Microsoft.Extensions.Configuration.Abstractions": "8.0.0",
           "NextIntern.Domain": "1.0.0",
@@ -574,6 +588,9 @@
       "NextIntern.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "BCrypt.Net-Core": "1.6.0"
+        },
         "compile": {
           "bin/placeholder/NextIntern.Domain.dll": {}
         },
@@ -586,6 +603,7 @@
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "AutoMapper": "13.0.1",
+          "BCrypt.Net-Core": "1.6.0",
           "Microsoft.EntityFrameworkCore": "8.0.6",
           "Microsoft.EntityFrameworkCore.Relational": "8.0.6",
           "NextIntern.Domain": "1.0.0",
@@ -614,6 +632,29 @@
         "icon.png",
         "lib/net6.0/AutoMapper.dll",
         "lib/net6.0/AutoMapper.xml"
+      ]
+    },
+    "BCrypt.Net-Core/1.6.0": {
+      "sha512": "hsKiHGjrnlDW05MzuzzlD9gNP8YOW2KbZ+FbvISrilsKJJ76tXKhWey6psZX5sd7DczNpSU2U6ldjPoblk8BLw==",
+      "type": "package",
+      "path": "bcrypt.net-core/1.6.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "bcrypt.net-core.1.6.0.nupkg.sha512",
+        "bcrypt.net-core.nuspec",
+        "lib/net40/BCrypt.Net-Core.dll",
+        "lib/net40/BCrypt.Net-Core.pdb",
+        "lib/net45/BCrypt.Net-Core.dll",
+        "lib/net45/BCrypt.Net-Core.pdb",
+        "lib/net451/BCrypt.Net-Core.dll",
+        "lib/net451/BCrypt.Net-Core.pdb",
+        "lib/net452/BCrypt.Net-Core.dll",
+        "lib/net452/BCrypt.Net-Core.pdb",
+        "lib/netstandard1.3/BCrypt.Net-Core.dll",
+        "lib/netstandard1.3/BCrypt.Net-Core.pdb",
+        "lib/netstandard2.0/BCrypt.Net-Core.dll",
+        "lib/netstandard2.0/BCrypt.Net-Core.pdb"
       ]
     },
     "IdentityModel/7.0.0": {
@@ -1720,6 +1761,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "BCrypt.Net-Core >= 1.6.0",
       "IdentityModel >= 7.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 8.0.6",
       "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.19.6",
@@ -1731,19 +1773,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\dungp\\.nuget\\packages\\": {}
+    "C:\\Users\\truon\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\NextIntern.API.csproj",
+      "projectUniqueName": "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern\\NextIntern.API.csproj",
       "projectName": "NextIntern.API",
-      "projectPath": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\NextIntern.API.csproj",
-      "packagesPath": "C:\\Users\\dungp\\.nuget\\packages\\",
-      "outputPath": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern\\obj\\",
+      "projectPath": "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern\\NextIntern.API.csproj",
+      "packagesPath": "C:\\Users\\truon\\.nuget\\packages\\",
+      "outputPath": "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\dungp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\truon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1751,20 +1798,21 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Application\\NextIntern.Application.csproj": {
-              "projectPath": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Application\\NextIntern.Application.csproj"
+            "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern.Application\\NextIntern.Application.csproj": {
+              "projectPath": "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern.Application\\NextIntern.Application.csproj"
             },
-            "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Domain\\NextIntern.Domain.csproj": {
-              "projectPath": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Domain\\NextIntern.Domain.csproj"
+            "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern.Domain\\NextIntern.Domain.csproj": {
+              "projectPath": "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern.Domain\\NextIntern.Domain.csproj"
             },
-            "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Infrastructure\\NextIntern.Infrastructure.csproj": {
-              "projectPath": "D:\\Code\\DotNet\\NextIntern-Backend\\NextIntern.Infrastructure\\NextIntern.Infrastructure.csproj"
+            "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern.Infrastructure\\NextIntern.Infrastructure.csproj": {
+              "projectPath": "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern.Infrastructure\\NextIntern.Infrastructure.csproj"
             }
           }
         }
@@ -1784,6 +1832,10 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "BCrypt.Net-Core": {
+            "target": "Package",
+            "version": "[1.6.0, )"
+          },
           "IdentityModel": {
             "target": "Package",
             "version": "[7.0.0, )"
@@ -1824,7 +1876,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
