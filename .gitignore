@@ -486,3 +486,5 @@ $RECYCLE.BIN/
 # bin and obj folders
 bin/
 obj/
+
+.vs
