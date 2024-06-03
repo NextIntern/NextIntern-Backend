@@ -4,7 +4,7 @@ using NextIntern.Domain.Entities;
 
 namespace NextIntern.Application.Intern
 {
-    public class GetAllQuery : IRequest<List<NextIntern.Domain.Entities.Intern>>, IQuerry
+    public class GetAllQuery : IRequest<List<NextIntern.Domain.Entities.Intern>>, IQuery
     {
     }
 }

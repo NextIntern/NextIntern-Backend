@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace NextIntern.Domain.Entities;
+﻿namespace NextIntern.Domain.Entities;
 
 public partial class Intern
 {
@@ -33,6 +30,8 @@ public partial class Intern
 
     public DateTime? ModifyDate { get; set; }
 
+    public Guid? RoleId { get; set; }
+
     public virtual Campaign? Campaign { get; set; }
 
     public virtual ICollection<CampaignQuestionResponse> CampaignQuestionResponses { get; set; } = new List<CampaignQuestionResponse>();
@@ -40,4 +39,6 @@ public partial class Intern
     public virtual ICollection<InternEvaluation> InternEvaluations { get; set; } = new List<InternEvaluation>();
 
     public virtual Staff? Mentor { get; set; }
+
+    public virtual Role? Role { get; set; }
 }

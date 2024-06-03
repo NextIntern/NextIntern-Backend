@@ -22,4 +22,8 @@
     <ProjectReference Include="..\NextIntern.Infrastructure\NextIntern.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\Authentication\" />
+  </ItemGroup>
+
 </Project>

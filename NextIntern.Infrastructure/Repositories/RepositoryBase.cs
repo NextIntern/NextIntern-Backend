@@ -23,6 +23,7 @@ namespace NextIntern.Infrastructure.Repositories
 
         public IUnitOfWork UnitOfWork => _dbContext;
 
+
         public virtual void Remove(TDomain entity)
         {
             GetSet().Remove((TPersistence)entity);

@@ -263,6 +263,7 @@ public partial class AppDbContext : DbContext, IUnitOfWork
             entity.Property(e => e.Password)
                 .HasMaxLength(100)
                 .HasColumnName("password");
+            entity.Property(e => e.RoleId).HasColumnName("role_id");
             entity.Property(e => e.Telephone)
                 .HasMaxLength(50)
                 .HasColumnName("telephone");
@@ -277,6 +278,10 @@ public partial class AppDbContext : DbContext, IUnitOfWork
             entity.HasOne(d => d.Mentor).WithMany(p => p.Interns)
                 .HasForeignKey(d => d.MentorId)
                 .HasConstraintName("intern_mentor_id_fkey");
+
+            entity.HasOne(d => d.Role).WithMany(p => p.Interns)
+                .HasForeignKey(d => d.RoleId)
+                .HasConstraintName("role_id_fkey");
         });
 
         modelBuilder.Entity<InternEvaluation>(entity =>
