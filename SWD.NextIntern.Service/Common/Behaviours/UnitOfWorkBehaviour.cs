@@ -1,15 +1,19 @@
-﻿using MediatR;
+using MediatR;
 using SWD.NextIntern.Repository.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+
 using System.Transactions;
 using System.Windows.Input;
 
 namespace SWD.NextIntern.Service.Common.Behaviours
-{
+
+    /// <summary>
+    /// Ensures that all operations processed as part of handling a <see cref="ICommand"/> either
+    /// pass or fail as one unit. This behaviour makes it unnecessary for developers to call
+    /// SaveChangesAsync() inside their business logic (e.g. command handlers), and doing so should
+    /// be avoided unless absolutely necessary.
+    /// </summary>
+
     public class UnitOfWorkBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : notnull, ICommand
     {

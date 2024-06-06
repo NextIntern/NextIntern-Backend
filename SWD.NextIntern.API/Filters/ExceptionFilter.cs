@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.AspNetCore.Mvc;
+
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using SWD.NextIntern.Service.Common.Exceptions;
 using System.Diagnostics;
+
 
 namespace SWD.NextIntern.API.Filters
 {
@@ -10,6 +13,11 @@ namespace SWD.NextIntern.API.Filters
         {
             switch (context.Exception)
             {
+                case ForbiddenAccessException:
+                    context.Result = new ForbidResult();
+                    context.ExceptionHandled = true;
+                    break;
+
                 case UnauthorizedAccessException:
                     context.Result = new ForbidResult();
                     context.ExceptionHandled = true;

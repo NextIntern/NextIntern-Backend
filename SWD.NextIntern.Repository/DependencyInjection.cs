@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using SWD.NextIntern.Repository.Persistence;
+using SWD.NextIntern.Repository.IRepositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SWD.NextIntern.Repository.Common;
@@ -19,6 +22,10 @@ namespace SWD.NextIntern.Repository
                     b =>
                     {
                         b.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName);
+                        b.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
+                    });
+
+            services.AddScoped<IInternRepository, InternRepository>();
                         //b.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
                     });
             });
