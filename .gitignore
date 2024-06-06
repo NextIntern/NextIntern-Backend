@@ -477,6 +477,9 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 
+# Ignore appsettings.json files
+**/appsettings.json
+
 # Windows shortcuts
 *.lnk
 

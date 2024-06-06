@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NextIntern.Domain.DTOs
+namespace SWD.NextIntern.Service.DTOs.Settings
 {
     public class EmailSettings
     {

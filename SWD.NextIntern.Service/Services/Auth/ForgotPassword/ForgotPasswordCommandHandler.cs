@@ -3,8 +3,10 @@ using Microsoft.Extensions.Configuration;
 using NextIntern.Domain.IRepositories;
 using System.Security.Cryptography;
 using RestSharp;
-using NextIntern.Domain.DTOs;
 using Microsoft.Extensions.Options;
+using SWD.NextIntern.Service.DTOs.Settings;
+using System.Net.Mail;
+using System.Net;
 
 
 namespace NextIntern.Application.Auth.ForgotPassword
@@ -37,10 +39,14 @@ namespace NextIntern.Application.Auth.ForgotPassword
                 AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(30)
             });
 
-            string resetLink = $"https://api-gateway.nextintern.tech/resetpassword?email={request.Email}&otp={otp}";
-            string emailBody = $"Your OTP is {otp}. Click the following link to reset your password: <a href=\"{resetLink}\">Reset Password</a>";
+            //string resetLink = $"https://api-gateway.nextintern.tech/resetpassword?email={request.Email}&otp={otp}";
+            //string emailBody = $"Your OTP is {otp}. Click the following link to reset your password: <a href=\"{resetLink}\">Reset Password</a>";
 
-            await SendEmailAsync(request.Email, "Reset Your Password", emailBody);
+            string resetLink = $"nextintern://database.nextintern.tech/resetpassword?email={request.Email}";
+
+            string emailBody = $"Your OTP is {otp}. Click the following link to reset your password: {resetLink}";
+
+            await SendAsync(request.Email, "Reset Your Password", emailBody);
 
         }
 
@@ -55,22 +61,43 @@ namespace NextIntern.Application.Auth.ForgotPassword
             }
         }
 
-        public async Task SendEmailAsync(string toEmail, string subject, string message)
+        //public async Task SendEmailAsync(string toEmail, string subject, string message)
+        //{
+        //    var client = new RestClient(_emailSettings.ApiBaseUri);
+
+        //    var request = new RestRequest($"messages", Method.Post);
+        //    request.AddHeader("Authorization", "Basic " + Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes("api:" + _emailSettings.ApiKey)));
+        //    request.AddParameter("from", $"Next Intern <mailgun@{_emailSettings.Domain}>");
+        //    request.AddParameter("to", toEmail);
+        //    request.AddParameter("subject", subject);
+        //    request.AddParameter("html", message);
+
+        //    var response = await client.ExecuteAsync(request);
+        //    //if (!response.IsSuccessful)
+        //    //{
+        //    //    throw new Exception($"Failed to send email: {response.ErrorMessage}");
+        //    //}
+        //}
+
+        public async Task SendAsync(string toEmail, string subject, string body)
         {
-            var client = new RestClient(_emailSettings.ApiBaseUri);
+            var smtpClient = new SmtpClient(_configuration["Smtp:Host"])
+            {
+                Port = int.Parse(_configuration["Smtp:Port"]),
+                Credentials = new NetworkCredential(_configuration["Smtp:Username"], _configuration["Smtp:Password"]),
+                EnableSsl = true,
+            };
 
-            var request = new RestRequest($"messages", Method.Post);
-            request.AddHeader("Authorization", "Basic " + Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes("api:" + _emailSettings.ApiKey)));
-            request.AddParameter("from", $"Next Intern <mailgun@{_emailSettings.Domain}>");
-            request.AddParameter("to", toEmail);
-            request.AddParameter("subject", subject);
-            request.AddParameter("html", message);
+            var mailMessage = new MailMessage
+            {
+                From = new MailAddress(_configuration["Smtp:FromEmail"]),
+                Subject = subject,
+                Body = body,
+                IsBodyHtml = true,
+            };
+            mailMessage.To.Add(toEmail);
 
-            var response = await client.ExecuteAsync(request);
-            //if (!response.IsSuccessful)
-            //{
-            //    throw new Exception($"Failed to send email: {response.ErrorMessage}");
-            //}
+            await smtpClient.SendMailAsync(mailMessage);
         }
     }
 }
