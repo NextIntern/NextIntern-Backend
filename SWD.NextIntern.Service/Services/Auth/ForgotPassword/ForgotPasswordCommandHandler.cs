@@ -2,9 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using NextIntern.Domain.IRepositories;
 using System.Security.Cryptography;
-using RestSharp;
 using Microsoft.Extensions.Options;
-using SWD.NextIntern.Service.DTOs.Settings;
 using System.Net.Mail;
 using System.Net;
 
@@ -16,14 +14,12 @@ namespace NextIntern.Application.Auth.ForgotPassword
         private readonly IDistributedCache _cache;
         private readonly IInternRepository _internRepository;
         private readonly IConfiguration _configuration;
-        private readonly EmailSettings _emailSettings;
 
-        public ForgotPasswordCommandHandler(IDistributedCache cache, IInternRepository internRepository, IConfiguration configuration, IOptions<EmailSettings> emailSettings)
+        public ForgotPasswordCommandHandler(IDistributedCache cache, IInternRepository internRepository, IConfiguration configuration)
         {
             _cache = cache;
             _internRepository = internRepository;
             _configuration = configuration;
-            _emailSettings = emailSettings.Value;
         }
 
         public async Task Handle(ForgotPasswordQuery request, CancellationToken cancellationToken)
@@ -38,9 +34,6 @@ namespace NextIntern.Application.Auth.ForgotPassword
             {
                 AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(30)
             });
-
-            //string resetLink = $"https://api-gateway.nextintern.tech/resetpassword?email={request.Email}&otp={otp}";
-            //string emailBody = $"Your OTP is {otp}. Click the following link to reset your password: <a href=\"{resetLink}\">Reset Password</a>";
 
             string resetLink = $"nextintern://database.nextintern.tech/resetpassword?email={request.Email}";
 
@@ -60,24 +53,6 @@ namespace NextIntern.Application.Auth.ForgotPassword
                 return Math.Abs(otp).ToString("D6");
             }
         }
-
-        //public async Task SendEmailAsync(string toEmail, string subject, string message)
-        //{
-        //    var client = new RestClient(_emailSettings.ApiBaseUri);
-
-        //    var request = new RestRequest($"messages", Method.Post);
-        //    request.AddHeader("Authorization", "Basic " + Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes("api:" + _emailSettings.ApiKey)));
-        //    request.AddParameter("from", $"Next Intern <mailgun@{_emailSettings.Domain}>");
-        //    request.AddParameter("to", toEmail);
-        //    request.AddParameter("subject", subject);
-        //    request.AddParameter("html", message);
-
-        //    var response = await client.ExecuteAsync(request);
-        //    //if (!response.IsSuccessful)
-        //    //{
-        //    //    throw new Exception($"Failed to send email: {response.ErrorMessage}");
-        //    //}
-        //}
 
         public async Task SendAsync(string toEmail, string subject, string body)
         {

@@ -4,14 +4,7 @@ using NextIntern.Application.Auth.ForgotPassword;
 using NextIntern.Application.Auth.SignIn;
 using NextIntern.Application.Auth.SignUp;
 using NextIntern.Infrastructure;
-//using SWD.NextIntern.API.Filters;
-//using SWD.NextIntern.Repository;
-using SWD.NextIntern.Service;
 using SWD.NextIntern.Service.Common.Configuration;
-using Microsoft.AspNetCore.Mvc;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using SWD.NextIntern.Service.DTOs.Settings;
 
 namespace NextIntern.API
 {
@@ -50,7 +43,6 @@ namespace NextIntern.API
             services.AddScoped<SignInQueryHandler>();
             services.AddTransient<ForgotPasswordCommandHandler>();
             services.AddScoped<ForgotPasswordCommandHandler>();
-            services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
             services.AddControllersWithViews();
         }
 
