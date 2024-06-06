@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NextIntern.Application.Responses
+namespace NextIntern.Service.DTOs.Responses
 {
     public class ResponseObject
     {

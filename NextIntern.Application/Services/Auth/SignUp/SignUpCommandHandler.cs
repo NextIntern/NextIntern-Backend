@@ -1,7 +1,7 @@
 ﻿using NextIntern.Application.Common.Interfaces;
-using NextIntern.Application.Responses;
 using NextIntern.Domain.Entities;
 using NextIntern.Domain.IRepositories;
+using NextIntern.Service.DTOs.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;

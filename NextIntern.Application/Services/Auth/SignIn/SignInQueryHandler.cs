@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using NextIntern.Application.Common.Interfaces;
-using NextIntern.Application.Responses;
 using NextIntern.Domain.IRepositories;
+using NextIntern.Service.DTOs.Responses;
 
 namespace NextIntern.Application.Auth.SignIn
 {

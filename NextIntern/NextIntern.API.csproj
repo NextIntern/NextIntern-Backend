@@ -17,9 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NextIntern.Application\NextIntern.Application.csproj" />
-    <ProjectReference Include="..\NextIntern.Domain\NextIntern.Domain.csproj" />
-    <ProjectReference Include="..\NextIntern.Infrastructure\NextIntern.Infrastructure.csproj" />
+    <ProjectReference Include="..\NextIntern.Application\NextIntern.Service.csproj" />
+    <ProjectReference Include="..\NextIntern.Infrastructure\NextIntern.Repository.csproj" />
   </ItemGroup>
 
 </Project>

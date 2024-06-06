@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using NextIntern.Domain.Common.Interfaces;
 using NextIntern.Application.Common.Interfaces;
 using System.Transactions;
+using NextIntern.Domain.Common;
 
 namespace NextIntern.Application.Common.Behaviours
 {

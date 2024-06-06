@@ -1,9 +1,11 @@
 using NextIntern.API.Configuration;
 using NextIntern.API.Filters;
 using NextIntern.Application;
+using NextIntern.Application.Auth.ForgotPassword;
 using NextIntern.Application.Auth.SignIn;
 using NextIntern.Application.Auth.SignUp;
 using NextIntern.Infrastructure;
+using NextIntern.Domain.DTOs;
 
 namespace NextIntern.API
 {
@@ -24,6 +26,7 @@ namespace NextIntern.API
             });
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
+            services.AddDistributedMemoryCache();
 
             //Register layer
             services.AddApplication(Configuration);
@@ -31,8 +34,10 @@ namespace NextIntern.API
             services.ConfigureApplicationSecurity(Configuration);
             services.AddScoped<SignUpCommandHandler>();
             services.AddScoped<SignInQueryHandler>();
-
-
+            services.AddTransient<ForgotPasswordCommandHandler>();
+            services.AddScoped<ForgotPasswordCommandHandler>();
+            services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

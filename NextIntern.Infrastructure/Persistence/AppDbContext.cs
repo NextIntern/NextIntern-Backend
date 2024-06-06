@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using NextIntern.Domain.Common.Interfaces;
+using NextIntern.Domain.Common;
 using NextIntern.Domain.Entities;
 
 namespace NextIntern.Infrastructure.Persistence;

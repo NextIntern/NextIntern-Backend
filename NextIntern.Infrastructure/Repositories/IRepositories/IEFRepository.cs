@@ -1,4 +1,4 @@
-﻿using NextIntern.Domain.Common.Interfaces;
+﻿using NextIntern.Domain.Common;
 using System.Linq.Expressions;
 
 namespace NextIntern.Domain.IRepositories

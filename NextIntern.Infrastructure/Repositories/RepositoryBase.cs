@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
-using NextIntern.Domain.Common.Interfaces;
+using NextIntern.Domain.Common;
 using NextIntern.Domain.IRepositories;
 using System.Linq.Expressions;
 

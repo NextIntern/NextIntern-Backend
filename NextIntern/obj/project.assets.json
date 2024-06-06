@@ -93,6 +93,39 @@
           "Microsoft.AspNetCore.App"
         ]
       },
+      "Microsoft.AspNetCore.Http.Abstractions/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Features": "2.2.0",
+          "System.Text.Encodings.Web": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Http.Features/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "2.2.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.EntityFrameworkCore/8.0.6": {
         "type": "package",
         "dependencies": {
@@ -487,6 +520,19 @@
           }
         }
       },
+      "RestSharp/111.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/RestSharp.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/RestSharp.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Swashbuckle.AspNetCore/6.4.0": {
         "type": "package",
         "dependencies": {
@@ -567,49 +613,52 @@
           }
         }
       },
-      "NextIntern.Application/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "dependencies": {
-          "AutoMapper": "13.0.1",
-          "BCrypt.Net-Next": "4.0.3",
-          "MediatR": "12.2.0",
-          "Microsoft.Extensions.Configuration.Abstractions": "8.0.0",
-          "NextIntern.Domain": "1.0.0",
-          "NextIntern.Infrastructure": "1.0.0"
-        },
+      "System.Text.Encodings.Web/4.5.0": {
+        "type": "package",
         "compile": {
-          "bin/placeholder/NextIntern.Application.dll": {}
+          "lib/netstandard2.0/System.Text.Encodings.Web.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "bin/placeholder/NextIntern.Application.dll": {}
+          "lib/netstandard2.0/System.Text.Encodings.Web.dll": {
+            "related": ".xml"
+          }
         }
       },
-      "NextIntern.Domain/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "compile": {
-          "bin/placeholder/NextIntern.Domain.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/NextIntern.Domain.dll": {}
-        }
-      },
-      "NextIntern.Infrastructure/1.0.0": {
+      "NextIntern.Repository/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "AutoMapper": "13.0.1",
           "Microsoft.EntityFrameworkCore": "8.0.6",
           "Microsoft.EntityFrameworkCore.Relational": "8.0.6",
-          "NextIntern.Domain": "1.0.0",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "8.0.4"
         },
         "compile": {
-          "bin/placeholder/NextIntern.Infrastructure.dll": {}
+          "bin/placeholder/NextIntern.Repository.dll": {}
         },
         "runtime": {
-          "bin/placeholder/NextIntern.Infrastructure.dll": {}
+          "bin/placeholder/NextIntern.Repository.dll": {}
+        }
+      },
+      "NextIntern.Service/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "AutoMapper": "13.0.1",
+          "BCrypt.Net-Next": "4.0.3",
+          "MediatR": "12.2.0",
+          "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
+          "Microsoft.Extensions.Configuration.Abstractions": "8.0.0",
+          "NextIntern.Repository": "1.0.0",
+          "RestSharp": "111.2.0"
+        },
+        "compile": {
+          "bin/placeholder/NextIntern.Service.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/NextIntern.Service.dll": {}
         }
       }
     }
@@ -729,6 +778,32 @@
         "lib/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.xml",
         "microsoft.aspnetcore.authentication.jwtbearer.8.0.6.nupkg.sha512",
         "microsoft.aspnetcore.authentication.jwtbearer.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Http.Abstractions/2.2.0": {
+      "sha512": "Nxs7Z1q3f1STfLYKJSVXCs1iBl+Ya6E8o4Oy1bCxJ/rNI44E/0f6tbsrVqAWfB7jlnJfyaAtIalBVxPKUPQb4Q==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.http.abstractions/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Http.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Http.Abstractions.xml",
+        "microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
+        "microsoft.aspnetcore.http.abstractions.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Http.Features/2.2.0": {
+      "sha512": "ziFz5zH8f33En4dX81LW84I6XrYXKf9jg6aM39cM+LffN9KJahViKZ61dGMSO2gd3e+qe5yBRwsesvyqlZaSMg==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.http.features/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.xml",
+        "microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
+        "microsoft.aspnetcore.http.features.nuspec"
       ]
     },
     "Microsoft.EntityFrameworkCore/8.0.6": {
@@ -1641,6 +1716,31 @@
         "postgresql.png"
       ]
     },
+    "RestSharp/111.2.0": {
+      "sha512": "OkWr6AGM0zirdkRpxVOxXMWx9OHEIWrDzrpx1XIx5KyvTcmtjJVsKBscVkYTcFerhj5w5Bny7boRIV4a0ENGaQ==",
+      "type": "package",
+      "path": "restsharp/111.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net471/RestSharp.dll",
+        "lib/net471/RestSharp.xml",
+        "lib/net48/RestSharp.dll",
+        "lib/net48/RestSharp.xml",
+        "lib/net6.0/RestSharp.dll",
+        "lib/net6.0/RestSharp.xml",
+        "lib/net7.0/RestSharp.dll",
+        "lib/net7.0/RestSharp.xml",
+        "lib/net8.0/RestSharp.dll",
+        "lib/net8.0/RestSharp.xml",
+        "lib/netstandard2.0/RestSharp.dll",
+        "lib/netstandard2.0/RestSharp.xml",
+        "restsharp.111.2.0.nupkg.sha512",
+        "restsharp.nuspec",
+        "restsharp.png"
+      ]
+    },
     "Swashbuckle.AspNetCore/6.4.0": {
       "sha512": "eUBr4TW0up6oKDA5Xwkul289uqSMgY0xGN4pnbOIBqCcN9VKGGaPvHX3vWaG/hvocfGDP+MGzMA0bBBKz2fkmQ==",
       "type": "package",
@@ -1747,20 +1847,34 @@
         "system.identitymodel.tokens.jwt.nuspec"
       ]
     },
-    "NextIntern.Application/1.0.0": {
-      "type": "project",
-      "path": "../NextIntern.Application/NextIntern.Application.csproj",
-      "msbuildProject": "../NextIntern.Application/NextIntern.Application.csproj"
+    "System.Text.Encodings.Web/4.5.0": {
+      "sha512": "Xg4G4Indi4dqP1iuAiMSwpiWS54ZghzR644OtsRCm/m/lBMG8dUBhLVN7hLm8NNrNTR+iGbshCPTwrvxZPlm4g==",
+      "type": "package",
+      "path": "system.text.encodings.web/4.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/netstandard1.0/System.Text.Encodings.Web.dll",
+        "lib/netstandard1.0/System.Text.Encodings.Web.xml",
+        "lib/netstandard2.0/System.Text.Encodings.Web.dll",
+        "lib/netstandard2.0/System.Text.Encodings.Web.xml",
+        "system.text.encodings.web.4.5.0.nupkg.sha512",
+        "system.text.encodings.web.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
     },
-    "NextIntern.Domain/1.0.0": {
+    "NextIntern.Repository/1.0.0": {
       "type": "project",
-      "path": "../NextIntern.Domain/NextIntern.Domain.csproj",
-      "msbuildProject": "../NextIntern.Domain/NextIntern.Domain.csproj"
+      "path": "../NextIntern.Infrastructure/NextIntern.Repository.csproj",
+      "msbuildProject": "../NextIntern.Infrastructure/NextIntern.Repository.csproj"
     },
-    "NextIntern.Infrastructure/1.0.0": {
+    "NextIntern.Service/1.0.0": {
       "type": "project",
-      "path": "../NextIntern.Infrastructure/NextIntern.Infrastructure.csproj",
-      "msbuildProject": "../NextIntern.Infrastructure/NextIntern.Infrastructure.csproj"
+      "path": "../NextIntern.Application/NextIntern.Service.csproj",
+      "msbuildProject": "../NextIntern.Application/NextIntern.Service.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -1768,9 +1882,8 @@
       "IdentityModel >= 7.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 8.0.6",
       "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.19.6",
-      "NextIntern.Application >= 1.0.0",
-      "NextIntern.Domain >= 1.0.0",
-      "NextIntern.Infrastructure >= 1.0.0",
+      "NextIntern.Repository >= 1.0.0",
+      "NextIntern.Service >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.4.0",
       "System.IdentityModel.Tokens.Jwt >= 7.6.0"
     ]
@@ -1808,14 +1921,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern.Application\\NextIntern.Application.csproj": {
-              "projectPath": "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern.Application\\NextIntern.Application.csproj"
+            "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern.Application\\NextIntern.Service.csproj": {
+              "projectPath": "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern.Application\\NextIntern.Service.csproj"
             },
-            "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern.Domain\\NextIntern.Domain.csproj": {
-              "projectPath": "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern.Domain\\NextIntern.Domain.csproj"
-            },
-            "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern.Infrastructure\\NextIntern.Infrastructure.csproj": {
-              "projectPath": "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern.Infrastructure\\NextIntern.Infrastructure.csproj"
+            "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern.Infrastructure\\NextIntern.Repository.csproj": {
+              "projectPath": "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern.Infrastructure\\NextIntern.Repository.csproj"
             }
           }
         }
