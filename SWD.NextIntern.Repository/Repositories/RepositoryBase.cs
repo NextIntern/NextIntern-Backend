@@ -2,10 +2,16 @@
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using SWD.NextIntern.Repository.Common;
-using SWD.NextIntern.Repository.IRepositories;
+
+using SWD.NextIntern.Repository.Repositories;
+using SWD.NextIntern.Repository.Repositories.IRepositories;
+using System.Linq.Expressions;
 using System.Linq.Expressions;
 
 namespace SWD.NextIntern.Repository
+
+
+
 {
     public class RepositoryBase<TDomain, TPersistence, TDbContext> : IEFRepository<TDomain, TPersistence>
        where TDbContext : DbContext, IUnitOfWork
@@ -164,6 +170,77 @@ namespace SWD.NextIntern.Repository
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             return await _dbContext.SaveChangesAsync(cancellationToken);
+        }
+
+        public virtual async Task<IPagedResult<TDomain>> FindAllAsync(
+            int pageNo,
+            int pageSize,
+            CancellationToken cancellationToken = default)
+        {
+            var query = QueryInternal(x => true);
+            return await PagedList<TDomain>.CreateAsync(
+                query,
+                pageNo,
+                pageSize,
+                cancellationToken);
+        }
+
+        public virtual async Task<IPagedResult<TDomain>> FindAllAsync(
+            Expression<Func<TPersistence, bool>> filterExpression,
+            int pageNo,
+            int pageSize,
+            CancellationToken cancellationToken = default)
+        {
+            var query = QueryInternal(filterExpression);
+            return await PagedList<TDomain>.CreateAsync(
+                query,
+                pageNo,
+                pageSize,
+                cancellationToken);
+        }
+
+        public virtual async Task<IPagedResult<TDomain>> FindAllAsync(
+            Expression<Func<TPersistence, bool>> filterExpression,
+            int pageNo,
+            int pageSize,
+            Func<IQueryable<TPersistence>, IQueryable<TPersistence>> queryOptions,
+            CancellationToken cancellationToken = default)
+        {
+            var query = QueryInternal(filterExpression, queryOptions);
+            return await PagedList<TDomain>.CreateAsync(
+                query,
+                pageNo,
+                pageSize,
+                cancellationToken);
+        }
+
+        public virtual async Task<IPagedResult<TDomain>> FindAllAsync(
+            int pageNo,
+            int pageSize,
+            Func<IQueryable<TPersistence>, IQueryable<TPersistence>> queryOptions,
+            CancellationToken cancellationToken = default)
+        {
+            var query = QueryInternal(queryOptions);
+            return await PagedList<TDomain>.CreateAsync(
+                query,
+                pageNo,
+                pageSize,
+                cancellationToken);
+        }
+
+        public async Task<IPagedResult<TProjection>> FindAllProjectToAsync<TProjection>(
+            int pageNo,
+            int pageSize,
+            Func<IQueryable<TPersistence>, IQueryable<TPersistence>>? queryOptions = default,
+            CancellationToken cancellationToken = default)
+        {
+            var queryable = QueryInternal(queryOptions);
+            var projection = queryable.ProjectTo<TProjection>(_mapper.ConfigurationProvider);
+            return await PagedList<TProjection>.CreateAsync(
+                projection,
+                pageNo,
+                pageSize,
+                cancellationToken);
         }
 
         public async Task<List<TProjection>> FindAllProjectToAsync<TProjection>(

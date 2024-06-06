@@ -1,4 +1,3 @@
-
 namespace SWD.NextIntern.API
 {
     public class Program

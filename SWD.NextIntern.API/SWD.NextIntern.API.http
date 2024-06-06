@@ -1,0 +1,6 @@
+@SWD.NextIntern.API_HostAddress = http://localhost:5236
+
+GET {{SWD.NextIntern.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

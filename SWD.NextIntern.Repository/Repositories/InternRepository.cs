@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+using AutoMapper;
+
 using Microsoft.EntityFrameworkCore;
 using SWD.NextIntern.Repository.Persistence;
 using SWD.NextIntern.Repository.Entities;
@@ -30,5 +31,5 @@ namespace SWD.NextIntern.Repository
         {
             await _context.SaveChangesAsync();
         }
-    }
+  }
 }

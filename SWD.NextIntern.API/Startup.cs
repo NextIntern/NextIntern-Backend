@@ -5,6 +5,9 @@ using SWD.NextIntern.Service.Auth.ForgotPassword;
 using SWD.NextIntern.Service.Auth.SignIn;
 using SWD.NextIntern.Service.Auth.SignUp;
 using SWD.NextIntern.Service.Common.Configuration;
+using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace SWD.NextIntern.API
 {
@@ -27,14 +30,6 @@ namespace SWD.NextIntern.API
             services.AddSwaggerGen();
             services.AddDistributedMemoryCache();
 
-            //Register layer
-            services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen();
-
-            //Register layer
-            //services.AddRepository(Configuration);
-            //services.AddService(Configuration);
-
             //Register configuration
             services.AddApplication(Configuration);
             services.AddInfrastructure(Configuration);
@@ -44,9 +39,14 @@ namespace SWD.NextIntern.API
             services.AddTransient<ForgotPasswordCommandHandler>();
             services.AddScoped<ForgotPasswordCommandHandler>();
             services.AddControllersWithViews();
+
+            services.AddRepository(Configuration);
+            services.AddService(Configuration);
+
+            //Register configuration
+            services.ConfigureApplicationSecurity(Configuration);
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
