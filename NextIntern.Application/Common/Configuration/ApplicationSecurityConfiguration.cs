@@ -1,12 +1,15 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
-using NextIntern.Application.Common.Interfaces;
-using NextIntern.Services;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
+using NextIntern.Application.Common.Interfaces;
+using NextIntern.Services;
 
-namespace NextIntern.API.Configuration
+namespace SWD.NextIntern.Service.Common.Configuration
 {
     public static class ApplicationSecurityConfiguration
     {
@@ -14,8 +17,9 @@ namespace NextIntern.API.Configuration
             this IServiceCollection services,
             IConfiguration configuration)
         {
-            services.AddTransient<ICurrentUserService, CurrentUserService>();
+            //services.AddTransient<ICurrentUserService, CurrentUserService>();
             services.AddTransient<IJwtService, JwtService>();
+
             JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
             services.AddHttpContextAccessor();
             services.AddAuthentication(options =>
@@ -33,7 +37,7 @@ namespace NextIntern.API.Configuration
                         ValidateLifetime = true,
                         ValidIssuer = configuration.GetSection("Security.Bearer:Authority").Get<string>(),
                         ValidAudience = configuration.GetSection("Security.Bearer:Audience").Get<string>(),
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("NextIntern")),
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetSection("Jwt:Secret").Get<string>())),
                     };
                 });
 

@@ -1,4 +1,3 @@
-using NextIntern.API.Configuration;
 using NextIntern.API.Filters;
 using NextIntern.Application;
 using NextIntern.Application.Auth.ForgotPassword;
@@ -6,6 +5,13 @@ using NextIntern.Application.Auth.SignIn;
 using NextIntern.Application.Auth.SignUp;
 using NextIntern.Infrastructure;
 using NextIntern.Domain.DTOs;
+//using SWD.NextIntern.API.Filters;
+//using SWD.NextIntern.Repository;
+using SWD.NextIntern.Service;
+using SWD.NextIntern.Service.Common.Configuration;
+using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace NextIntern.API
 {
@@ -29,6 +35,14 @@ namespace NextIntern.API
             services.AddDistributedMemoryCache();
 
             //Register layer
+            services.AddEndpointsApiExplorer();
+            services.AddSwaggerGen();
+
+            //Register layer
+            //services.AddRepository(Configuration);
+            //services.AddService(Configuration);
+
+            //Register configuration
             services.AddApplication(Configuration);
             services.AddInfrastructure(Configuration);
             services.ConfigureApplicationSecurity(Configuration);

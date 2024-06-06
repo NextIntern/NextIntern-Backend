@@ -14,13 +14,14 @@
     <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="MediatR" Version="12.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.6" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
     <PackageReference Include="RestSharp" Version="111.2.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NextIntern.Infrastructure\NextIntern.Repository.csproj" />
+    <ProjectReference Include="..\NextIntern.Infrastructure\SWD.NextIntern.Repository.csproj" />
   </ItemGroup>
 
 </Project>

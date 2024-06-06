@@ -1,6 +1,5 @@
 ﻿using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
-using System.Text;
 using NextIntern.Application.Common.Interfaces;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Cryptography;

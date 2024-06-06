@@ -626,39 +626,41 @@
           }
         }
       },
-      "NextIntern.Repository/1.0.0": {
+      "SWD.NextIntern.Repository/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "AutoMapper": "13.0.1",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.6",
           "Microsoft.EntityFrameworkCore": "8.0.6",
           "Microsoft.EntityFrameworkCore.Relational": "8.0.6",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "8.0.4"
         },
         "compile": {
-          "bin/placeholder/NextIntern.Repository.dll": {}
+          "bin/placeholder/SWD.NextIntern.Repository.dll": {}
         },
         "runtime": {
-          "bin/placeholder/NextIntern.Repository.dll": {}
+          "bin/placeholder/SWD.NextIntern.Repository.dll": {}
         }
       },
-      "NextIntern.Service/1.0.0": {
+      "SWD.NextIntern.Service/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "AutoMapper": "13.0.1",
           "BCrypt.Net-Next": "4.0.3",
           "MediatR": "12.2.0",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.6",
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "Microsoft.Extensions.Configuration.Abstractions": "8.0.0",
-          "NextIntern.Repository": "1.0.0",
-          "RestSharp": "111.2.0"
+          "RestSharp": "111.2.0",
+          "SWD.NextIntern.Repository": "1.0.0"
         },
         "compile": {
-          "bin/placeholder/NextIntern.Service.dll": {}
+          "bin/placeholder/SWD.NextIntern.Service.dll": {}
         },
         "runtime": {
-          "bin/placeholder/NextIntern.Service.dll": {}
+          "bin/placeholder/SWD.NextIntern.Service.dll": {}
         }
       }
     }
@@ -1866,15 +1868,15 @@
         "version.txt"
       ]
     },
-    "NextIntern.Repository/1.0.0": {
+    "SWD.NextIntern.Repository/1.0.0": {
       "type": "project",
-      "path": "../NextIntern.Infrastructure/NextIntern.Repository.csproj",
-      "msbuildProject": "../NextIntern.Infrastructure/NextIntern.Repository.csproj"
+      "path": "../NextIntern.Infrastructure/SWD.NextIntern.Repository.csproj",
+      "msbuildProject": "../NextIntern.Infrastructure/SWD.NextIntern.Repository.csproj"
     },
-    "NextIntern.Service/1.0.0": {
+    "SWD.NextIntern.Service/1.0.0": {
       "type": "project",
-      "path": "../NextIntern.Application/NextIntern.Service.csproj",
-      "msbuildProject": "../NextIntern.Application/NextIntern.Service.csproj"
+      "path": "../NextIntern.Application/SWD.NextIntern.Service.csproj",
+      "msbuildProject": "../NextIntern.Application/SWD.NextIntern.Service.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -1882,8 +1884,8 @@
       "IdentityModel >= 7.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 8.0.6",
       "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.19.6",
-      "NextIntern.Repository >= 1.0.0",
-      "NextIntern.Service >= 1.0.0",
+      "SWD.NextIntern.Repository >= 1.0.0",
+      "SWD.NextIntern.Service >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.4.0",
       "System.IdentityModel.Tokens.Jwt >= 7.6.0"
     ]
@@ -1895,9 +1897,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern\\NextIntern.API.csproj",
-      "projectName": "NextIntern.API",
-      "projectPath": "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern\\NextIntern.API.csproj",
+      "projectUniqueName": "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern\\SWD.NextIntern.API.csproj",
+      "projectName": "SWD.NextIntern.API",
+      "projectPath": "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern\\SWD.NextIntern.API.csproj",
       "packagesPath": "C:\\Users\\truon\\.nuget\\packages\\",
       "outputPath": "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern\\obj\\",
       "projectStyle": "PackageReference",
@@ -1921,11 +1923,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern.Application\\NextIntern.Service.csproj": {
-              "projectPath": "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern.Application\\NextIntern.Service.csproj"
+            "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern.Application\\SWD.NextIntern.Service.csproj": {
+              "projectPath": "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern.Application\\SWD.NextIntern.Service.csproj"
             },
-            "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern.Infrastructure\\NextIntern.Repository.csproj": {
-              "projectPath": "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern.Infrastructure\\NextIntern.Repository.csproj"
+            "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern.Infrastructure\\SWD.NextIntern.Repository.csproj": {
+              "projectPath": "D:\\Docm\\Dev\\.learning-process\\Github\\.project\\NextIntern\\NextIntern\\NextIntern-Backend\\NextIntern.Infrastructure\\SWD.NextIntern.Repository.csproj"
             }
           }
         }
