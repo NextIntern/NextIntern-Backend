@@ -1,12 +1,7 @@
 ﻿using MediatR;
-using NextIntern.Application.Common.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SWD.NextIntern.Service.Common.Interfaces;
 
-namespace NextIntern.Application.Auth.ResetPassword
+namespace SWD.NextIntern.Service.Auth.ResetPassword
 {
     public class ResetPasswordQuery : IRequest<string>, IQuery
     {

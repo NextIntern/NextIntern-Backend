@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using NextIntern.Domain.Entities;
-using NextIntern.Domain.IRepositories;
-using NextIntern.Infrastructure.Persistence;
+using SWD.NextIntern.Repository.Persistence;
+using SWD.NextIntern.Repository.Entities;
 using System.Linq.Expressions;
+using SWD.NextIntern.Repository.IRepositories;
 
-namespace NextIntern.Infrastructure.Repositories
+namespace SWD.NextIntern.Repository
 {
     public class InternRepository : RepositoryBase<Intern, Intern, AppDbContext>, IInternRepository
     {

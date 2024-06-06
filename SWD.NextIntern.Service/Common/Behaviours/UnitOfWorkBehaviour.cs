@@ -1,9 +1,9 @@
 ﻿using MediatR;
-using NextIntern.Application.Common.Interfaces;
+using SWD.NextIntern.Repository.Common;
 using System.Transactions;
-using NextIntern.Domain.Common;
+using System.Windows.Input;
 
-namespace NextIntern.Application.Common.Behaviours
+namespace SWD.NextIntern.Service.Common.Behaviours
 {
     /// <summary>
     /// Ensures that all operations processed as part of handling a <see cref="ICommand"/> either

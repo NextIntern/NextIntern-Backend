@@ -1,12 +1,12 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
-using NextIntern.Application.Auth.ForgotPassword;
-using NextIntern.Application.Auth.SignIn;
-using NextIntern.Application.Auth.SignUp;
-using NextIntern.Application.Common.Interfaces;
+using SWD.NextIntern.Service.Auth.ForgotPassword;
+using SWD.NextIntern.Service.Auth.SignIn;
+using SWD.NextIntern.Service.Auth.SignUp;
+using SWD.NextIntern.Service.Common.Interfaces;
 
-namespace NextIntern.API.Controllers.Authentication
+namespace SWD.NextIntern.API.Controllers.Authentication
 {
     [ApiController]
     [Route("api/v1/auth")]

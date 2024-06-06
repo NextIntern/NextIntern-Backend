@@ -1,12 +1,12 @@
 ﻿using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
-using NextIntern.Application.Common.Interfaces;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Cryptography;
+using SWD.NextIntern.Service.Common.Interfaces;
 
-namespace NextIntern.Services
+namespace SWD.NextIntern.Service
 {
-    public class JwtService : IJwtService
+    public class JwtService : IJwtService 
     {
         public string CreateToken(string ID, string roles)
         {

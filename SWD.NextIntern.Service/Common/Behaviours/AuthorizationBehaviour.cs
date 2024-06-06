@@ -1,10 +1,10 @@
 ﻿using MediatR;
-using NextIntern.Application.Common.Exceptions;
-using NextIntern.Application.Common.Interfaces;
-using NextIntern.Application.Common.Security;
+using Microsoft.AspNetCore.Authorization;
+using SWD.NextIntern.Service.Common.Exceptions;
+using SWD.NextIntern.Service.Common.Interfaces;
 using System.Reflection;
 
-namespace NextIntern.Application.Common.Behaviours
+namespace SWD.NextIntern.Service.Common.Behaviours
 {
     public class AuthorizationBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : notnull

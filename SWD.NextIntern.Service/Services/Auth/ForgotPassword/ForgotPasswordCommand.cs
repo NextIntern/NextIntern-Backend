@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NextIntern.Application.Auth.ForgotPassword
+﻿
+namespace SWD.NextIntern.Service.Auth.ForgotPassword
 {
     public class ForgotPasswordQuery
     {

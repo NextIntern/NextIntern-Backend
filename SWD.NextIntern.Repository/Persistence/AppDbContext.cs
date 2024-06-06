@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using NextIntern.Domain.Common;
-using NextIntern.Domain.Entities;
+using SWD.NextIntern.Repository.Common;
+using SWD.NextIntern.Repository.Entities;
 
-namespace NextIntern.Infrastructure.Persistence;
+namespace SWD.NextIntern.Repository.Persistence;
 
 public partial class AppDbContext : DbContext, IUnitOfWork
 {

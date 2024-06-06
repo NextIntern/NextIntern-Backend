@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using NextIntern.Application.Common.Behaviours;
+using SWD.NextIntern.Service.Common.Behaviours;
 using System.Reflection;
 
-namespace NextIntern.Application
+namespace SWD.NextIntern.Service
 {
     public static class DependencyInjection
     {

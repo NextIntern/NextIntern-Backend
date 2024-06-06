@@ -1,12 +1,12 @@
-using NextIntern.API.Filters;
-using NextIntern.Application;
-using NextIntern.Application.Auth.ForgotPassword;
-using NextIntern.Application.Auth.SignIn;
-using NextIntern.Application.Auth.SignUp;
-using NextIntern.Infrastructure;
+using SWD.NextIntern.API.Filters;
+using SWD.NextIntern.Repository;
+using SWD.NextIntern.Service;
+using SWD.NextIntern.Service.Auth.ForgotPassword;
+using SWD.NextIntern.Service.Auth.SignIn;
+using SWD.NextIntern.Service.Auth.SignUp;
 using SWD.NextIntern.Service.Common.Configuration;
 
-namespace NextIntern.API
+namespace SWD.NextIntern.API
 {
     public class Startup
     {

@@ -1,13 +1,12 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
-using NextIntern.Domain.IRepositories;
 using System.Security.Cryptography;
-using Microsoft.Extensions.Options;
 using System.Net.Mail;
 using System.Net;
+using SWD.NextIntern.Repository.IRepositories;
 
 
-namespace NextIntern.Application.Auth.ForgotPassword
+namespace SWD.NextIntern.Service.Auth.ForgotPassword
 {
     public class ForgotPasswordCommandHandler
     {

@@ -1,4 +1,4 @@
-﻿namespace NextIntern.Domain.Common
+﻿namespace SWD.NextIntern.Repository.Common
 {
     public interface IUnitOfWork
     {

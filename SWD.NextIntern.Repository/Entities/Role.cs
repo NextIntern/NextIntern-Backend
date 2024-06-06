@@ -1,4 +1,4 @@
-﻿namespace NextIntern.Domain.Entities;
+﻿namespace SWD.NextIntern.Repository.Entities;
 
 public partial class Role
 {

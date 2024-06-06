@@ -1,14 +1,10 @@
-﻿using NextIntern.Application.Common.Interfaces;
-using NextIntern.Domain.Entities;
-using NextIntern.Domain.IRepositories;
-using NextIntern.Service.DTOs.Responses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using SWD.NextIntern.Repository.Entities;
+using SWD.NextIntern.Repository.IRepositories;
+using SWD.NextIntern.Service.Common.Interfaces;
+using SWD.NextIntern.Service.DTOs.Responses;
 
-namespace NextIntern.Application.Auth.SignUp
+namespace SWD.NextIntern.Service.Auth.SignUp
 {
     public class SignUpCommandHandler
     {

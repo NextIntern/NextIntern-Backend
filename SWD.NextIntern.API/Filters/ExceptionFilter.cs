@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using NextIntern.Application.Common.Exceptions;
-using System.ComponentModel.DataAnnotations;
-using System;
+using SWD.NextIntern.Service.Common.Exceptions;
 
-namespace NextIntern.API.Filters
+namespace SWD.NextIntern.API.Filters
 {
     public class ExceptionFilter : IExceptionFilter
     {

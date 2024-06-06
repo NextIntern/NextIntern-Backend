@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace NextIntern.Domain.Entities;
+﻿namespace SWD.NextIntern.Repository.Entities;
 
 public partial class InternEvaluationCriterion
 {

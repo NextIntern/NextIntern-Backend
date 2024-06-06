@@ -6,8 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
-using NextIntern.Application.Common.Interfaces;
-using NextIntern.Services;
+using SWD.NextIntern.Service.Common.Interfaces;
 
 namespace SWD.NextIntern.Service.Common.Configuration
 {

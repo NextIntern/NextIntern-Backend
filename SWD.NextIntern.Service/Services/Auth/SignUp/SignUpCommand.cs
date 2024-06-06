@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NextIntern.Application.Auth.SignUp
+﻿
+namespace SWD.NextIntern.Service.Auth.SignUp
 {
     public class SignUpCommand
     {

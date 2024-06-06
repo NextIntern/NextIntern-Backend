@@ -1,9 +1,10 @@
-﻿using MediatR;
-using NextIntern.Application.Common.Interfaces;
-using NextIntern.Domain.IRepositories;
-using NextIntern.Service.DTOs.Responses;
+﻿
 
-namespace NextIntern.Application.Auth.SignIn
+using SWD.NextIntern.Repository.IRepositories;
+using SWD.NextIntern.Service.Common.Interfaces;
+using SWD.NextIntern.Service.DTOs.Responses;
+
+namespace SWD.NextIntern.Service.Auth.SignIn
 {
     public class SignInQueryHandler
     {

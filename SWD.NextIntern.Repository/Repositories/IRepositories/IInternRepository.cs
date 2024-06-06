@@ -1,12 +1,7 @@
-﻿using NextIntern.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using SWD.NextIntern.Repository.Entities;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace NextIntern.Domain.IRepositories
+namespace SWD.NextIntern.Repository.IRepositories
 {
     public interface IInternRepository : IEFRepository<Intern, Intern>
     {

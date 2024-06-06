@@ -1,11 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using NextIntern.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
-using NextIntern.Domain.IRepositories;
-using NextIntern.Infrastructure.Repositories;
+using SWD.NextIntern.Repository.Persistence;
+using SWD.NextIntern.Repository.IRepositories;
 
-namespace NextIntern.Infrastructure
+namespace SWD.NextIntern.Repository
 {
     public static class DependencyInjection
     {

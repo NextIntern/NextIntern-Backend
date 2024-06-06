@@ -1,12 +1,7 @@
-﻿using NextIntern.Application.Auth.ForgotPassword;
-using NextIntern.Service.DTOs.Responses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SWD.NextIntern.Service.Auth.ForgotPassword;
+using SWD.NextIntern.Service.DTOs.Responses;
 
-namespace NextIntern.Application.Auth.ResetPassword
+namespace SWD.NextIntern.Service.Auth.ResetPassword
 {
     public class ResetPasswordQueryHandler
     {

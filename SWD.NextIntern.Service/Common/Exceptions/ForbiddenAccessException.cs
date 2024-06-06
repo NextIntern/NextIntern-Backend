@@ -1,4 +1,4 @@
-﻿namespace NextIntern.Application.Common.Exceptions
+﻿namespace SWD.NextIntern.Service.Common.Exceptions
 {
     public class ForbiddenAccessException : Exception
     {

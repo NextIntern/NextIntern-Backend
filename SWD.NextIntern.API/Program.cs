@@ -1,6 +1,5 @@
-using NextIntern.API;
 
-namespace NextIntern.Api
+namespace SWD.NextIntern.API
 {
     public class Program
     {

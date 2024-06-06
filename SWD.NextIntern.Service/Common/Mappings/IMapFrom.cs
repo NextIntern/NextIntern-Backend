@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace NextIntern.Application.Common.Mappings
+namespace SWD.NextIntern.Service.Common.Mappings
 {
     interface IMapFrom<T>
     {

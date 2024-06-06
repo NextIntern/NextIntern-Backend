@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using System.Reflection;
 
-namespace NextIntern.Application.Common.Mappings
+namespace SWD.NextIntern.Service.Common.Mappings
 {
     public class MappingProfile : Profile
     {

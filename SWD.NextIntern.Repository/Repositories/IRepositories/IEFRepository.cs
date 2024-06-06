@@ -1,7 +1,7 @@
-﻿using NextIntern.Domain.Common;
+﻿using SWD.NextIntern.Repository.Common;
 using System.Linq.Expressions;
 
-namespace NextIntern.Domain.IRepositories
+namespace SWD.NextIntern.Repository.IRepositories
 {
     public interface IEFRepository<TDomain, TPersistence> : IRepository<TDomain>
     {

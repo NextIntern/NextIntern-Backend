@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using NextIntern.Application.Common.Interfaces;
+using SWD.NextIntern.Service.Common.Interfaces;
 
-namespace NextIntern.Application.Auth.SignIn
+namespace SWD.NextIntern.Service.Auth.SignIn
 {
     public class SignInQuery : IRequest<string>, IQuery
     {

@@ -1,4 +1,4 @@
-﻿namespace NextIntern.Application.Common.Security
+﻿namespace SWD.NextIntern.Service.Common.Security
 {
     [AttributeUsage(AttributeTargets.All)]
     public class AuthorizeAttribute : Attribute
