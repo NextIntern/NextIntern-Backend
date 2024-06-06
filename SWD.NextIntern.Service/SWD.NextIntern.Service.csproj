@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NextIntern.Infrastructure\SWD.NextIntern.Repository.csproj" />
+    <ProjectReference Include="..\SWD.NextIntern.Repository\SWD.NextIntern.Repository.csproj" />
   </ItemGroup>
 
 </Project>
