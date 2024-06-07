@@ -1,4 +1,7 @@
-﻿namespace SWD.NextIntern.Repository.Entities;
+﻿using System;
+using System.Collections.Generic;
+
+namespace SWD.NextIntern.Repository.Entities;
 
 public partial class Campaign
 {
@@ -17,6 +20,8 @@ public partial class Campaign
     public DateTime? CreateDate { get; set; }
 
     public DateTime? ModifyDate { get; set; }
+
+    public DateTime? DeletedDate { get; set; }
 
     public virtual ICollection<CampaignEvaluation> CampaignEvaluations { get; set; } = new List<CampaignEvaluation>();
 

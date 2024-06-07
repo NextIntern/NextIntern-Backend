@@ -1,4 +1,7 @@
-﻿namespace SWD.NextIntern.Repository.Entities;
+﻿using System;
+using System.Collections.Generic;
+
+namespace SWD.NextIntern.Repository.Entities;
 
 public partial class FormCriterion
 {
@@ -13,6 +16,8 @@ public partial class FormCriterion
     public int? MinScore { get; set; }
 
     public int? MaxScore { get; set; }
+
+    public DateTime? DeletedDate { get; set; }
 
     public virtual ICollection<EvaluationFormDetail> EvaluationFormDetails { get; set; } = new List<EvaluationFormDetail>();
 

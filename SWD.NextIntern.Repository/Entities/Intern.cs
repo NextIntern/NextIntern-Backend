@@ -1,4 +1,7 @@
-﻿namespace SWD.NextIntern.Repository.Entities;
+﻿using System;
+using System.Collections.Generic;
+
+namespace SWD.NextIntern.Repository.Entities;
 
 public partial class Intern
 {
@@ -31,6 +34,12 @@ public partial class Intern
     public DateTime? ModifyDate { get; set; }
 
     public Guid? RoleId { get; set; }
+
+    public int? Otp { get; set; }
+
+    public DateOnly? OtpExpired { get; set; }
+
+    public DateTime? DeletedDate { get; set; }
 
     public virtual Campaign? Campaign { get; set; }
 

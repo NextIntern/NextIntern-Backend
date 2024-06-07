@@ -1,4 +1,7 @@
-﻿namespace SWD.NextIntern.Repository.Entities;
+﻿using System;
+using System.Collections.Generic;
+
+namespace SWD.NextIntern.Repository.Entities;
 
 public partial class Staff
 {
@@ -17,6 +20,8 @@ public partial class Staff
     public string? Address { get; set; }
 
     public Guid? RoleId { get; set; }
+
+    public DateTime? DeletedDate { get; set; }
 
     public virtual ICollection<Intern> Interns { get; set; } = new List<Intern>();
 

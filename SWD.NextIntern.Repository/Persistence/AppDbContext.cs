@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SWD.NextIntern.Repository.Common;
 using SWD.NextIntern.Repository.Entities;
+using System.Reflection;
 
 namespace SWD.NextIntern.Repository.Persistence;
 
@@ -13,6 +14,28 @@ public partial class AppDbContext : DbContext, IUnitOfWork
     public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options)
     {
+    }
+
+    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        foreach (var entry in ChangeTracker.Entries())
+        {
+            if (entry.State == EntityState.Deleted)
+            {
+                entry.State = EntityState.Modified;
+                var deletedDateProperty = entry.Entity.GetType().GetProperty("DeletedDate");
+                if (deletedDateProperty is not null)
+                {
+                    deletedDateProperty.SetValue(entry.Entity, DateTime.Now);
+                }
+            }
+
+            if (entry.State == EntityState.Modified || entry.State == EntityState.Added)
+            {
+                
+            }
+        }
+        return base.SaveChangesAsync(cancellationToken);
     }
 
     public virtual DbSet<Campaign> Campaigns { get; set; }
@@ -41,10 +64,6 @@ public partial class AppDbContext : DbContext, IUnitOfWork
 
     public virtual DbSet<University> Universities { get; set; }
 
-//    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-//        => optionsBuilder.UseNpgsql("Host=database.nextintern.tech;Database=nextintern;Username=root;Password=iumaycauratnhiu");
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.HasPostgresExtension("uuid-ossp");
@@ -65,6 +84,9 @@ public partial class AppDbContext : DbContext, IUnitOfWork
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .HasColumnType("timestamp without time zone")
                 .HasColumnName("create_date");
+            entity.Property(e => e.DeletedDate)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("deleted_date");
             entity.Property(e => e.EndDate).HasColumnName("end_date");
             entity.Property(e => e.Id)
                 .ValueGeneratedOnAdd()
@@ -91,9 +113,14 @@ public partial class AppDbContext : DbContext, IUnitOfWork
                 .HasDefaultValueSql("uuid_generate_v4()")
                 .HasColumnName("campaign_evaluation_id");
             entity.Property(e => e.CampaignId).HasColumnName("campaign_id");
+            entity.Property(e => e.DeletedDate)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("deleted_date");
+            entity.Property(e => e.EndDate).HasColumnName("end_date");
             entity.Property(e => e.Id)
                 .ValueGeneratedOnAdd()
                 .HasColumnName("id");
+            entity.Property(e => e.StartDate).HasColumnName("start_date");
 
             entity.HasOne(d => d.Campaign).WithMany(p => p.CampaignEvaluations)
                 .HasForeignKey(d => d.CampaignId)
@@ -114,6 +141,9 @@ public partial class AppDbContext : DbContext, IUnitOfWork
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .HasColumnType("timestamp without time zone")
                 .HasColumnName("create_date");
+            entity.Property(e => e.DeletedDate)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("deleted_date");
             entity.Property(e => e.Id)
                 .ValueGeneratedOnAdd()
                 .HasColumnName("id");
@@ -138,6 +168,9 @@ public partial class AppDbContext : DbContext, IUnitOfWork
                 .HasDefaultValueSql("uuid_generate_v4()")
                 .HasColumnName("campaign_question_response_id");
             entity.Property(e => e.CampaignQuestionId).HasColumnName("campaign_question_id");
+            entity.Property(e => e.DeletedDate)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("deleted_date");
             entity.Property(e => e.Id)
                 .ValueGeneratedOnAdd()
                 .HasColumnName("id");
@@ -167,9 +200,13 @@ public partial class AppDbContext : DbContext, IUnitOfWork
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .HasColumnType("timestamp without time zone")
                 .HasColumnName("create_date");
+            entity.Property(e => e.DeletedDate)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("deleted_date");
             entity.Property(e => e.Id)
                 .ValueGeneratedOnAdd()
                 .HasColumnName("id");
+            entity.Property(e => e.IsActive).HasColumnName("is_active");
             entity.Property(e => e.ModifyDate)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .HasColumnType("timestamp without time zone")
@@ -190,6 +227,9 @@ public partial class AppDbContext : DbContext, IUnitOfWork
             entity.Property(e => e.EvaluationFormDetailId)
                 .HasDefaultValueSql("uuid_generate_v4()")
                 .HasColumnName("evaluation_form_detail_id");
+            entity.Property(e => e.DeletedDate)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("deleted_date");
             entity.Property(e => e.EvaluationFormId).HasColumnName("evaluation_form_id");
             entity.Property(e => e.FormCriteriaId).HasColumnName("form_criteria_id");
             entity.Property(e => e.Id)
@@ -214,6 +254,9 @@ public partial class AppDbContext : DbContext, IUnitOfWork
             entity.Property(e => e.FormCriteriaId)
                 .HasDefaultValueSql("uuid_generate_v4()")
                 .HasColumnName("form_criteria_id");
+            entity.Property(e => e.DeletedDate)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("deleted_date");
             entity.Property(e => e.Guide).HasColumnName("guide");
             entity.Property(e => e.Id)
                 .ValueGeneratedOnAdd()
@@ -242,6 +285,9 @@ public partial class AppDbContext : DbContext, IUnitOfWork
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .HasColumnType("timestamp without time zone")
                 .HasColumnName("create_date");
+            entity.Property(e => e.DeletedDate)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("deleted_date");
             entity.Property(e => e.Dob).HasColumnName("dob");
             entity.Property(e => e.Email)
                 .HasMaxLength(100)
@@ -260,6 +306,8 @@ public partial class AppDbContext : DbContext, IUnitOfWork
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .HasColumnType("timestamp without time zone")
                 .HasColumnName("modify_date");
+            entity.Property(e => e.Otp).HasColumnName("otp");
+            entity.Property(e => e.OtpExpired).HasColumnName("otp_expired");
             entity.Property(e => e.Password)
                 .HasMaxLength(100)
                 .HasColumnName("password");
@@ -294,6 +342,9 @@ public partial class AppDbContext : DbContext, IUnitOfWork
                 .HasDefaultValueSql("uuid_generate_v4()")
                 .HasColumnName("intern_evaluation_id");
             entity.Property(e => e.CampaignEvaluationId).HasColumnName("campaign_evaluation_id");
+            entity.Property(e => e.DeletedDate)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("deleted_date");
             entity.Property(e => e.Feedback).HasColumnName("feedback");
             entity.Property(e => e.Id)
                 .ValueGeneratedOnAdd()
@@ -318,6 +369,9 @@ public partial class AppDbContext : DbContext, IUnitOfWork
             entity.Property(e => e.InternEvaluationCriteriaId)
                 .HasDefaultValueSql("uuid_generate_v4()")
                 .HasColumnName("intern_evaluation_criteria_id");
+            entity.Property(e => e.DeletedDate)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("deleted_date");
             entity.Property(e => e.FormCriteriaId).HasColumnName("form_criteria_id");
             entity.Property(e => e.Id)
                 .ValueGeneratedOnAdd()
@@ -343,6 +397,9 @@ public partial class AppDbContext : DbContext, IUnitOfWork
             entity.Property(e => e.RoleId)
                 .HasDefaultValueSql("uuid_generate_v4()")
                 .HasColumnName("role_id");
+            entity.Property(e => e.DeletedDate)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("deleted_date");
             entity.Property(e => e.Id)
                 .ValueGeneratedOnAdd()
                 .HasColumnName("id");
@@ -363,6 +420,9 @@ public partial class AppDbContext : DbContext, IUnitOfWork
             entity.Property(e => e.Address)
                 .HasMaxLength(255)
                 .HasColumnName("address");
+            entity.Property(e => e.DeletedDate)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("deleted_date");
             entity.Property(e => e.FullName)
                 .HasMaxLength(255)
                 .HasColumnName("full_name");
@@ -401,6 +461,9 @@ public partial class AppDbContext : DbContext, IUnitOfWork
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .HasColumnType("timestamp without time zone")
                 .HasColumnName("create_date");
+            entity.Property(e => e.DeletedDate)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("deleted_date");
             entity.Property(e => e.Id)
                 .ValueGeneratedOnAdd()
                 .HasColumnName("id");

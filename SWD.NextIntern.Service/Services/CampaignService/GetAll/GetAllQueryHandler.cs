@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using SWD.NextIntern.Repository.Entities;
 using SWD.NextIntern.Repository.Repositories.IRepositories;
+using System.Linq.Expressions;
 
 namespace SWD.NextIntern.Service.Services.CampaignService.GetAll
 {
@@ -24,7 +25,9 @@ namespace SWD.NextIntern.Service.Services.CampaignService.GetAll
                 return query.Include(x => x.University);
             };
 
-            var campaigns = await _campaignRepository.FindAllAsync(queryOptions, cancellationToken);
+            Expression<Func<Campaign, bool>> queryFilter = (Campaign c) => c.DeletedDate == null;
+
+            var campaigns = await _campaignRepository.FindAllAsync(queryFilter, queryOptions, cancellationToken);
             var campaignDtos = _mapper.Map<List<CampaignDto>>(campaigns);
             return campaignDtos;
         }

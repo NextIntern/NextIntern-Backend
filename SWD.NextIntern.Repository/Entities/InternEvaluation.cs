@@ -1,4 +1,7 @@
-﻿namespace SWD.NextIntern.Repository.Entities;
+﻿using System;
+using System.Collections.Generic;
+
+namespace SWD.NextIntern.Repository.Entities;
 
 public partial class InternEvaluation
 {
@@ -11,6 +14,8 @@ public partial class InternEvaluation
     public Guid? CampaignEvaluationId { get; set; }
 
     public string? Feedback { get; set; }
+
+    public DateTime? DeletedDate { get; set; }
 
     public virtual CampaignEvaluation? CampaignEvaluation { get; set; }
 

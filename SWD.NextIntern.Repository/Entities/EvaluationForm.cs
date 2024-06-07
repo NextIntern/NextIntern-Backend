@@ -1,4 +1,7 @@
-﻿namespace SWD.NextIntern.Repository.Entities;
+﻿using System;
+using System.Collections.Generic;
+
+namespace SWD.NextIntern.Repository.Entities;
 
 public partial class EvaluationForm
 {
@@ -11,6 +14,10 @@ public partial class EvaluationForm
     public DateTime? CreateDate { get; set; }
 
     public DateTime? ModifyDate { get; set; }
+
+    public bool? IsActive { get; set; }
+
+    public DateTime? DeletedDate { get; set; }
 
     public virtual ICollection<EvaluationFormDetail> EvaluationFormDetails { get; set; } = new List<EvaluationFormDetail>();
 
