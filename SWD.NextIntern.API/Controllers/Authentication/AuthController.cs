@@ -1,10 +1,13 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
 using SWD.NextIntern.Service.Auth.ForgotPassword;
+using SWD.NextIntern.Service.Auth.ResetPassword;
 using SWD.NextIntern.Service.Auth.SignIn;
 using SWD.NextIntern.Service.Auth.SignUp;
 using SWD.NextIntern.Service.Common.Interfaces;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace SWD.NextIntern.API.Controllers.Authentication
 {
@@ -15,17 +18,19 @@ namespace SWD.NextIntern.API.Controllers.Authentication
         private readonly SignUpCommandHandler _signUpCommandHandler;
         private readonly SignInQueryHandler _signInQueryHandler;
         private readonly ForgotPasswordCommandHandler _forgotPasswordCommandHandler;
+        private readonly ResetPasswordQueryHandler _resetPasswordQueryHandler;
         private readonly IJwtService _jwtService;
         private readonly ISender _mediator;
         private readonly IDistributedCache _cache;
 
-        public AuthController(SignUpCommandHandler signUpCommandHandler, SignInQueryHandler signInQueryHandler, ISender mediator, IJwtService _jwtService, IDistributedCache cache, ForgotPasswordCommandHandler forgotPasswordCommandHandler)
+        public AuthController(SignUpCommandHandler signUpCommandHandler, SignInQueryHandler signInQueryHandler, ISender mediator, IJwtService _jwtService, IDistributedCache cache, ForgotPasswordCommandHandler forgotPasswordCommandHandler, ResetPasswordQueryHandler resetPasswordQueryHandler)
         {
             _signUpCommandHandler = signUpCommandHandler;
             _signInQueryHandler = signInQueryHandler;
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
             _cache = cache;
             _forgotPasswordCommandHandler = forgotPasswordCommandHandler;
+            _resetPasswordQueryHandler = resetPasswordQueryHandler;
         }
 
         [HttpPost("signup")]
@@ -71,6 +76,24 @@ namespace SWD.NextIntern.API.Controllers.Authentication
                 }
                 await _forgotPasswordCommandHandler.Handle(query, default);
                 return Ok("OTP and reset link have been sent to your email.");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
+        [HttpPost("resetpassword")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordQuery query)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(query.Email) || string.IsNullOrEmpty(query.OTP) || string.IsNullOrEmpty(query.NewPassword))
+                {
+                    return BadRequest("Email, OTP, and new password are required.");
+                }
+                await _resetPasswordQueryHandler.Handle(query, default);
+                return Ok("Password has been reset successfully.");
             }
             catch (Exception ex)
             {
