@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace SWD.NextIntern.Repository.Entities;
 
-public partial class Intern
+public partial class User
 {
-    public Guid InternId { get; set; }
+    public Guid UserId { get; set; }
 
     public int Id { get; set; }
 
@@ -47,7 +47,9 @@ public partial class Intern
 
     public virtual ICollection<InternEvaluation> InternEvaluations { get; set; } = new List<InternEvaluation>();
 
-    public virtual Staff? Mentor { get; set; }
+    public virtual ICollection<User> InverseMentor { get; set; } = new List<User>();
+
+    public virtual User? Mentor { get; set; }
 
     public virtual Role? Role { get; set; }
 }

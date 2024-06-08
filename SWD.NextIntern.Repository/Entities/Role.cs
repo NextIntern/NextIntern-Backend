@@ -13,7 +13,5 @@ public partial class Role
 
     public DateTime? DeletedDate { get; set; }
 
-    public virtual ICollection<Intern> Interns { get; set; } = new List<Intern>();
-
-    public virtual ICollection<Staff> Staff { get; set; } = new List<Staff>();
+    public virtual ICollection<User> Users { get; set; } = new List<User>();
 }

@@ -19,7 +19,9 @@ public partial class FormCriterion
 
     public DateTime? DeletedDate { get; set; }
 
-    public virtual ICollection<EvaluationFormDetail> EvaluationFormDetails { get; set; } = new List<EvaluationFormDetail>();
+    public Guid? EvaluationFormId { get; set; }
+
+    public virtual EvaluationForm? EvaluationForm { get; set; }
 
     public virtual ICollection<InternEvaluationCriterion> InternEvaluationCriteria { get; set; } = new List<InternEvaluationCriterion>();
 }

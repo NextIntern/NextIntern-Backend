@@ -21,5 +21,5 @@ public partial class CampaignQuestionResponse
 
     public virtual CampaignQuestion? CampaignQuestion { get; set; }
 
-    public virtual Intern? Intern { get; set; }
+    public virtual User? Intern { get; set; }
 }

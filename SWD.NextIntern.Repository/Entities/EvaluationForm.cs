@@ -19,7 +19,7 @@ public partial class EvaluationForm
 
     public DateTime? DeletedDate { get; set; }
 
-    public virtual ICollection<EvaluationFormDetail> EvaluationFormDetails { get; set; } = new List<EvaluationFormDetail>();
+    public virtual ICollection<FormCriterion> FormCriteria { get; set; } = new List<FormCriterion>();
 
     public virtual University? University { get; set; }
 }

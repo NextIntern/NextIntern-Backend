@@ -19,7 +19,7 @@ public partial class InternEvaluation
 
     public virtual CampaignEvaluation? CampaignEvaluation { get; set; }
 
-    public virtual Intern? Intern { get; set; }
+    public virtual User? Intern { get; set; }
 
     public virtual ICollection<InternEvaluationCriterion> InternEvaluationCriteria { get; set; } = new List<InternEvaluationCriterion>();
 }

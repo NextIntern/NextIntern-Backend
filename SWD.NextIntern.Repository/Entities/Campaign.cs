@@ -27,7 +27,7 @@ public partial class Campaign
 
     public virtual ICollection<CampaignQuestion> CampaignQuestions { get; set; } = new List<CampaignQuestion>();
 
-    public virtual ICollection<Intern> Interns { get; set; } = new List<Intern>();
-
     public virtual University? University { get; set; }
+
+    public virtual ICollection<User> Users { get; set; } = new List<User>();
 }

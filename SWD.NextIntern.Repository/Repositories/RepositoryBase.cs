@@ -2,11 +2,10 @@
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using SWD.NextIntern.Repository.Common;
-using SWD.NextIntern.Repository.Repositories;
 using SWD.NextIntern.Repository.Repositories.IRepositories;
 using System.Linq.Expressions;
 
-namespace NextIntern.Infrastructure.Repositories
+namespace SWD.NextIntern.Repository.Repositories
 {
     public class RepositoryBase<TDomain, TPersistence, TDbContext> : IEFRepository<TDomain, TPersistence>
        where TDbContext : DbContext, IUnitOfWork
