@@ -1,15 +1,13 @@
-﻿using MediatR;
+using MediatR;
 using SWD.NextIntern.Repository.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Transactions;
 using System.Windows.Input;
 
 namespace SWD.NextIntern.Service.Common.Behaviours
 {
+
+
     public class UnitOfWorkBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : notnull, ICommand
     {

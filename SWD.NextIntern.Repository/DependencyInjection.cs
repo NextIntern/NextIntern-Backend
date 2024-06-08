@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+
+using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SWD.NextIntern.Repository.Common;
@@ -6,12 +8,15 @@ using SWD.NextIntern.Repository.Persistence;
 using SWD.NextIntern.Repository.Repositories;
 using SWD.NextIntern.Repository.Repositories.IRepositories;
 
+
 namespace SWD.NextIntern.Repository
 {
     public static class DependencyInjection
     {
+
         public static IServiceCollection AddRepository(this IServiceCollection services, IConfiguration configuration)
         {
+
             services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseNpgsql(
@@ -19,7 +24,8 @@ namespace SWD.NextIntern.Repository
                     b =>
                     {
                         b.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName);
-                        //b.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
+
+                        b.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
                     });
             });
 

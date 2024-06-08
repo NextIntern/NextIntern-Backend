@@ -1,8 +1,10 @@
-﻿using FluentValidation;
+
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SWD.NextIntern.Service.Common.Behaviours;
+using FluentValidation;
 using SWD.NextIntern.Service.Common.Validation;
+
 using System.Reflection;
 
 namespace SWD.NextIntern.Service

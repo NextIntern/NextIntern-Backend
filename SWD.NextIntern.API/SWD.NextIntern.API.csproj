@@ -4,14 +4,25 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+
+    <UserSecretsId>d077b458-5adc-4b66-b7b6-560c3cdd191e</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="IdentityModel" Version="7.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.6" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.6" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.6.0" />
+
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SWD.NextIntern.Service\SWD.NextIntern.Service.csproj" />
+
+    <ProjectReference Include="..\SWD.NextIntern.Repository\SWD.NextIntern.Repository.csproj" />
+
   </ItemGroup>
 
 </Project>

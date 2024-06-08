@@ -1,12 +1,13 @@
-﻿using AutoMapper;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using SWD.NextIntern.Repository.Common;
-using SWD.NextIntern.Repository.Repositories;
-using SWD.NextIntern.Repository.Repositories.IRepositories;
+
+using SWD.NextIntern.Repository.IRepositories;
 using System.Linq.Expressions;
 
-namespace NextIntern.Infrastructure.Repositories
+namespace SWD.NextIntern.Repository
+
 {
     public class RepositoryBase<TDomain, TPersistence, TDbContext> : IEFRepository<TDomain, TPersistence>
        where TDbContext : DbContext, IUnitOfWork
@@ -167,6 +168,7 @@ namespace NextIntern.Infrastructure.Repositories
             return await _dbContext.SaveChangesAsync(cancellationToken);
         }
 
+
         public virtual async Task<IPagedResult<TDomain>> FindAllAsync(
             int pageNo,
             int pageSize,
@@ -237,6 +239,7 @@ namespace NextIntern.Infrastructure.Repositories
                 pageSize,
                 cancellationToken);
         }
+
 
         public async Task<List<TProjection>> FindAllProjectToAsync<TProjection>(
             Func<IQueryable<TPersistence>, IQueryable<TPersistence>>? queryOptions = default,

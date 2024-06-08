@@ -1,4 +1,5 @@
-﻿namespace SWD.NextIntern.Repository.Repositories.IRepositories
+namespace SWD.NextIntern.Repository.IRepositories
+
 {
     public interface IRepository<in TDomain>
     {
