@@ -1,21 +1,33 @@
-﻿using System.Security.Claims;
+
+using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Cryptography;
 using SWD.NextIntern.Service.Common.Interfaces;
+using System.Security.Claims;
+using System.Text;
+using Microsoft.Extensions.Configuration;
 
 namespace SWD.NextIntern.Service
 {
-    public class JwtService : IJwtService 
+    public class JwtService : IJwtService
     {
+        private readonly IConfiguration _configuration;
+
+        public JwtService(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
+
         public string CreateToken(string ID, string roles)
         {
             var claims = new List<Claim>
-            {
 
                 new(JwtRegisteredClaimNames.Sub, ID),
                 new(ClaimTypes.Role, roles)
             };
+
 
             var key = new byte[32];
             using (var rng = RandomNumberGenerator.Create())
@@ -31,10 +43,12 @@ namespace SWD.NextIntern.Service
                 // audience: "api",
                 claims: claims,
                 expires: DateTime.Now.AddHours(1),
+
                 signingCredentials: creds);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+
 
         public string GenerateRefreshToken(string ID, string roles)
         {
@@ -101,3 +115,4 @@ namespace SWD.NextIntern.Service
         }
     }
 }
+

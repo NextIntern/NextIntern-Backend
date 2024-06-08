@@ -1,4 +1,5 @@
-﻿using SWD.NextIntern.Repository.Entities;
+using SWD.NextIntern.Repository.Entities;
+
 using System.Linq.Expressions;
 
 namespace SWD.NextIntern.Repository.IRepositories
@@ -8,5 +9,6 @@ namespace SWD.NextIntern.Repository.IRepositories
         Task<Intern> FindAsync(Expression<Func<Intern, bool>> predicate);
         Task AddAsync(Intern intern);
         Task SaveChangesAsync();
+
     }
 }

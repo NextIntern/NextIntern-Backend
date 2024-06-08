@@ -421,3 +421,4 @@ public partial class AppDbContext : DbContext, IUnitOfWork
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
+

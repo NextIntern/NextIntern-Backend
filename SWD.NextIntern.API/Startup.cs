@@ -1,3 +1,4 @@
+
 using SWD.NextIntern.API.Filters;
 using SWD.NextIntern.Repository;
 using SWD.NextIntern.Service;
@@ -5,6 +6,10 @@ using SWD.NextIntern.Service.Auth.ForgotPassword;
 using SWD.NextIntern.Service.Auth.SignIn;
 using SWD.NextIntern.Service.Auth.SignUp;
 using SWD.NextIntern.Service.Common.Configuration;
+using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 
 namespace SWD.NextIntern.API
 {
@@ -26,16 +31,8 @@ namespace SWD.NextIntern.API
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
             services.AddDistributedMemoryCache();
-
-            //Register layer
             services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen();
 
-            //Register layer
-            //services.AddRepository(Configuration);
-            //services.AddService(Configuration);
-
-            //Register configuration
             services.AddApplication(Configuration);
             services.AddInfrastructure(Configuration);
             services.ConfigureApplicationSecurity(Configuration);
@@ -44,9 +41,11 @@ namespace SWD.NextIntern.API
             services.AddTransient<ForgotPasswordCommandHandler>();
             services.AddScoped<ForgotPasswordCommandHandler>();
             services.AddControllersWithViews();
-        }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            services.AddRepository(Configuration);
+            services.AddService(Configuration);
+        }
+  
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -55,6 +54,7 @@ namespace SWD.NextIntern.API
                 app.UseSwaggerUI();
             }
             app.UseCors("AllowSpecificOrigin");
+
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthentication();
@@ -62,6 +62,8 @@ namespace SWD.NextIntern.API
             {
                 endpoints.MapControllers();
             });
+
         }
     }
 }
+
