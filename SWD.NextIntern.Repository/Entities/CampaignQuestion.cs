@@ -1,4 +1,7 @@
-﻿namespace SWD.NextIntern.Repository.Entities;
+﻿using System;
+using System.Collections.Generic;
+
+namespace SWD.NextIntern.Repository.Entities;
 
 public partial class CampaignQuestion
 {
@@ -13,6 +16,8 @@ public partial class CampaignQuestion
     public DateTime? CreateDate { get; set; }
 
     public DateTime? ModifyDate { get; set; }
+
+    public DateTime? DeletedDate { get; set; }
 
     public virtual Campaign? Campaign { get; set; }
 

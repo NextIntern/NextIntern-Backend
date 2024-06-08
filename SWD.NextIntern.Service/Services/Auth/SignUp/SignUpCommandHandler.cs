@@ -28,7 +28,7 @@ namespace SWD.NextIntern.Service.Auth.SignUp
 
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(request.Password);
 
-            var newIntern = new Intern
+            var newIntern = new User
             {
                 Username = request.Username,
                 Password = hashedPassword,
@@ -47,8 +47,8 @@ namespace SWD.NextIntern.Service.Auth.SignUp
 
             return new TokenResponse
             {
-                AccessToken = _jwtService.CreateToken(newIntern.InternId.ToString(), newIntern.Role.RoleName),
-                RefreshToken = _jwtService.GenerateRefreshToken(newIntern.InternId.ToString(), newIntern.Role.RoleName)
+                AccessToken = _jwtService.CreateToken(newIntern.UserId.ToString(), newIntern.Role.RoleName),
+                RefreshToken = _jwtService.GenerateRefreshToken(newIntern.UserId.ToString(), newIntern.Role.RoleName)
             };
 
         }

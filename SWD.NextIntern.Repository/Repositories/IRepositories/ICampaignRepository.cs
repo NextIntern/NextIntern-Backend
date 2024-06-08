@@ -1,5 +1,6 @@
 ﻿using SWD.NextIntern.Repository.Common;
 using SWD.NextIntern.Repository.Entities;
+using SWD.NextIntern.Repository.IRepositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using SWD.NextIntern.Repository.Common;
 
 using SWD.NextIntern.Repository.IRepositories;
+using SWD.NextIntern.Repository.Repositories;
+using SWD.NextIntern.Repository.Repositories.IRepositories;
 using System.Linq.Expressions;
 
 namespace SWD.NextIntern.Repository

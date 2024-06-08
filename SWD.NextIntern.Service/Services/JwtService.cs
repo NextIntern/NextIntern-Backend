@@ -22,7 +22,7 @@ namespace SWD.NextIntern.Service
 
         public string CreateToken(string ID, string roles)
         {
-            var claims = new List<Claim>
+            var claims = new List<Claim> {
 
                 new(JwtRegisteredClaimNames.Sub, ID),
                 new(ClaimTypes.Role, roles)

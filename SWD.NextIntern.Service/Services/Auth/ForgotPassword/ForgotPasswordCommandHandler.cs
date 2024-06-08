@@ -34,7 +34,8 @@ namespace SWD.NextIntern.Service.Auth.ForgotPassword
                 AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(30)
             });
 
-            string resetLink = $"nextintern://database.nextintern.tech/resetpassword?email={request.Email}";
+            //string resetLink = $"https://api-gateway.nextintern.tech/api/v1/auth/resetpassword?email={request.Email}";
+            string resetLink = $"https://localhost:7205/api/v1/auth/resetpassword?email={request.Email}";
 
             string emailBody = $"Your OTP is {otp}. Click the following link to reset your password: {resetLink}";
 
