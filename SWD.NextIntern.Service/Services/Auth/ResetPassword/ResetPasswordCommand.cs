@@ -3,14 +3,14 @@ using SWD.NextIntern.Service.Common.Interfaces;
 
 namespace SWD.NextIntern.Service.Auth.ResetPassword
 {
-    public class ResetPasswordQuery : IRequest<string>, IQuery
+    public class ResetPasswordCommand : IRequest<string>, ICommand
     {
         public string Email { get; set; }
         public string OTP { get; set; }
         public string NewPassword { get; set; }
         public string ConfirmPassword { get; set; }
 
-        public ResetPasswordQuery(string email, string oTP, string newPassword, string confirmPassword)
+        public ResetPasswordCommand(string email, string oTP, string newPassword, string confirmPassword)
         {
             Email = email;
             OTP = oTP;

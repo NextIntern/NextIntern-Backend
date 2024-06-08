@@ -9,6 +9,7 @@ using SWD.NextIntern.Service.Auth.ResetPassword;
 using SWD.NextIntern.Service.Auth.SignIn;
 using SWD.NextIntern.Service.Auth.SignUp;
 using SWD.NextIntern.Service.Common.Configuration;
+using SWD.NextIntern.Service.Services.Auth.RefreshToken;
 
 
 namespace SWD.NextIntern.API
@@ -52,10 +53,12 @@ namespace SWD.NextIntern.API
             services.ConfigureApplicationSecurity(Configuration);
             services.AddScoped<SignUpCommandHandler>();
             services.AddScoped<SignInQueryHandler>();
-            services.AddTransient<ForgotPasswordCommandHandler>();
-            services.AddScoped<ForgotPasswordCommandHandler>();
-            services.AddTransient<ResetPasswordQueryHandler>();
-            services.AddScoped<ResetPasswordQueryHandler>();
+            services.AddTransient<ForgotPasswordQueryHandler>();
+            services.AddScoped<ForgotPasswordQueryHandler>();
+            services.AddTransient<ResetPasswordCommandHandler>();
+            services.AddScoped<ResetPasswordCommandHandler>();
+            services.AddTransient<RefreshTokenCommandHandler>();
+            services.AddScoped<RefreshTokenCommandHandler>();
             services.AddControllersWithViews();
 
             services.AddRepository(Configuration);

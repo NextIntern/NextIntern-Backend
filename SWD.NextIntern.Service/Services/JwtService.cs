@@ -4,8 +4,6 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Cryptography;
 using SWD.NextIntern.Service.Common.Interfaces;
-using System.Security.Claims;
-using System.Text;
 using Microsoft.Extensions.Configuration;
 
 namespace SWD.NextIntern.Service
@@ -112,6 +110,21 @@ namespace SWD.NextIntern.Service
                 throw new SecurityTokenException("Invalid token");
 
             return principal;
+        }
+
+        public DateTime GetExpirationDateFromToken(string token)
+        {
+            var principal = GetPrincipalFromExpiredToken(token);
+            var expirationClaim = principal.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Exp);
+
+            if (expirationClaim != null)
+            {
+                var exp = long.Parse(expirationClaim.Value);
+                var expirationTime = DateTimeOffset.FromUnixTimeSeconds(exp).UtcDateTime;
+                return expirationTime;
+            }
+
+            throw new Exception("Token does not contain expiration claim");
         }
     }
 }

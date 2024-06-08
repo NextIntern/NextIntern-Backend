@@ -19,7 +19,7 @@ namespace SWD.NextIntern.Service.Auth.SignUp
 
         public async Task<TokenResponse> Handle(SignUpCommand request, CancellationToken cancellationToken)
         {
-            var existingIntern = await _internRepository.FindAsync(i => i.Username == request.Username);
+            var existingIntern = await _internRepository.FindAsync(i => i.Username.Equals(request.Username));
 
             if (existingIntern != null)
             {
