@@ -1,8 +1,11 @@
-﻿namespace SWD.NextIntern.Repository.Entities;
+﻿using System;
+using System.Collections.Generic;
 
-public partial class Intern
+namespace SWD.NextIntern.Repository.Entities;
+
+public partial class User
 {
-    public Guid InternId { get; set; }
+    public Guid UserId { get; set; }
 
     public int Id { get; set; }
 
@@ -32,13 +35,21 @@ public partial class Intern
 
     public Guid? RoleId { get; set; }
 
+    public int? Otp { get; set; }
+
+    public DateOnly? OtpExpired { get; set; }
+
+    public DateTime? DeletedDate { get; set; }
+
     public virtual Campaign? Campaign { get; set; }
 
     public virtual ICollection<CampaignQuestionResponse> CampaignQuestionResponses { get; set; } = new List<CampaignQuestionResponse>();
 
     public virtual ICollection<InternEvaluation> InternEvaluations { get; set; } = new List<InternEvaluation>();
 
-    public virtual Staff? Mentor { get; set; }
+    public virtual ICollection<User> InverseMentor { get; set; } = new List<User>();
+
+    public virtual User? Mentor { get; set; }
 
     public virtual Role? Role { get; set; }
 }

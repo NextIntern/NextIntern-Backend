@@ -1,9 +1,8 @@
 
-﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using SWD.NextIntern.Service.Common.Exceptions;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-
 
 namespace SWD.NextIntern.API.Filters
 {
@@ -17,7 +16,6 @@ namespace SWD.NextIntern.API.Filters
                     context.Result = new ForbidResult();
                     context.ExceptionHandled = true;
                     break;
-
                 case UnauthorizedAccessException:
                     context.Result = new ForbidResult();
                     context.ExceptionHandled = true;
@@ -25,7 +23,6 @@ namespace SWD.NextIntern.API.Filters
             }
         }
     }
-
     internal static class ProblemDetailsExtensions
     {
         public static IActionResult AddContextInformation(this ObjectResult objectResult, ExceptionContext context)

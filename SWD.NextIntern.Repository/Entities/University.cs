@@ -1,4 +1,7 @@
-﻿namespace SWD.NextIntern.Repository.Entities;
+﻿using System;
+using System.Collections.Generic;
+
+namespace SWD.NextIntern.Repository.Entities;
 
 public partial class University
 {
@@ -15,6 +18,8 @@ public partial class University
     public DateTime? CreateDate { get; set; }
 
     public DateTime? ModifyDate { get; set; }
+
+    public DateTime? DeletedDate { get; set; }
 
     public virtual ICollection<Campaign> Campaigns { get; set; } = new List<Campaign>();
 

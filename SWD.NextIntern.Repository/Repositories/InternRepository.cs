@@ -8,7 +8,7 @@ using SWD.NextIntern.Repository.IRepositories;
 
 namespace SWD.NextIntern.Repository
 {
-    public class InternRepository : RepositoryBase<Intern, Intern, AppDbContext>, IInternRepository
+    public class InternRepository : RepositoryBase<User, User, AppDbContext>, IInternRepository
     {
         private readonly AppDbContext _context;
 
@@ -17,14 +17,14 @@ namespace SWD.NextIntern.Repository
             _context = dbContext;
         }
 
-        public async Task<Intern> FindAsync(Expression<Func<Intern, bool>> predicate)
+        public async Task<User> FindAsync(Expression<Func<User, bool>> predicate)
         {
-            return await _context.Interns.Include(i => i.Role).FirstOrDefaultAsync(predicate);
+            return await _context.Users.Include(i => i.Role).FirstOrDefaultAsync(predicate);
         }
 
-        public async Task AddAsync(Intern intern)
+        public async Task AddAsync(User intern)
         {
-            await _context.Interns.AddAsync(intern);
+            await _context.Users.AddAsync(intern);
         }
 
         public async Task SaveChangesAsync()

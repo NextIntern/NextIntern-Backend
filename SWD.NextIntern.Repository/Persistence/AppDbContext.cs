@@ -15,6 +15,23 @@ public partial class AppDbContext : DbContext, IUnitOfWork
     {
     }
 
+    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        foreach (var entry in ChangeTracker.Entries())
+        {
+            if (entry.State == EntityState.Deleted)
+            {
+                entry.State = EntityState.Modified;
+                var deletedDateProperty = entry.Entity.GetType().GetProperty("DeletedDate");
+                if (deletedDateProperty is not null)
+                {
+                    deletedDateProperty.SetValue(entry.Entity, DateTime.Now);
+                }
+            }
+        }
+        return base.SaveChangesAsync(cancellationToken);
+    }
+
     public virtual DbSet<Campaign> Campaigns { get; set; }
 
     public virtual DbSet<CampaignEvaluation> CampaignEvaluations { get; set; }
@@ -25,11 +42,7 @@ public partial class AppDbContext : DbContext, IUnitOfWork
 
     public virtual DbSet<EvaluationForm> EvaluationForms { get; set; }
 
-    public virtual DbSet<EvaluationFormDetail> EvaluationFormDetails { get; set; }
-
     public virtual DbSet<FormCriterion> FormCriteria { get; set; }
-
-    public virtual DbSet<Intern> Interns { get; set; }
 
     public virtual DbSet<InternEvaluation> InternEvaluations { get; set; }
 
@@ -37,13 +50,9 @@ public partial class AppDbContext : DbContext, IUnitOfWork
 
     public virtual DbSet<Role> Roles { get; set; }
 
-    public virtual DbSet<Staff> Staff { get; set; }
-
     public virtual DbSet<University> Universities { get; set; }
 
-//    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-//        => optionsBuilder.UseNpgsql("Host=database.nextintern.tech;Database=nextintern;Username=root;Password=iumaycauratnhiu");
+    public virtual DbSet<User> Users { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -65,6 +74,9 @@ public partial class AppDbContext : DbContext, IUnitOfWork
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .HasColumnType("timestamp without time zone")
                 .HasColumnName("create_date");
+            entity.Property(e => e.DeletedDate)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("deleted_date");
             entity.Property(e => e.EndDate).HasColumnName("end_date");
             entity.Property(e => e.Id)
                 .ValueGeneratedOnAdd()
@@ -91,9 +103,14 @@ public partial class AppDbContext : DbContext, IUnitOfWork
                 .HasDefaultValueSql("uuid_generate_v4()")
                 .HasColumnName("campaign_evaluation_id");
             entity.Property(e => e.CampaignId).HasColumnName("campaign_id");
+            entity.Property(e => e.DeletedDate)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("deleted_date");
+            entity.Property(e => e.EndDate).HasColumnName("end_date");
             entity.Property(e => e.Id)
                 .ValueGeneratedOnAdd()
                 .HasColumnName("id");
+            entity.Property(e => e.StartDate).HasColumnName("start_date");
 
             entity.HasOne(d => d.Campaign).WithMany(p => p.CampaignEvaluations)
                 .HasForeignKey(d => d.CampaignId)
@@ -114,6 +131,9 @@ public partial class AppDbContext : DbContext, IUnitOfWork
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .HasColumnType("timestamp without time zone")
                 .HasColumnName("create_date");
+            entity.Property(e => e.DeletedDate)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("deleted_date");
             entity.Property(e => e.Id)
                 .ValueGeneratedOnAdd()
                 .HasColumnName("id");
@@ -138,6 +158,9 @@ public partial class AppDbContext : DbContext, IUnitOfWork
                 .HasDefaultValueSql("uuid_generate_v4()")
                 .HasColumnName("campaign_question_response_id");
             entity.Property(e => e.CampaignQuestionId).HasColumnName("campaign_question_id");
+            entity.Property(e => e.DeletedDate)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("deleted_date");
             entity.Property(e => e.Id)
                 .ValueGeneratedOnAdd()
                 .HasColumnName("id");
@@ -167,9 +190,13 @@ public partial class AppDbContext : DbContext, IUnitOfWork
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .HasColumnType("timestamp without time zone")
                 .HasColumnName("create_date");
+            entity.Property(e => e.DeletedDate)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("deleted_date");
             entity.Property(e => e.Id)
                 .ValueGeneratedOnAdd()
                 .HasColumnName("id");
+            entity.Property(e => e.IsActive).HasColumnName("is_active");
             entity.Property(e => e.ModifyDate)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .HasColumnType("timestamp without time zone")
@@ -181,30 +208,6 @@ public partial class AppDbContext : DbContext, IUnitOfWork
                 .HasConstraintName("evaluation_form_university_id_fkey");
         });
 
-        modelBuilder.Entity<EvaluationFormDetail>(entity =>
-        {
-            entity.HasKey(e => e.EvaluationFormDetailId).HasName("evaluation_form_detail_pkey");
-
-            entity.ToTable("evaluation_form_detail");
-
-            entity.Property(e => e.EvaluationFormDetailId)
-                .HasDefaultValueSql("uuid_generate_v4()")
-                .HasColumnName("evaluation_form_detail_id");
-            entity.Property(e => e.EvaluationFormId).HasColumnName("evaluation_form_id");
-            entity.Property(e => e.FormCriteriaId).HasColumnName("form_criteria_id");
-            entity.Property(e => e.Id)
-                .ValueGeneratedOnAdd()
-                .HasColumnName("id");
-
-            entity.HasOne(d => d.EvaluationForm).WithMany(p => p.EvaluationFormDetails)
-                .HasForeignKey(d => d.EvaluationFormId)
-                .HasConstraintName("evaluation_form_detail_evaluation_form_id_fkey");
-
-            entity.HasOne(d => d.FormCriteria).WithMany(p => p.EvaluationFormDetails)
-                .HasForeignKey(d => d.FormCriteriaId)
-                .HasConstraintName("evaluation_form_detail_form_criteria_id_fkey");
-        });
-
         modelBuilder.Entity<FormCriterion>(entity =>
         {
             entity.HasKey(e => e.FormCriteriaId).HasName("form_criteria_pkey");
@@ -214,6 +217,10 @@ public partial class AppDbContext : DbContext, IUnitOfWork
             entity.Property(e => e.FormCriteriaId)
                 .HasDefaultValueSql("uuid_generate_v4()")
                 .HasColumnName("form_criteria_id");
+            entity.Property(e => e.DeletedDate)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("deleted_date");
+            entity.Property(e => e.EvaluationFormId).HasColumnName("evaluation_form_id");
             entity.Property(e => e.Guide).HasColumnName("guide");
             entity.Property(e => e.Id)
                 .ValueGeneratedOnAdd()
@@ -223,65 +230,10 @@ public partial class AppDbContext : DbContext, IUnitOfWork
             entity.Property(e => e.Name)
                 .HasMaxLength(255)
                 .HasColumnName("name");
-        });
 
-        modelBuilder.Entity<Intern>(entity =>
-        {
-            entity.HasKey(e => e.InternId).HasName("intern_pkey");
-
-            entity.ToTable("intern");
-
-            entity.Property(e => e.InternId)
-                .HasDefaultValueSql("uuid_generate_v4()")
-                .HasColumnName("intern_id");
-            entity.Property(e => e.Address)
-                .HasMaxLength(255)
-                .HasColumnName("address");
-            entity.Property(e => e.CampaignId).HasColumnName("campaign_id");
-            entity.Property(e => e.CreateDate)
-                .HasDefaultValueSql("CURRENT_TIMESTAMP")
-                .HasColumnType("timestamp without time zone")
-                .HasColumnName("create_date");
-            entity.Property(e => e.Dob).HasColumnName("dob");
-            entity.Property(e => e.Email)
-                .HasMaxLength(100)
-                .HasColumnName("email");
-            entity.Property(e => e.FullName)
-                .HasMaxLength(255)
-                .HasColumnName("full_name");
-            entity.Property(e => e.Gender)
-                .HasMaxLength(10)
-                .HasColumnName("gender");
-            entity.Property(e => e.Id)
-                .ValueGeneratedOnAdd()
-                .HasColumnName("id");
-            entity.Property(e => e.MentorId).HasColumnName("mentor_id");
-            entity.Property(e => e.ModifyDate)
-                .HasDefaultValueSql("CURRENT_TIMESTAMP")
-                .HasColumnType("timestamp without time zone")
-                .HasColumnName("modify_date");
-            entity.Property(e => e.Password)
-                .HasMaxLength(100)
-                .HasColumnName("password");
-            entity.Property(e => e.RoleId).HasColumnName("role_id");
-            entity.Property(e => e.Telephone)
-                .HasMaxLength(50)
-                .HasColumnName("telephone");
-            entity.Property(e => e.Username)
-                .HasMaxLength(100)
-                .HasColumnName("username");
-
-            entity.HasOne(d => d.Campaign).WithMany(p => p.Interns)
-                .HasForeignKey(d => d.CampaignId)
-                .HasConstraintName("intern_campaign_id_fkey");
-
-            entity.HasOne(d => d.Mentor).WithMany(p => p.Interns)
-                .HasForeignKey(d => d.MentorId)
-                .HasConstraintName("intern_mentor_id_fkey");
-
-            entity.HasOne(d => d.Role).WithMany(p => p.Interns)
-                .HasForeignKey(d => d.RoleId)
-                .HasConstraintName("role_id_fkey");
+            entity.HasOne(d => d.EvaluationForm).WithMany(p => p.FormCriteria)
+                .HasForeignKey(d => d.EvaluationFormId)
+                .HasConstraintName("evaluation_form_id_fkey");
         });
 
         modelBuilder.Entity<InternEvaluation>(entity =>
@@ -294,6 +246,9 @@ public partial class AppDbContext : DbContext, IUnitOfWork
                 .HasDefaultValueSql("uuid_generate_v4()")
                 .HasColumnName("intern_evaluation_id");
             entity.Property(e => e.CampaignEvaluationId).HasColumnName("campaign_evaluation_id");
+            entity.Property(e => e.DeletedDate)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("deleted_date");
             entity.Property(e => e.Feedback).HasColumnName("feedback");
             entity.Property(e => e.Id)
                 .ValueGeneratedOnAdd()
@@ -318,6 +273,9 @@ public partial class AppDbContext : DbContext, IUnitOfWork
             entity.Property(e => e.InternEvaluationCriteriaId)
                 .HasDefaultValueSql("uuid_generate_v4()")
                 .HasColumnName("intern_evaluation_criteria_id");
+            entity.Property(e => e.DeletedDate)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("deleted_date");
             entity.Property(e => e.FormCriteriaId).HasColumnName("form_criteria_id");
             entity.Property(e => e.Id)
                 .ValueGeneratedOnAdd()
@@ -343,46 +301,15 @@ public partial class AppDbContext : DbContext, IUnitOfWork
             entity.Property(e => e.RoleId)
                 .HasDefaultValueSql("uuid_generate_v4()")
                 .HasColumnName("role_id");
+            entity.Property(e => e.DeletedDate)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("deleted_date");
             entity.Property(e => e.Id)
                 .ValueGeneratedOnAdd()
                 .HasColumnName("id");
             entity.Property(e => e.RoleName)
                 .HasMaxLength(255)
                 .HasColumnName("role_name");
-        });
-
-        modelBuilder.Entity<Staff>(entity =>
-        {
-            entity.HasKey(e => e.StaffId).HasName("staff_pkey");
-
-            entity.ToTable("staff");
-
-            entity.Property(e => e.StaffId)
-                .HasDefaultValueSql("uuid_generate_v4()")
-                .HasColumnName("staff_id");
-            entity.Property(e => e.Address)
-                .HasMaxLength(255)
-                .HasColumnName("address");
-            entity.Property(e => e.FullName)
-                .HasMaxLength(255)
-                .HasColumnName("full_name");
-            entity.Property(e => e.Id)
-                .ValueGeneratedOnAdd()
-                .HasColumnName("id");
-            entity.Property(e => e.Password)
-                .HasMaxLength(255)
-                .HasColumnName("password");
-            entity.Property(e => e.PhoneNumber)
-                .HasMaxLength(50)
-                .HasColumnName("phone_number");
-            entity.Property(e => e.RoleId).HasColumnName("role_id");
-            entity.Property(e => e.Username)
-                .HasMaxLength(50)
-                .HasColumnName("username");
-
-            entity.HasOne(d => d.Role).WithMany(p => p.Staff)
-                .HasForeignKey(d => d.RoleId)
-                .HasConstraintName("staff_role_id_fkey");
         });
 
         modelBuilder.Entity<University>(entity =>
@@ -401,6 +328,9 @@ public partial class AppDbContext : DbContext, IUnitOfWork
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .HasColumnType("timestamp without time zone")
                 .HasColumnName("create_date");
+            entity.Property(e => e.DeletedDate)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("deleted_date");
             entity.Property(e => e.Id)
                 .ValueGeneratedOnAdd()
                 .HasColumnName("id");
@@ -414,6 +344,70 @@ public partial class AppDbContext : DbContext, IUnitOfWork
             entity.Property(e => e.UniversityName)
                 .HasMaxLength(255)
                 .HasColumnName("university_name");
+        });
+
+        modelBuilder.Entity<User>(entity =>
+        {
+            entity.HasKey(e => e.UserId).HasName("intern_pkey");
+
+            entity.ToTable("user");
+
+            entity.Property(e => e.UserId)
+                .HasDefaultValueSql("uuid_generate_v4()")
+                .HasColumnName("user_id");
+            entity.Property(e => e.Address)
+                .HasMaxLength(255)
+                .HasColumnName("address");
+            entity.Property(e => e.CampaignId).HasColumnName("campaign_id");
+            entity.Property(e => e.CreateDate)
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("create_date");
+            entity.Property(e => e.DeletedDate)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("deleted_date");
+            entity.Property(e => e.Dob).HasColumnName("dob");
+            entity.Property(e => e.Email)
+                .HasMaxLength(100)
+                .HasColumnName("email");
+            entity.Property(e => e.FullName)
+                .HasMaxLength(255)
+                .HasColumnName("full_name");
+            entity.Property(e => e.Gender)
+                .HasMaxLength(10)
+                .HasColumnName("gender");
+            entity.Property(e => e.Id)
+                .HasDefaultValueSql("nextval('intern_id_seq'::regclass)")
+                .HasColumnName("id");
+            entity.Property(e => e.MentorId).HasColumnName("mentor_id");
+            entity.Property(e => e.ModifyDate)
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("modify_date");
+            entity.Property(e => e.Otp).HasColumnName("otp");
+            entity.Property(e => e.OtpExpired).HasColumnName("otp_expired");
+            entity.Property(e => e.Password)
+                .HasMaxLength(100)
+                .HasColumnName("password");
+            entity.Property(e => e.RoleId).HasColumnName("role_id");
+            entity.Property(e => e.Telephone)
+                .HasMaxLength(50)
+                .HasColumnName("telephone");
+            entity.Property(e => e.Username)
+                .HasMaxLength(100)
+                .HasColumnName("username");
+
+            entity.HasOne(d => d.Campaign).WithMany(p => p.Users)
+                .HasForeignKey(d => d.CampaignId)
+                .HasConstraintName("intern_campaign_id_fkey");
+
+            entity.HasOne(d => d.Mentor).WithMany(p => p.InverseMentor)
+                .HasForeignKey(d => d.MentorId)
+                .HasConstraintName("mentor_id_fkey");
+
+            entity.HasOne(d => d.Role).WithMany(p => p.Users)
+                .HasForeignKey(d => d.RoleId)
+                .HasConstraintName("role_id_fkey");
         });
 
         OnModelCreatingPartial(modelBuilder);

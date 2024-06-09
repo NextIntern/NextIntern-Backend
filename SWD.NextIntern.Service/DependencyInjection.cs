@@ -10,19 +10,6 @@ namespace SWD.NextIntern.Service
 {
     public static class DependencyInjection
     {
-
-        public static IServiceCollection AddApplication(this IServiceCollection services, IConfiguration configuration)
-        {
-            //Register services for Application layer
-            services.AddMediatR(cfg =>
-            {
-                cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
-                cfg.AddOpenBehavior(typeof(AuthorizationBehaviour<,>));
-                cfg.AddOpenBehavior(typeof(UnitOfWorkBehaviour<,>));
-            });
-            services.AddAutoMapper(Assembly.GetExecutingAssembly());
-        }
-
         public static IServiceCollection AddService(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly(), lifetime: ServiceLifetime.Transient);

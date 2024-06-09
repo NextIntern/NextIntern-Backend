@@ -28,8 +28,8 @@ namespace SWD.NextIntern.Service.Auth.SignIn
 
             return new TokenResponse
             {
-                AccessToken = _jwtService.CreateToken(existingIntern.InternId.ToString(), existingIntern.Role.RoleName),
-                RefreshToken = _jwtService.GenerateRefreshToken(existingIntern.InternId.ToString(), existingIntern.Role.RoleName)
+                AccessToken = _jwtService.CreateToken(existingIntern.UserId.ToString(), existingIntern.Role.RoleName),
+                RefreshToken = _jwtService.GenerateRefreshToken(existingIntern.UserId.ToString(), existingIntern.Role.RoleName)
             };
         }
     }
