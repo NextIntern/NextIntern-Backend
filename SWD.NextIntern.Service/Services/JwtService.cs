@@ -1,104 +1,140 @@
-
+﻿
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Cryptography;
 using SWD.NextIntern.Service.Common.Interfaces;
 using Microsoft.Extensions.Configuration;
+using System.Text;
+using SWD.NextIntern.Repository.Entities;
+using System.Net;
+using SWD.NextIntern.Repository.IRepositories;
+using MediatR;
+using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.EntityFrameworkCore;
 
 namespace SWD.NextIntern.Service
 {
     public class JwtService : IJwtService
     {
         private readonly IConfiguration _configuration;
+        private readonly string _issuer;
+        private readonly IInternRepository _internRepository;
+        private readonly IDistributedCache _cache;
 
-        public JwtService(IConfiguration configuration)
+        public JwtService(IConfiguration configuration, IInternRepository internRepository, IDistributedCache cache)
         {
             _configuration = configuration;
+            _internRepository = internRepository;
+            _cache = cache;
         }
 
 
-        public string CreateToken(string ID, string roles)
+        public async Task<string> CreateToken(string ID, string roles)
         {
-            var claims = new List<Claim> {
+            //var key = Encoding.UTF8.GetBytes("swdnextinterniumaycauratnhiu!@#$");
+            //using (var rng = RandomNumberGenerator.Create())
+            //{
+            //    rng.GetBytes(key);
+            //}
 
-                new(JwtRegisteredClaimNames.Sub, ID),
-                new(ClaimTypes.Role, roles)
-            };
-
-
-            var key = new byte[32];
-            using (var rng = RandomNumberGenerator.Create())
-            {
-                rng.GetBytes(key);
-            }
-
+            var authority = _configuration["Security:Bearer:Authority"];
+            var audience = _configuration["Security:Bearer:Audience"];
+            var key = Encoding.ASCII.GetBytes(_configuration["Jwt:SecretKey"]);
             var securityKey = new SymmetricSecurityKey(key);
             var creds = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-
-            var token = new JwtSecurityToken(
-                // issuer: "test",
-                // audience: "api",
-                claims: claims,
-                expires: DateTime.Now.AddHours(1),
-
-                signingCredentials: creds);
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
-        }
-
-
-        public string GenerateRefreshToken(string ID, string roles)
-        {
+            var existingIntern = await _internRepository.FindAsync(i => i.UserId.ToString().Equals(ID));
             var claims = new List<Claim>
-            {
-                new(JwtRegisteredClaimNames.Sub, ID),
-                new(ClaimTypes.Role, roles)
-            };
+                {
+                   new Claim(JwtRegisteredClaimNames.Sub, ID),
+                   new Claim(JwtRegisteredClaimNames.Email, existingIntern.Email),
+                   new Claim("name", existingIntern.Username),
+                   new Claim("admin", "false"),
+                   new Claim(JwtRegisteredClaimNames.Iat, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64),
+                   new Claim(JwtRegisteredClaimNames.Exp, DateTimeOffset.UtcNow.AddMinutes(15).ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64),
+                   new Claim(JwtRegisteredClaimNames.Aud, audience),
+                   new Claim("roles", roles),
+                 };
 
-            var key = new byte[32];
-            using (var rng = RandomNumberGenerator.Create())
-            {
-                rng.GetBytes(key);
-            }
-
-            var securityKey = new SymmetricSecurityKey(key);
-            var creds = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-
+            var identity = new ClaimsIdentity(claims);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.UtcNow.AddDays(30),
-                SigningCredentials = creds
+                Subject = identity,
+                Expires = DateTime.UtcNow.AddHours(1),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256)
             };
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var token = tokenHandler.CreateToken(tokenDescriptor);
+            var tokenString = tokenHandler.WriteToken(token);
 
-            return tokenHandler.WriteToken(token);
+            await _cache.SetStringAsync("Token_" + ID, tokenString, new DistributedCacheEntryOptions
+            {
+                AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(1)
+            });
+
+            return tokenString;
+        }
+
+
+        public async Task<string> GenerateRefreshToken(string ID, string roles)
+        {
+            var authority = _configuration["Security:Bearer:Authority"];
+            var audience = _configuration["Security:Bearer:Audience"];
+            var key = Encoding.ASCII.GetBytes(_configuration["Jwt:SecretKey"]);
+            var securityKey = new SymmetricSecurityKey(key);
+            var creds = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            var existingIntern = await _internRepository.FindAsync(i => i.UserId.ToString().Equals(ID));
+            var claims = new List<Claim>
+                {
+                  new Claim(JwtRegisteredClaimNames.Sub, ID),
+                   new Claim(JwtRegisteredClaimNames.Email, existingIntern.Email),
+                   new Claim("name", existingIntern.Username),
+                   new Claim("admin", "false"),
+                   new Claim(JwtRegisteredClaimNames.Iat, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64),
+                   new Claim(JwtRegisteredClaimNames.Exp, DateTimeOffset.UtcNow.AddMinutes(15).ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64),
+                   new Claim(JwtRegisteredClaimNames.Aud, audience),
+                   new Claim("roles", roles),
+                 };
+
+            var identity = new ClaimsIdentity(claims);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = identity,
+                Expires = DateTime.UtcNow.AddDays(30),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256)
+            };
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            var tokenString = tokenHandler.WriteToken(token);
+
+            await _cache.SetStringAsync("RefreshToken_" + ID, tokenString, new DistributedCacheEntryOptions
+            {
+                AbsoluteExpirationRelativeToNow = TimeSpan.FromDays(30)
+            });
+
+            return tokenString;
         }
 
 
         public ClaimsPrincipal GetPrincipalFromExpiredToken(string token)
         {
-            var key = new byte[32];
-            using (var rng = RandomNumberGenerator.Create())
-            {
-                rng.GetBytes(key);
-            }
-
+            //var key = new byte[32];
+            //using (var rng = randomnumbergenerator.create())
+            //{
+            //    rng.getbytes(key);
+            //}
+            var key = Encoding.UTF8.GetBytes(_configuration["Jwt:SecretKey"]);
             var securityKey = new SymmetricSecurityKey(key);
             var creds = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-
             var tokenValidationParameters = new TokenValidationParameters
             {
-                ValidateIssuer = true,
-                ValidateAudience = true,
-                ValidateLifetime = false, // Ignore expiration date
+                RequireExpirationTime = true,
+                ValidateIssuer = false,
+                ValidateAudience = false,
                 ValidateIssuerSigningKey = true,
-                //ValidIssuer = _configuration["Jwt:Issuer"],
-                //ValidAudience = _configuration["Jwt:Audience"],
-                IssuerSigningKey = securityKey
+                IssuerSigningKey = new SymmetricSecurityKey(key)
             };
 
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -107,7 +143,7 @@ namespace SWD.NextIntern.Service
             var jwtSecurityToken = securityToken as JwtSecurityToken;
 
             if (jwtSecurityToken == null || !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
-                throw new SecurityTokenException("Invalid token");
+                throw new SecurityTokenException("Invalid token.");
 
             return principal;
         }
@@ -124,7 +160,34 @@ namespace SWD.NextIntern.Service
                 return expirationTime;
             }
 
-            throw new Exception("Token does not contain expiration claim");
+            throw new Exception("Token does not contain expiration claim.");
+        }
+
+        public ClaimsPrincipal GetPrincipal(string token)
+        {
+            try
+            {
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var key = Encoding.ASCII.GetBytes(_configuration["Jwt:SecretKey"]);
+                var tokenValidationParameters = new TokenValidationParameters
+                {
+                    RequireExpirationTime = true,
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key)
+                };
+                SecurityToken securityToken;
+                var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out securityToken);
+                var jwtSecurityToken = securityToken as JwtSecurityToken;
+                if (jwtSecurityToken == null || !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
+                    throw new SecurityTokenException("Invalid token");
+                return principal;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
     }
 }

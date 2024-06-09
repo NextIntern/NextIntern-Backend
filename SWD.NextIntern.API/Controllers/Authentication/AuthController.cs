@@ -1,7 +1,9 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
+using Newtonsoft.Json.Linq;
 using SWD.NextIntern.Service.Auth.ForgotPassword;
 using SWD.NextIntern.Service.Auth.ResetPassword;
 using SWD.NextIntern.Service.Auth.SignIn;
@@ -37,6 +39,7 @@ namespace SWD.NextIntern.API.Controllers.Authentication
         }
 
         [HttpPost("signup")]
+        [AllowAnonymous]
         public async Task<IActionResult> SignUp([FromBody] SignUpCommand command)
         {
             try
@@ -53,6 +56,7 @@ namespace SWD.NextIntern.API.Controllers.Authentication
         }
 
         [HttpPost("signin")]
+        [AllowAnonymous]
         public async Task<IActionResult> SignIn([FromBody] SignInQuery query)
         {
             try
@@ -69,6 +73,8 @@ namespace SWD.NextIntern.API.Controllers.Authentication
         }
 
         [HttpPost("forgotpassword")]
+        //[Authorize(Policy = "UserPolicy")]
+        [Authorize]
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordQuery query)
         {
             try
@@ -87,6 +93,7 @@ namespace SWD.NextIntern.API.Controllers.Authentication
         }
 
         [HttpPost("resetpassword")]
+        [Authorize]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordCommand command)
         {
             try
@@ -105,6 +112,7 @@ namespace SWD.NextIntern.API.Controllers.Authentication
         }
 
         [HttpPost("refreshtoken")]
+        [Authorize]
         public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenCommand command)
         {
             try
@@ -113,8 +121,10 @@ namespace SWD.NextIntern.API.Controllers.Authentication
                 {
                     return BadRequest("Invalid access token and refresh token.");
                 }
-                await _refreshTokenCommandHandler.Handle(command, default);
-                return Ok("Refreshed successfully.");
+                var token = await _refreshTokenCommandHandler.Handle(command, default);
+                if (token == null)
+                    return Unauthorized();
+                return Ok(new { token });
             }
             catch (Exception ex)
             {

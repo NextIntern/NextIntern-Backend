@@ -47,8 +47,8 @@ namespace SWD.NextIntern.Service.Auth.SignUp
 
             return new TokenResponse
             {
-                AccessToken = _jwtService.CreateToken(newIntern.UserId.ToString(), newIntern.Role.RoleName),
-                RefreshToken = _jwtService.GenerateRefreshToken(newIntern.UserId.ToString(), newIntern.Role.RoleName)
+                AccessToken = await _jwtService.CreateToken(newIntern.UserId.ToString(), newIntern.Role.RoleName),
+                RefreshToken = await _jwtService.GenerateRefreshToken(newIntern.UserId.ToString(), newIntern.Role.RoleName)
             };
 
         }

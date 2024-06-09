@@ -1,5 +1,6 @@
 
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using SWD.NextIntern.API.Filters;
 using SWD.NextIntern.Repository;
 using SWD.NextIntern.Repository.Persistence;
@@ -38,7 +39,7 @@ namespace SWD.NextIntern.API
                 options.AddPolicy("AllowSpecificOrigin",
                     builder =>
                     {
-                        builder.WithOrigins("https:api-gateway.nextintern.tech", "https://localhost:7205")
+                        builder.WithOrigins("https://api-gateway.nextintern.tech", "https://localhost:7205")
                                .AllowAnyHeader()
                                .AllowAnyMethod();
                     });
@@ -51,18 +52,39 @@ namespace SWD.NextIntern.API
             services.AddService(Configuration);
             services.AddRepository(Configuration);
             services.ConfigureApplicationSecurity(Configuration);
-            services.AddScoped<SignUpCommandHandler>();
-            services.AddScoped<SignInQueryHandler>();
-            services.AddTransient<ForgotPasswordQueryHandler>();
-            services.AddScoped<ForgotPasswordQueryHandler>();
-            services.AddTransient<ResetPasswordCommandHandler>();
-            services.AddScoped<ResetPasswordCommandHandler>();
-            services.AddTransient<RefreshTokenCommandHandler>();
-            services.AddScoped<RefreshTokenCommandHandler>();
             services.AddControllersWithViews();
 
             services.AddRepository(Configuration);
             services.AddService(Configuration);
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+                var securityScheme = new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "Please enter JWT Token.",
+                };
+                c.AddSecurityDefinition("Bearer", securityScheme);
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        new string[] {}
+                    }
+                });
+            });
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -78,6 +100,7 @@ namespace SWD.NextIntern.API
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
