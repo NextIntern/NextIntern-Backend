@@ -1,13 +1,10 @@
-
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SWD.NextIntern.Repository.Common;
 using SWD.NextIntern.Repository.Persistence;
 using SWD.NextIntern.Repository.Repositories;
 using SWD.NextIntern.Repository.Repositories.IRepositories;
-using SWD.NextIntern.Repository.IRepositories;
 
 
 namespace SWD.NextIntern.Repository
@@ -31,7 +28,7 @@ namespace SWD.NextIntern.Repository
             });
 
             services.AddScoped<IUnitOfWork>(provider => provider.GetRequiredService<AppDbContext>());
-            services.AddScoped<IInternRepository, InternRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ICampaignRepository, CampaignRepository>();
 
             return services;

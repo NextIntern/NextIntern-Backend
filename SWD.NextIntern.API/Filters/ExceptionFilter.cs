@@ -1,4 +1,3 @@
-
 using Microsoft.AspNetCore.Mvc.Filters;
 using SWD.NextIntern.Service.Common.Exceptions;
 using Microsoft.AspNetCore.Mvc;
