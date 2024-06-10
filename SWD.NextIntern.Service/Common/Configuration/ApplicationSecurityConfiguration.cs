@@ -54,7 +54,7 @@ namespace SWD.NextIntern.Service.Common.Configuration
                 options.AddPolicy("AllowSpecificOrigin",
                     builder =>
                     {
-                        builder.WithOrigins("https://nextintern.tech")
+                        builder.WithOrigins("https://api-gateway.nextintern.tech", "https://localhost:7205", "https://nextintern.tech", "https://localhost:3000")
                                .AllowAnyHeader()
                                .AllowAnyMethod();
                     });
