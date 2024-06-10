@@ -4,26 +4,28 @@ using System.Security.Cryptography;
 using System.Net.Mail;
 using System.Net;
 using SWD.NextIntern.Repository.IRepositories;
+using SWD.NextIntern.Repository.Repositories.IRepositories;
+using MediatR;
 
 
 namespace SWD.NextIntern.Service.Auth.ForgotPassword
 {
-    public class ForgotPasswordQueryHandler
+    public class ForgotPasswordQueryHandler : IRequestHandler<ForgotPasswordQuery, string>
     {
         private readonly IDistributedCache _cache;
-        private readonly IInternRepository _internRepository;
+        private readonly IUserRepository _userRepository;
         private readonly IConfiguration _configuration;
 
-        public ForgotPasswordQueryHandler(IDistributedCache cache, IInternRepository internRepository, IConfiguration configuration)
+        public ForgotPasswordQueryHandler(IDistributedCache cache, IUserRepository userRepository, IConfiguration configuration)
         {
             _cache = cache;
-            _internRepository = internRepository;
+            _userRepository = userRepository;
             _configuration = configuration;
         }
 
-        public async Task Handle(ForgotPasswordQuery request, CancellationToken cancellationToken)
+        public async Task<string> Handle(ForgotPasswordQuery request, CancellationToken cancellationToken)
         {
-            if (_internRepository.FindAsync(i => i.Email.Equals(request.Email)) == null)
+            if (_userRepository.FindAsync(i => i.Email.Equals(request.Email)) == null)
             {
                 throw new Exception("Email is not registed.");
             }
@@ -42,6 +44,7 @@ namespace SWD.NextIntern.Service.Auth.ForgotPassword
 
             await SendAsync(request.Email, "Reset Your Password", emailBody);
 
+            return "Thanh cong!";
         }
 
         private string GenerateOTP()

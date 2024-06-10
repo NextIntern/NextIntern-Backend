@@ -1,23 +1,25 @@
-﻿using SWD.NextIntern.Repository.IRepositories;
+﻿using MediatR;
+using SWD.NextIntern.Repository.IRepositories;
+using SWD.NextIntern.Repository.Repositories.IRepositories;
 using SWD.NextIntern.Service.Common.Interfaces;
 using SWD.NextIntern.Service.DTOs.Responses;
 
 namespace SWD.NextIntern.Service.Auth.SignIn
 {
-    public class SignInQueryHandler
+    public class SignInQueryHandler : IRequestHandler<SignInQuery, TokenResponse>
     {
-        private readonly IInternRepository _internRepository;
+        private readonly IUserRepository _userRepository;
         private readonly IJwtService _jwtService;
 
-        public SignInQueryHandler(IInternRepository internRepository, IJwtService jwtService)
+        public SignInQueryHandler(IUserRepository userRepository, IJwtService jwtService)
         {
-            _internRepository = internRepository;
+            _userRepository = userRepository;
             _jwtService = jwtService;
         }
 
         public async Task<TokenResponse> Handle(SignInQuery request, CancellationToken cancellationToken)
         {
-            var existingIntern = await _internRepository.FindAsync(i => i.Username.Equals(request.Username));
+            var existingIntern = await _userRepository.FindAsync(i => i.Username.Equals(request.Username));
 
             if (existingIntern == null || !BCrypt.Net.BCrypt.Verify(request.Password, existingIntern.Password))
             {

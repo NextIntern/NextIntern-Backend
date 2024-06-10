@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using SWD.NextIntern.Service.Common.Behaviours;
 using FluentValidation;
 using SWD.NextIntern.Service.Common.Validation;
-
 using System.Reflection;
 using SWD.NextIntern.Service.Auth.ForgotPassword;
 using SWD.NextIntern.Service.Auth.ResetPassword;

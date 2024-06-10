@@ -170,7 +170,6 @@ namespace SWD.NextIntern.Repository
             return await _dbContext.SaveChangesAsync(cancellationToken);
         }
 
-
         public virtual async Task<IPagedResult<TDomain>> FindAllAsync(
             int pageNo,
             int pageSize,
@@ -241,7 +240,6 @@ namespace SWD.NextIntern.Repository
                 pageSize,
                 cancellationToken);
         }
-
 
         public async Task<List<TProjection>> FindAllProjectToAsync<TProjection>(
             Func<IQueryable<TPersistence>, IQueryable<TPersistence>>? queryOptions = default,

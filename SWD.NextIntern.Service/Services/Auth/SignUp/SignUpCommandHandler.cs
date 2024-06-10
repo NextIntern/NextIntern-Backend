@@ -1,25 +1,27 @@
 ﻿
+using MediatR;
 using SWD.NextIntern.Repository.Entities;
 using SWD.NextIntern.Repository.IRepositories;
+using SWD.NextIntern.Repository.Repositories.IRepositories;
 using SWD.NextIntern.Service.Common.Interfaces;
 using SWD.NextIntern.Service.DTOs.Responses;
 
 namespace SWD.NextIntern.Service.Auth.SignUp
 {
-    public class SignUpCommandHandler
+    public class SignUpCommandHandler : IRequestHandler<SignUpCommand, TokenResponse>
     {
-        private readonly IInternRepository _internRepository;
+        private readonly IUserRepository _userRepository;
         private readonly IJwtService _jwtService;
 
-        public SignUpCommandHandler(IInternRepository internRepository, IJwtService jwtService)
+        public SignUpCommandHandler(IUserRepository userRepository, IJwtService jwtService)
         {
-            _internRepository = internRepository;
+            _userRepository = userRepository;
             _jwtService = jwtService;
         }
 
         public async Task<TokenResponse> Handle(SignUpCommand request, CancellationToken cancellationToken)
         {
-            var existingIntern = await _internRepository.FindAsync(i => i.Username.Equals(request.Username));
+            var existingIntern = await _userRepository.FindAsync(i => i.Username.Equals(request.Username));
 
             if (existingIntern != null)
             {
@@ -41,16 +43,15 @@ namespace SWD.NextIntern.Service.Auth.SignUp
                 Role = new Role { RoleName = "User" }
             };
 
-            await _internRepository.AddAsync(newIntern);
+            _userRepository.Add(newIntern);
 
-            await _internRepository.SaveChangesAsync();
+            await _userRepository.UnitOfWork.SaveChangesAsync();
 
             return new TokenResponse
             {
                 AccessToken = await _jwtService.CreateToken(newIntern.UserId.ToString(), newIntern.Role.RoleName),
                 RefreshToken = await _jwtService.GenerateRefreshToken(newIntern.UserId.ToString(), newIntern.Role.RoleName)
             };
-
         }
     }
 }
