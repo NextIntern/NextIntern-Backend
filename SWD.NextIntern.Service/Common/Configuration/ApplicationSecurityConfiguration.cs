@@ -1,4 +1,4 @@
-
+﻿
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 using Microsoft.AspNetCore.Authorization;
@@ -7,10 +7,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 using SWD.NextIntern.Service.Common.Interfaces;
-using SWD.NextIntern.Service.Services;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
-
 
 namespace SWD.NextIntern.Service.Common.Configuration
 {
@@ -20,31 +18,47 @@ namespace SWD.NextIntern.Service.Common.Configuration
             this IServiceCollection services,
             IConfiguration configuration)
         {
-            //services.AddTransient<ICurrentUserService, CurrentUserService>();
             services.AddTransient<IJwtService, JwtService>();
 
             JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
             services.AddHttpContextAccessor();
+
+            var authority = configuration["Security:Bearer:Authority"];
+            var audience = configuration["Security:Bearer:Audience"];
+            var key = Encoding.ASCII.GetBytes(configuration["Jwt:SecretKey"]);
+
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-                .AddJwtBearer(options =>
+            .AddJwtBearer(options =>
+            {
+                options.Authority = authority;
+                options.Audience = audience;
+                options.RequireHttpsMetadata = false;
+                options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    options.TokenValidationParameters = new TokenValidationParameters()
-                    {
-                        ValidateAudience = false,
-                        ValidateIssuer = false,
-                        ValidateIssuerSigningKey = true,
-                        ValidateLifetime = true,
-                        ValidIssuer = configuration.GetSection("Security.Bearer:Authority").Get<string>(),
-                        ValidAudience = configuration.GetSection("Security.Bearer:Audience").Get<string>(),
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetSection("Jwt:Secret").Get<string>())),
-                    };
-                });
+                    RequireExpirationTime = true,
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key)
+                };
+            });
 
+            services.AddControllers();
             services.AddAuthorization(ConfigureAuthorization);
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigin",
+                    builder =>
+                    {
+                        builder.WithOrigins("https://localhost:7205")
+                               .AllowAnyHeader()
+                               .AllowAnyMethod();
+                    });
+            });
 
             return services;
         }
@@ -55,6 +69,13 @@ namespace SWD.NextIntern.Service.Common.Configuration
             //Configure policies and other authorization options here. For example:
             //options.AddPolicy("EmployeeOnly", policy => policy.RequireClaim("role", "employee"));
             //options.AddPolicy("AdminOnly", policy => policy.RequireClaim("role", "Admin"));
+            options.AddPolicy("AdminPolicy", policy => policy.RequireClaim("roles", "Admin"));
+            //options.AddPolicy("UserPolicy", policy => policy.RequireClaim("roles", "User"));
+            options.AddPolicy("UserPolicy", policy =>
+            {
+                policy.RequireAuthenticatedUser();
+                policy.RequireRole("User");
+            });
         }
     }
 }

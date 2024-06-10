@@ -1,6 +1,4 @@
-﻿
-
-using SWD.NextIntern.Repository.IRepositories;
+﻿using SWD.NextIntern.Repository.IRepositories;
 using SWD.NextIntern.Service.Common.Interfaces;
 using SWD.NextIntern.Service.DTOs.Responses;
 
@@ -19,7 +17,7 @@ namespace SWD.NextIntern.Service.Auth.SignIn
 
         public async Task<TokenResponse> Handle(SignInQuery request, CancellationToken cancellationToken)
         {
-            var existingIntern = await _internRepository.FindAsync(i => i.Username == request.Username);
+            var existingIntern = await _internRepository.FindAsync(i => i.Username.Equals(request.Username));
 
             if (existingIntern == null || !BCrypt.Net.BCrypt.Verify(request.Password, existingIntern.Password))
             {
@@ -28,8 +26,8 @@ namespace SWD.NextIntern.Service.Auth.SignIn
 
             return new TokenResponse
             {
-                AccessToken = _jwtService.CreateToken(existingIntern.UserId.ToString(), existingIntern.Role.RoleName),
-                RefreshToken = _jwtService.GenerateRefreshToken(existingIntern.UserId.ToString(), existingIntern.Role.RoleName)
+                AccessToken = await _jwtService.CreateToken(existingIntern.UserId.ToString(), existingIntern.Role.RoleName),
+                RefreshToken = await _jwtService.GenerateRefreshToken(existingIntern.UserId.ToString(), existingIntern.Role.RoleName)
             };
         }
     }

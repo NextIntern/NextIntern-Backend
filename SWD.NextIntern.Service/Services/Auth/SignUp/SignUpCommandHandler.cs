@@ -19,7 +19,7 @@ namespace SWD.NextIntern.Service.Auth.SignUp
 
         public async Task<TokenResponse> Handle(SignUpCommand request, CancellationToken cancellationToken)
         {
-            var existingIntern = await _internRepository.FindAsync(i => i.Username == request.Username);
+            var existingIntern = await _internRepository.FindAsync(i => i.Username.Equals(request.Username));
 
             if (existingIntern != null)
             {
@@ -47,8 +47,8 @@ namespace SWD.NextIntern.Service.Auth.SignUp
 
             return new TokenResponse
             {
-                AccessToken = _jwtService.CreateToken(newIntern.UserId.ToString(), newIntern.Role.RoleName),
-                RefreshToken = _jwtService.GenerateRefreshToken(newIntern.UserId.ToString(), newIntern.Role.RoleName)
+                AccessToken = await _jwtService.CreateToken(newIntern.UserId.ToString(), newIntern.Role.RoleName),
+                RefreshToken = await _jwtService.GenerateRefreshToken(newIntern.UserId.ToString(), newIntern.Role.RoleName)
             };
 
         }
