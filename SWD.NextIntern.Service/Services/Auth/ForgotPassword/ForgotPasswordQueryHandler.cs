@@ -8,13 +8,13 @@ using SWD.NextIntern.Repository.IRepositories;
 
 namespace SWD.NextIntern.Service.Auth.ForgotPassword
 {
-    public class ForgotPasswordCommandHandler
+    public class ForgotPasswordQueryHandler
     {
         private readonly IDistributedCache _cache;
         private readonly IInternRepository _internRepository;
         private readonly IConfiguration _configuration;
 
-        public ForgotPasswordCommandHandler(IDistributedCache cache, IInternRepository internRepository, IConfiguration configuration)
+        public ForgotPasswordQueryHandler(IDistributedCache cache, IInternRepository internRepository, IConfiguration configuration)
         {
             _cache = cache;
             _internRepository = internRepository;
@@ -34,8 +34,9 @@ namespace SWD.NextIntern.Service.Auth.ForgotPassword
                 AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(30)
             });
 
-            //string resetLink = $"https://api-gateway.nextintern.tech/api/v1/auth/resetpassword?email={request.Email}";
-            string resetLink = $"https://localhost:7205/api/v1/auth/resetpassword?email={request.Email}";
+            string resetLink = $"https://nextintern.tech/resetpassword";
+            //string resetLink = $"https://api-gateway.nextintern.tech/api/v1/auth/resetpassword";
+            //string resetLink = $"https://localhost:7205/api/v1/auth/resetpassword";
 
             string emailBody = $"Your OTP is {otp}. Click the following link to reset your password: {resetLink}";
 

@@ -1,7 +1,10 @@
 ﻿
+using MediatR;
+using SWD.NextIntern.Service.Common.Interfaces;
+
 namespace SWD.NextIntern.Service.Auth.SignUp
 {
-    public class SignUpCommand
+    public class SignUpCommand : IRequest<string>, ICommand
     {
         public SignUpCommand(string username, string password, string fullName, string email, string gender, string telephone, DateOnly? dob, string roleName, string address)
         {

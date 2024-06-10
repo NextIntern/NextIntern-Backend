@@ -5,6 +5,11 @@ using SWD.NextIntern.Service.Common.Behaviours;
 using FluentValidation;
 using SWD.NextIntern.Service.Common.Validation;
 using System.Reflection;
+using SWD.NextIntern.Service.Auth.ForgotPassword;
+using SWD.NextIntern.Service.Auth.ResetPassword;
+using SWD.NextIntern.Service.Auth.SignIn;
+using SWD.NextIntern.Service.Auth.SignUp;
+using SWD.NextIntern.Service.Services.Auth.RefreshToken;
 
 namespace SWD.NextIntern.Service
 {
@@ -23,6 +28,14 @@ namespace SWD.NextIntern.Service
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddScoped<IValidatorProvider, ValidatorProvider>();
+            services.AddScoped<SignUpCommandHandler>();
+            services.AddScoped<SignInQueryHandler>();
+            services.AddTransient<ForgotPasswordQueryHandler>();
+            services.AddScoped<ForgotPasswordQueryHandler>();
+            services.AddTransient<ResetPasswordCommandHandler>();
+            services.AddScoped<ResetPasswordCommandHandler>();
+            services.AddTransient<RefreshTokenCommandHandler>();
+            services.AddScoped<RefreshTokenCommandHandler>();
 
             return services;
         }
