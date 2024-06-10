@@ -73,8 +73,7 @@ namespace SWD.NextIntern.API.Controllers.Authentication
         }
 
         [HttpPost("forgotpassword")]
-        //[Authorize(Policy = "UserPolicy")]
-        [Authorize]
+        [AllowAnonymous]
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordQuery query)
         {
             try
@@ -93,7 +92,7 @@ namespace SWD.NextIntern.API.Controllers.Authentication
         }
 
         [HttpPost("resetpassword")]
-        [Authorize]
+        [AllowAnonymous]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordCommand command)
         {
             try
