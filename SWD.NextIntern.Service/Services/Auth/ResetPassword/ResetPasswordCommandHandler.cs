@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
 using SWD.NextIntern.Repository.IRepositories;
+using SWD.NextIntern.Repository.Repositories.IRepositories;
 using SWD.NextIntern.Service.Auth.ForgotPassword;
 using SWD.NextIntern.Service.DTOs.Responses;
 
@@ -8,12 +9,12 @@ namespace SWD.NextIntern.Service.Auth.ResetPassword
     public class ResetPasswordCommandHandler
     {
         private readonly IDistributedCache _cache;
-        private readonly IInternRepository _internRepository;
+        private readonly IUserRepository _userRepository;
 
-        public ResetPasswordCommandHandler(IDistributedCache cache, IInternRepository internRepository)
+        public ResetPasswordCommandHandler(IDistributedCache cache, IUserRepository userRepository)
         {
             _cache = cache;
-            _internRepository = internRepository;
+            _userRepository = userRepository;
         }
 
         public async Task Handle(ResetPasswordCommand request, CancellationToken cancellationToken)
@@ -29,11 +30,11 @@ namespace SWD.NextIntern.Service.Auth.ResetPassword
                 throw new Exception("Confirm password is not match.");
             }
 
-            var user = await _internRepository.FindAsync(u => u.Email.Equals(request.Email));
+            var user = await _userRepository.FindAsync(u => u.Email.Equals(request.Email));
 
             user.Password = BCrypt.Net.BCrypt.HashPassword(request.NewPassword);
 
-            await _internRepository.SaveChangesAsync();
+            await _userRepository.UnitOfWork.SaveChangesAsync(cancellationToken);
 
             await _cache.RemoveAsync(request.Email);
         }

@@ -51,12 +51,14 @@ namespace SWD.NextIntern.Service.Common.Configuration
             services.AddAuthorization(ConfigureAuthorization);
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowSpecificOrigin",
-                    builder =>
+                options.AddPolicy("AllowOrigin",
+                    b =>
                     {
-                        builder.WithOrigins("https://api-gateway.nextintern.tech", "https://localhost:7205", "https://nextintern.tech", "https://localhost:3000")
-                               .AllowAnyHeader()
-                               .AllowAnyMethod();
+                        b.SetIsOriginAllowed(host => true)
+                            //.WithOrigins("http://localhost:3000", "https://nextintern.tech")
+                            .AllowAnyHeader()
+                            .AllowAnyMethod()
+                            .AllowCredentials();
                     });
             });
 

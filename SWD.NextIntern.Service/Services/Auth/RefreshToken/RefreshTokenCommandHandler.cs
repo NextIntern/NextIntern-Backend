@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SWD.NextIntern.Repository.IRepositories;
+using SWD.NextIntern.Repository.Repositories.IRepositories;
 using SWD.NextIntern.Service.Auth.ForgotPassword;
 using SWD.NextIntern.Service.Common.Interfaces;
 using SWD.NextIntern.Service.DTOs.Responses;
@@ -17,16 +19,16 @@ using System.Threading.Tasks;
 
 namespace SWD.NextIntern.Service.Services.Auth.RefreshToken
 {
-    public class RefreshTokenCommandHandler
+    public class RefreshTokenCommandHandler : IRequestHandler<RefreshTokenCommand, TokenResponse>
     {
         private readonly IJwtService _jwtService;
-        private readonly IInternRepository _internRepository;
+        private readonly IUserRepository _userRepository;
         private readonly IDistributedCache _cache;
 
-        public RefreshTokenCommandHandler(IJwtService jwtService, IInternRepository internRepository, IDistributedCache cache)
+        public RefreshTokenCommandHandler(IJwtService jwtService, IUserRepository userRepository, IDistributedCache cache)
         {
             _jwtService = jwtService;
-            _internRepository = internRepository;
+            _userRepository = userRepository;
             _cache = cache;
         }
 
@@ -37,7 +39,7 @@ namespace SWD.NextIntern.Service.Services.Auth.RefreshToken
             JsonDocument payloadJson = JsonDocument.Parse(decodedPayload);
             string username = payloadJson.RootElement.GetProperty("name").GetString();
 
-            var user = await _internRepository.FindAsync(u => u.Username.Equals(username));
+            var user = await _userRepository.FindAsync(u => u.Username.Equals(username));
             _cache.RemoveAsync("Token_" + user.UserId.ToString());
             _cache.RemoveAsync("RefreshToken_" + user.UserId.ToString());
             var newAccessToken = await _jwtService.CreateToken(user.UserId.ToString(), "User");
