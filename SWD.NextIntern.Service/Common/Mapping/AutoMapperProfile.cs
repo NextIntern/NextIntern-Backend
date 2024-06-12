@@ -9,7 +9,7 @@ namespace SWD.NextIntern.Service.Common.Mapping
         public AutoMapperProfile()
         {
             //Campaign
-            CreateMap<Campaign, CampaignDto>()
+            CreateMap<Campaign, UniversityDto>()
                 .ForMember(dest => dest.CampaignId, opt => opt.MapFrom(src => src.CampaignId))
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.CampaignName, opt => opt.MapFrom(src => src.CampaignName))

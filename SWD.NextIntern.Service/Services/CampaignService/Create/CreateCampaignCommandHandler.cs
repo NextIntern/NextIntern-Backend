@@ -4,11 +4,11 @@ using SWD.NextIntern.Repository.Repositories.IRepositories;
 
 namespace SWD.NextIntern.Service.Services.CampaignService.Create
 {
-    public class CreateCampaignCommandHandler : IRequestHandler<CreateCampaignCommand, string>
+    public class CreateUniversityCommandHandler : IRequestHandler<CreateCampaignCommand, string>
     {
         private readonly ICampaignRepository _campaignRepository;
 
-        public CreateCampaignCommandHandler(ICampaignRepository campaignRepository)
+        public CreateUniversityCommandHandler(ICampaignRepository campaignRepository)
         {
             _campaignRepository = campaignRepository;
         }
