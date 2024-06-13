@@ -4,6 +4,7 @@ using SWD.NextIntern.Service.Common.Interfaces;
 using SWD.NextIntern.Service.DTOs.Responses;
 using System.Net;
 using System.Numerics;
+using System.Text.Json.Serialization;
 
 namespace SWD.NextIntern.Service.Services.UniversityService.Update
 {
@@ -11,6 +12,7 @@ namespace SWD.NextIntern.Service.Services.UniversityService.Update
     {
         public string Id { get; set; }
 
+        [JsonIgnore]
         public string? UniversityId { get; set; }
 
         public string? UniversityName { get; set; }
@@ -19,11 +21,13 @@ namespace SWD.NextIntern.Service.Services.UniversityService.Update
 
         public string? Phone { get; set; }
 
-        public DateOnly? ModifyDate { get; set; }
+        [JsonIgnore]
+        public DateTime? ModifyDate { get; set; }
 
-        public UpdateUniversityCommand(string? universityName, string address, string phone, DateOnly? modifyDate, string id)
+        public UpdateUniversityCommand(string? universityName,string? universityId, string address, string phone, DateTime? modifyDate, string id)
         {
             UniversityName = universityName;
+            UniversityId = universityId;
             Address = address;
             Phone = phone;
             ModifyDate = modifyDate;

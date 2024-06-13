@@ -49,7 +49,7 @@ namespace SWD.NextIntern.API.Controllers.University
             return result;
         }
 
-        [HttpPut("")]
+        [HttpPut("update")]
         public async Task<ResponseObject<string>> UpdateUniversity([FromBody] UpdateUniversityCommand command, CancellationToken cancellationToken = default)
         {
             var result = await _mediator.Send(command, cancellationToken);

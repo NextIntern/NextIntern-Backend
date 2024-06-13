@@ -37,7 +37,7 @@ namespace SWD.NextIntern.Service.Services.UniversityService.Update
             university.UniversityName = request.UniversityName ?? university.UniversityName;
             university.Address = request.Address ?? university.Address;
             university.Phone = request.Phone ?? university.Phone;
-            university.ModifyDate = new DateTime();
+            university.ModifyDate = DateTime.Now;
 
             if (Guid.TryParse(request.UniversityId, out Guid universityId))
             {

@@ -18,14 +18,14 @@ public class CampaignController : ControllerBase
         _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
     }
 
-    [HttpGet("campaigns")]
+    [HttpGet("all")]
     public async Task<ActionResult<List<CampaignDto>>> GetAllCampaign(CancellationToken cancellationToken = default)
     {
         var result = await _mediator.Send(new GetAllQuery(), cancellationToken);
         return Ok(new JsonResponse<List<CampaignDto>>(result));
     }
 
-    [HttpGet("campaign/{id}")]
+    [HttpGet("{id}")]
     public async Task<ActionResult<CampaignDto>> GetCampaignById(string id, CancellationToken cancellationToken = default)
     {
         var result = await _mediator.Send(new GetCampaignByIdQuery(id), cancellationToken);
@@ -36,7 +36,7 @@ public class CampaignController : ControllerBase
         return Ok(new JsonResponse<CampaignDto>(result));
     }
 
-    [HttpPost("campaign")]
+    [HttpPost("create")]
     public async Task<ActionResult<string>> CreateCampaign([FromBody] CreateCampaignCommand command, CancellationToken cancellationToken = default)
     {
         var result = await _mediator.Send(command, cancellationToken);
