@@ -8,13 +8,13 @@ namespace SWD.NextIntern.Service.Services.CampaignService.Create
     {
         public string CampaignName { get; set; }
 
-        public Guid? UniversityId { get; set; }
+        public string? UniversityId { get; set; }
 
         public DateOnly? StartDate { get; set; }
 
         public DateOnly? EndDate { get; set; }
 
-        public CreateCampaignCommand(string campaignName, Guid? universityId, DateOnly? startDate, DateOnly? endDate)
+        public CreateCampaignCommand(string campaignName, string? universityId, DateOnly? startDate, DateOnly? endDate)
         {
             CampaignName = campaignName;
             UniversityId = universityId;

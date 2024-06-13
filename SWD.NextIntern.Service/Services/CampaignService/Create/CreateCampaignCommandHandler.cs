@@ -32,7 +32,7 @@ namespace SWD.NextIntern.Service.Services.CampaignService.Create
                 CampaignName = request.CampaignName,
                 StartDate = request.StartDate,
                 EndDate = request.EndDate,
-                UniversityId = request.UniversityId,
+                UniversityId = Guid.Parse(request.UniversityId),
             };
 
             _campaignRepository.Add(campaign);

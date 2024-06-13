@@ -31,6 +31,7 @@ namespace SWD.NextIntern.Repository
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ICampaignRepository, CampaignRepository>();
             services.AddScoped<IUniversityRepository, UniversityRepository>();
+            services.AddScoped<ICampaignEvaluationRepository, CampaignEvaluationRepository>();
 
             return services;
         }
