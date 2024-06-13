@@ -1,9 +1,6 @@
 using AutoMapper;
-
-using Microsoft.EntityFrameworkCore;
 using SWD.NextIntern.Repository.Persistence;
 using SWD.NextIntern.Repository.Entities;
-using System.Linq.Expressions;
 using SWD.NextIntern.Repository.Repositories.IRepositories;
 
 namespace SWD.NextIntern.Repository

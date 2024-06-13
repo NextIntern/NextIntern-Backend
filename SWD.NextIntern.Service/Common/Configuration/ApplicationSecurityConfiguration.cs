@@ -1,11 +1,9 @@
 ﻿
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
 using SWD.NextIntern.Service.Common.Interfaces;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
