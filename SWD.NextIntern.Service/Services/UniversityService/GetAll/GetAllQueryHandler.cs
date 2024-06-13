@@ -24,7 +24,9 @@ namespace SWD.NextIntern.Service.Services.UniversityService.GetAll
         {
             var queryOptions = (IQueryable<University> query) =>
             {
-                return query.Include(x => x.Campaigns);
+                return query
+                .Include(x => x.Campaigns)
+                .Where(x => x.DeletedDate == null); ;
             };
 
             var universities = await _universityRepository.FindAllAsync(queryOptions, cancellationToken);
