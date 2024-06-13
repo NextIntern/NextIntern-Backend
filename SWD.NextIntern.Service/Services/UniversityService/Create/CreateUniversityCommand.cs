@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using SWD.NextIntern.Service.Common.Interfaces;
 using SWD.NextIntern.Service.DTOs.Responses;
+using System.Text.Json.Serialization;
 
 namespace SWD.NextIntern.Service.Services.UniversityService.Create
 {
@@ -22,10 +23,13 @@ namespace SWD.NextIntern.Service.Services.UniversityService.Create
 
         public string Phone { get; set; }
 
+        [JsonIgnore]
         public DateOnly? CreateDate { get; set; }
 
+        [JsonIgnore]
         public DateOnly? ModifyDate { get; set; }
 
+        [JsonIgnore]
         public DateOnly? DeleteDate { get; set; }
     }
 }
