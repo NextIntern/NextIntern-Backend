@@ -35,6 +35,7 @@ namespace SWD.NextIntern.Repository
             services.AddScoped<ICampaignRepository, CampaignRepository>();
             services.AddTransient<IUniversityRepository, UniversityRepository>();
             services.AddTransient<IRoleRepository, RoleRepository>();
+            services.AddTransient<IEvaluationFormRepository, EvaluationFormRepository>();
 
             return services;
         }
