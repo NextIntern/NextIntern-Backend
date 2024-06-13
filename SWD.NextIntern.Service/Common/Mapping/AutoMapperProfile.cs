@@ -20,7 +20,6 @@ namespace SWD.NextIntern.Service.Common.Mapping
                 .ForMember(dest => dest.EndDate, opt => opt.MapFrom(src => src.EndDate))
                 .ForMember(dest => dest.CreateDate, opt => opt.MapFrom(src => src.CreateDate))
                 .ForMember(dest => dest.ModifyDate, opt => opt.MapFrom(src => src.ModifyDate));
-
         }
     }
 }
