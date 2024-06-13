@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace SWD.NextIntern.Repository.Entities;
+﻿namespace SWD.NextIntern.Repository.Entities;
 
 public partial class University
 {

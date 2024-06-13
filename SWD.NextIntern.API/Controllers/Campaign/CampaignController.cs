@@ -20,21 +20,21 @@ public class CampaignController : ControllerBase
     }
 
     [HttpGet("all")]
-    public async Task<ActionResult<List<CampaignDto>>> GetAllCampaign(CancellationToken cancellationToken = default)
+    public async Task<ActionResult<ResponseObject<List<CampaignDto>>>> GetAllCampaign(CancellationToken cancellationToken = default)
     {
         var result = await _mediator.Send(new GetAllQuery(), cancellationToken);
-        return Ok(new JsonResponse<List<CampaignDto>>(result));
+        return Ok(new JsonResponse<ResponseObject<List<CampaignDto>>>(result));
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<CampaignDto>> GetCampaignById(string id, CancellationToken cancellationToken = default)
+    public async Task<ActionResult<ResponseObject<CampaignDto>>> GetCampaignById(string id, CancellationToken cancellationToken = default)
     {
         var result = await _mediator.Send(new GetCampaignByIdQuery(id), cancellationToken);
         if (result is null)
         {
             return BadRequest(new JsonResponse<string>($"Campaign voi {id} khong ton tai"));
         }
-        return Ok(new JsonResponse<CampaignDto>(result));
+        return Ok(new JsonResponse<ResponseObject<CampaignDto>>(result));
     }
 
     [HttpPost("create")]

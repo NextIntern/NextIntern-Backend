@@ -1,4 +1,4 @@
-﻿using MediatR;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SWD.NextIntern.Service.Common.ResponseType;
 using SWD.NextIntern.Service.DTOs.Responses;
@@ -59,6 +59,5 @@ namespace SWD.NextIntern.API.Controllers.University
             var result = await _mediator.Send(command, cancellationToken);
             return result;
         }
-
     }
 }

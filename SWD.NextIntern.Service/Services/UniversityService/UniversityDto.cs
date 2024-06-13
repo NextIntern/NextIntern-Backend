@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using SWD.NextIntern.Repository.Entities;
 using SWD.NextIntern.Service.Common.Mappings;
 
