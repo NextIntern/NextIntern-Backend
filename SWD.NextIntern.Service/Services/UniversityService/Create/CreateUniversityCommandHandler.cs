@@ -24,8 +24,8 @@ namespace SWD.NextIntern.Service.Services.UniversityService.Create
                 UniversityName = request.UniversityName,
                 Address = request.Address,
                 Phone = request.Phone,
-                CreateDate = new DateTime(),
-                ModifyDate = new DateTime(),
+                CreateDate = DateTime.Now,
+                ModifyDate = DateTime.Now,
                 DeletedDate = null
             };
             _universityRepository.Add(university);
