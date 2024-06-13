@@ -1,27 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using SWD.NextIntern.Repository.Entities;
+using SWD.NextIntern.Service.Common.Mappings;
 
-namespace SWD.NextIntern.Service.Services.UniversityService
+public class UniversityDto : IMapFrom<University>
 {
-    public class UniversityDto
+    public Guid UniversityId { get; set; }
+
+    public string UniversityName { get; set; } = null!;
+
+    public string? Address { get; set; }
+
+    public string? Phone { get; set; }
+
+    public DateTime? CreateDate { get; set; }
+
+    public DateTime? ModifyDate { get; set; }
+
+    public DateTime? DeletedDate { get; set; }
+
+    public void Mapping(Profile profile)
     {
-        public Guid UniversityId { get; set; }
-
-        public int Id { get; set; }
-
-        public string? UniversityName { get; set; }
-
-        public string? address { get; set; }
-
-        public string? phone { get; set; }
-
-        public DateTime? CreateDate { get; set; }
-
-        public DateTime? ModifyDate { get; set; }
-
-        public DateTime? DeleteDate { get; set; }
+        profile.CreateMap<University, UniversityDto>();
     }
 }

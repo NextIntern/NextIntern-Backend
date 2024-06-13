@@ -1,5 +1,6 @@
 
 using SWD.NextIntern.Repository.Common;
+using SWD.NextIntern.Repository.Entities;
 using System.Linq.Expressions;
 
 namespace SWD.NextIntern.Repository.IRepositories

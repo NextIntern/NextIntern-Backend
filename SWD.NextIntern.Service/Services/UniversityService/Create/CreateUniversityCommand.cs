@@ -1,9 +1,10 @@
 ﻿using MediatR;
 using SWD.NextIntern.Service.Common.Interfaces;
+using SWD.NextIntern.Service.DTOs.Responses;
 
 namespace SWD.NextIntern.Service.Services.UniversityService.Create
 {
-    public class CreateUniversityCommand : IRequest<string>, ICommand
+    public class CreateUniversityCommand : IRequest<ResponseObject<string>>, ICommand
     {
         public CreateUniversityCommand(string universityName, string address, string phone, DateOnly? createDate, DateOnly? modifyDate, DateOnly? deleteDate)
         {

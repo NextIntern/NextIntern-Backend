@@ -12,6 +12,7 @@ using SWD.NextIntern.Repository.IRepositories;
 using MediatR;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.EntityFrameworkCore;
+using SWD.NextIntern.Repository.Repositories.IRepositories;
 
 namespace SWD.NextIntern.Service
 {
@@ -19,13 +20,13 @@ namespace SWD.NextIntern.Service
     {
         private readonly IConfiguration _configuration;
         private readonly string _issuer;
-        private readonly IInternRepository _internRepository;
+        private readonly IUserRepository _userRepository;
         private readonly IDistributedCache _cache;
 
-        public JwtService(IConfiguration configuration, IInternRepository internRepository, IDistributedCache cache)
+        public JwtService(IConfiguration configuration, IUserRepository userRepository, IDistributedCache cache)
         {
             _configuration = configuration;
-            _internRepository = internRepository;
+            _userRepository = userRepository;
             _cache = cache;
         }
 
@@ -43,12 +44,12 @@ namespace SWD.NextIntern.Service
             var key = Encoding.ASCII.GetBytes(_configuration["Jwt:SecretKey"]);
             var securityKey = new SymmetricSecurityKey(key);
             var creds = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-            var existingIntern = await _internRepository.FindAsync(i => i.UserId.ToString().Equals(ID));
+            var existingUser = await _userRepository.FindAsync(i => i.UserId.ToString().Equals(ID));
             var claims = new List<Claim>
                 {
                    new Claim(JwtRegisteredClaimNames.Sub, ID),
-                   new Claim(JwtRegisteredClaimNames.Email, existingIntern.Email),
-                   new Claim("name", existingIntern.Username),
+                   new Claim(JwtRegisteredClaimNames.Email, existingUser.Email),
+                   new Claim("name", existingUser.Username),
                    new Claim("admin", "false"),
                    new Claim(JwtRegisteredClaimNames.Iat, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64),
                    new Claim(JwtRegisteredClaimNames.Exp, DateTimeOffset.UtcNow.AddMinutes(15).ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64),
@@ -84,7 +85,7 @@ namespace SWD.NextIntern.Service
             var key = Encoding.ASCII.GetBytes(_configuration["Jwt:SecretKey"]);
             var securityKey = new SymmetricSecurityKey(key);
             var creds = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-            var existingIntern = await _internRepository.FindAsync(i => i.UserId.ToString().Equals(ID));
+            var existingIntern = await _userRepository.FindAsync(i => i.UserId.ToString().Equals(ID));
             var claims = new List<Claim>
                 {
                   new Claim(JwtRegisteredClaimNames.Sub, ID),
