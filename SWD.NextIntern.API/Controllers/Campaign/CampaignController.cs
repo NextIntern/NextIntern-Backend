@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SWD.NextIntern.Service.Common.ResponseType;
+using SWD.NextIntern.Service.DTOs.Responses;
 using SWD.NextIntern.Service.Services.CampaignService;
 using SWD.NextIntern.Service.Services.CampaignService.Create;
 using SWD.NextIntern.Service.Services.CampaignService.GetAll;
@@ -37,9 +38,9 @@ public class CampaignController : ControllerBase
     }
 
     [HttpPost("create")]
-    public async Task<ActionResult<string>> CreateCampaign([FromBody] CreateCampaignCommand command, CancellationToken cancellationToken = default)
+    public async Task<ActionResult<ResponseObject<string>>> CreateCampaign([FromBody] CreateCampaignCommand command, CancellationToken cancellationToken = default)
     {
         var result = await _mediator.Send(command, cancellationToken);
-        return Ok(new JsonResponse<string>(result));
+        return Ok(new JsonResponse<ResponseObject<string>>(result));
     }
 }
