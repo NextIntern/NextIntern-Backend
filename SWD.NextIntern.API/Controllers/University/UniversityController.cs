@@ -8,9 +8,13 @@ using SWD.NextIntern.Service.Services.UniversityService.GetAll;
 using SWD.NextIntern.Service.Services.UniversityService;
 using SWD.NextIntern.Service.Services.UniversityService.Update;
 using SWD.NextIntern.Service.Services.UniversityService.Delete;
+using Microsoft.AspNetCore.Authorization;
+using SWD.NextIntern.Repository.Entities;
+using System.Net;
 namespace SWD.NextIntern.API.Controllers.University
 {
     [ApiController]
+    [Authorize]
     [Route("api/v1/university")]
     public class UniversityController : ControllerBase
     {
@@ -24,8 +28,8 @@ namespace SWD.NextIntern.API.Controllers.University
         [HttpGet("all")]
         public async Task<ResponseObject<List<UniversityDto>>> GetAllUniversity(CancellationToken cancellationToken = default)
         {
-            var result = await _mediator.Send(new GetAllQuery(), cancellationToken);
-            return result;
+                var result = await _mediator.Send(new GetAllQuery(), cancellationToken);
+                return result;
         }
 
         [HttpGet("{id}")]

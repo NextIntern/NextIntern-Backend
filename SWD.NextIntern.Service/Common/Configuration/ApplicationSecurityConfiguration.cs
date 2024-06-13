@@ -71,13 +71,13 @@ namespace SWD.NextIntern.Service.Common.Configuration
             //Configure policies and other authorization options here. For example:
             //options.AddPolicy("EmployeeOnly", policy => policy.RequireClaim("role", "employee"));
             //options.AddPolicy("AdminOnly", policy => policy.RequireClaim("role", "Admin"));
-            options.AddPolicy("AdminPolicy", policy => policy.RequireClaim("roles", "Admin"));
+            //options.AddPolicy("AdminPolicy", policy => policy.RequireClaim("roles", "Admin"));
             //options.AddPolicy("UserPolicy", policy => policy.RequireClaim("roles", "User"));
-            options.AddPolicy("UserPolicy", policy =>
-            {
-                policy.RequireAuthenticatedUser();
-                policy.RequireRole("User");
-            });
+            options.AddPolicy("RequireAdminRole", policy =>
+                policy.RequireRole("Admin"));
+
+            options.AddPolicy("RequireUserRole", policy =>
+                policy.RequireRole("User"));
         }
     }
 }
