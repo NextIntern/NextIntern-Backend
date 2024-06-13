@@ -1,21 +1,31 @@
 ﻿using MediatR;
 using SWD.NextIntern.Repository.Entities;
 using SWD.NextIntern.Repository.Repositories.IRepositories;
+using SWD.NextIntern.Service.DTOs.Responses;
+using System.Net;
 
 namespace SWD.NextIntern.Service.Services.CampaignService.Create
 {
-    public class CreateCampaignCommandHandler : IRequestHandler<CreateCampaignCommand, string>
+    public class CreateCampaignCommandHandler : IRequestHandler<CreateCampaignCommand, ResponseObject<string>>
     {
         private readonly ICampaignRepository _campaignRepository;
+        private readonly IUniversityRepository _universityRepository;
 
-        public CreateCampaignCommandHandler(ICampaignRepository campaignRepository)
+        public CreateCampaignCommandHandler(ICampaignRepository campaignRepository, IUniversityRepository universityRepository)
         {
             _campaignRepository = campaignRepository;
+            _universityRepository = universityRepository;
         }
 
-        public async Task<string> Handle(CreateCampaignCommand request, CancellationToken cancellationToken)
+        public async Task<ResponseObject<string>> Handle(CreateCampaignCommand request, CancellationToken cancellationToken)
         {
             //cần repo university để tham chieu
+            var university = await _universityRepository.FindAsync(u => u.UniversityId.ToString().Equals(request.UniversityId), cancellationToken);
+
+            if (university is null)
+            {
+                return new ResponseObject<string>(HttpStatusCode.NotFound, $"University with id {request.UniversityId} doest not exist!");
+            }
 
             var campaign = new Campaign
             {
@@ -27,7 +37,7 @@ namespace SWD.NextIntern.Service.Services.CampaignService.Create
 
             _campaignRepository.Add(campaign);
 
-            return await _campaignRepository.UnitOfWork.SaveChangesAsync(cancellationToken) > 0 ? "Thanh cong!" : "That bai!";
+            return await _campaignRepository.UnitOfWork.SaveChangesAsync(cancellationToken) > 0 ? new ResponseObject<string>(HttpStatusCode.Created, "Success!") : new ResponseObject<string>(HttpStatusCode.BadRequest, "Fail!");
         }
     }
 }

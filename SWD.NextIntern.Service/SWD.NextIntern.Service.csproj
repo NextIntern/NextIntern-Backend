@@ -31,10 +31,4 @@
     <ProjectReference Include="..\SWD.NextIntern.Repository\SWD.NextIntern.Repository.csproj" />
   </ItemGroup>
 
-
-  <ItemGroup>
-    <Folder Include="Services\CampaignService\Delete\" />
-    <Folder Include="Services\CampaignService\Update\" />
-  </ItemGroup>
-
 </Project>
