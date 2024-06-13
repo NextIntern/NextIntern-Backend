@@ -23,7 +23,9 @@ namespace SWD.NextIntern.Service.Services.CampaignService.GetAll
         {
             var queryOptions = (IQueryable<Campaign> query) =>
             {
-                return query.Include(x => x.University);
+                return query
+                .Include(x => x.University)
+                .Where(x => x.DeletedDate == null);
             };
 
             var campaigns = await _campaignRepository.FindAllAsync(queryOptions, cancellationToken);

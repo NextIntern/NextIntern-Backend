@@ -30,7 +30,8 @@ namespace SWD.NextIntern.Repository
             services.AddScoped<IUnitOfWork>(provider => provider.GetRequiredService<AppDbContext>());
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ICampaignRepository, CampaignRepository>();
-            services.AddScoped<IUniversityRepository, UniversityRepository>();
+            services.AddTransient<IUniversityRepository, UniversityRepository>();
+            services.AddTransient<IRoleRepository, RoleRepository>();
 
             return services;
         }
