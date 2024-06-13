@@ -21,11 +21,18 @@ namespace SWD.NextIntern.Service.Services.EvaluationFormService.Update
 
         public async Task<ResponseObject<string>> Handle(UpdateEvaluationFormCommand request, CancellationToken cancellationToken)
         {
-            Expression<Func<EvaluationForm, bool>> queryFilter = (EvaluationForm f) => f.Id.ToString().Equals(request.Id) && f.DeletedDate == null;
+            Expression<Func<EvaluationForm, bool>> queryFilter = (EvaluationForm f) => f.EvaluationFormId.ToString().Equals(request.Id) && f.DeletedDate == null;
 
             if (queryFilter is null)
             {
                 return new ResponseObject<string>(HttpStatusCode.NotFound, $"Evaluation Form with id {request.Id} doest not exist!");
+            }
+
+            Expression<Func<University, bool>> queryFilter1 = (University u) => u.Id.ToString().Equals(request.UniversityId) && u.DeletedDate == null;
+
+            if (queryFilter1 is null)
+            {
+                return new ResponseObject<string>(HttpStatusCode.NotFound, $"University with id {request.UniversityId} doest not exist!");
             }
 
             var form = await _evaluationFormRepository.FindAsync(queryFilter, cancellationToken);
@@ -35,7 +42,6 @@ namespace SWD.NextIntern.Service.Services.EvaluationFormService.Update
             form.IsActive = request.IsActive;
             form.CreateDate = DateTime.Now;
             form.ModifyDate = DateTime.Now;
-            form.DeletedDate = DateTime.Now;
 
             if (Guid.TryParse(request.UniversityId, out Guid universityId))
             {
