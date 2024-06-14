@@ -24,7 +24,7 @@ namespace SWD.NextIntern.Service.Services.CampaignEvaluationService.Create
 
         public async Task<ResponseObject<string>> Handle(CreateCampaignEvaluationCommand request, CancellationToken cancellationToken)
         {
-            var campaign = await _campaignRepository.FindAsync(c => c.CampaignId.ToString().Equals(request.CampaignId), cancellationToken);
+            var campaign = await _campaignRepository.FindAsync(c => c.CampaignId.ToString().Equals(request.CampaignId) && c.DeletedDate == null, cancellationToken);
 
             if (campaign is null)
             {

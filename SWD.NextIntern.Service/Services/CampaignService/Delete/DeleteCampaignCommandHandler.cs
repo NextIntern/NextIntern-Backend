@@ -15,7 +15,7 @@ namespace SWD.NextIntern.Service.Services.CampaignService.Delete
 
         public async Task<ResponseObject<string>> Handle(DeleteCampaignCommand request, CancellationToken cancellationToken)
         {
-            var campaign = await _campaignRepository.FindAsync(c => c.CampaignId.ToString().Equals(request.Id), cancellationToken);
+            var campaign = await _campaignRepository.FindAsync(c => c.CampaignId.ToString().Equals(request.Id) && c.DeletedDate == null, cancellationToken);
             if (campaign == null)
             {
                 return new ResponseObject<string>(HttpStatusCode.NotFound, $"Campaign with id {request.Id} does not exist!");

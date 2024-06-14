@@ -1,11 +1,15 @@
 ﻿using FluentValidation;
 
-namespace SWD.NextIntern.Service.Services.CampaignEvaluationService.Create
+namespace SWD.NextIntern.Service.Services.CampaignEvaluationService.Update
 {
-    public class CreateCampaignEvaluationCommandValidation : AbstractValidator<CreateCampaignEvaluationCommand>
+    public class UpdateCampaignEvaluationCommandValidation : AbstractValidator<UpdateCampaignEvaluationCommand>
     {
-        public CreateCampaignEvaluationCommandValidation()
+        public UpdateCampaignEvaluationCommandValidation()
         {
+            RuleFor(x => x.Id)
+                .NotEmpty().WithMessage("Id is required.")
+                .Must(BeAValidGuid).WithMessage("Id must be a valid GUID.");
+
             RuleFor(x => x.CampaignId)
                 .NotEmpty().WithMessage("Campaign ID is required.")
                 .Must(BeAValidGuid).WithMessage("Campaign ID must be a valid GUID.");
@@ -18,9 +22,9 @@ namespace SWD.NextIntern.Service.Services.CampaignEvaluationService.Create
                 .GreaterThanOrEqualTo(x => x.StartDate).WithMessage("End date must be on or after the start date.");
         }
 
-        private bool BeAValidGuid(string? campaignId)
+        private bool BeAValidGuid(string? id)
         {
-            return Guid.TryParse(campaignId, out _);
+            return Guid.TryParse(id, out _);
         }
     }
 }
