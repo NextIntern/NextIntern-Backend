@@ -1,25 +1,29 @@
-using AutoMapper;
+﻿using AutoMapper;
 using SWD.NextIntern.Repository.Entities;
 using SWD.NextIntern.Service.Common.Mappings;
+using SWD.NextIntern.Service.Services.CampaignService;
 
-public class UniversityDto : IMapFrom<University>
+namespace SWD.NextIntern.Service.Services.UniversityService
 {
-    public Guid UniversityId { get; set; }
-
-    public string UniversityName { get; set; } = null!;
-
-    public string? Address { get; set; }
-
-    public string? Phone { get; set; }
-
-    public DateTime? CreateDate { get; set; }
-
-    public DateTime? ModifyDate { get; set; }
-
-    public DateTime? DeletedDate { get; set; }
-
-    public void Mapping(Profile profile)
+    public class UniversityDto : IMapFrom<University>
     {
-        profile.CreateMap<University, UniversityDto>();
+        public Guid UniversityId { get; set; }
+
+        public string UniversityName { get; set; } = null!;
+
+        public string? Address { get; set; }
+
+        public string? Phone { get; set; }
+
+        public DateTime? CreateDate { get; set; }
+
+        public DateTime? ModifyDate { get; set; }
+
+        public DateTime? DeletedDate { get; set; }
+
+        public void Mapping(Profile profile)
+        {
+            profile.CreateMap<University, UniversityDto>();
+        }
     }
 }

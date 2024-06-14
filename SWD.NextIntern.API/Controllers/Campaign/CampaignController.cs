@@ -9,55 +9,52 @@ using SWD.NextIntern.Service.Services.CampaignService.GetAll;
 using SWD.NextIntern.Service.Services.CampaignService.GetById;
 using SWD.NextIntern.Service.Services.CampaignService.Update;
 
-namespace SWD.NextIntern.API.Controllers.Campaign;
-[ApiController]
-[Route("api/v1/campaign")]
-public class CampaignController : ControllerBase
+namespace SWD.NextIntern.API.Controllers.CampaignService
 {
-
-    private readonly IMediator _mediator;
-
-    public CampaignController(IMediator mediator)
+    [Route("api/v1/campaign")]
+    [ApiController]
+    public class CampaignController : ControllerBase
     {
-        _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
-    }
+        private readonly IMediator _mediator;
 
-    [HttpGet("all")]
-    public async Task<ActionResult<List<CampaignDto>>> GetAllCampaign(CancellationToken cancellationToken = default)
-    {
-        var result = await _mediator.Send(new GetAllQuery(), cancellationToken);
-        return Ok(new JsonResponse<List<CampaignDto>>(result));
-    }
-
-    [HttpGet("{id}")]
-    public async Task<ActionResult<CampaignDto>> GetCampaignById(string id, CancellationToken cancellationToken = default)
-    {
-        var result = await _mediator.Send(new GetCampaignByIdQuery(id), cancellationToken);
-        if (result is null)
+        public CampaignController(IMediator mediator)
         {
-            return BadRequest(new JsonResponse<string>($"Campaign voi {id} khong ton tai"));
+            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
-        return Ok(new JsonResponse<CampaignDto>(result));
-    }
 
-    [HttpPost("create")]
-    public async Task<ActionResult<string>> CreateCampaign([FromBody] CreateCampaignCommand command, CancellationToken cancellationToken = default)
-    {
-        var result = await _mediator.Send(command, cancellationToken);
-        return Ok(new JsonResponse<string>(result));
-    }
+        [HttpGet("all")]
+        public async Task<ResponseObject<List<CampaignDto>>> GetAllCampaign(CancellationToken cancellationToken = default)
+        {
+            var result = await _mediator.Send(new GetAllQuery(), cancellationToken);
+            return result;
+        }
 
-    [HttpDelete("{id}")]
-    public async Task<ResponseObject<string>> DeleteCampaign(string id, CancellationToken cancellationToken = default)
-    {
-         var result = await _mediator.Send(new DeleteCampaignCommand(id), cancellationToken);
-         return result;
-    }
+        [HttpGet("{id}")]
+        public async Task<ResponseObject<CampaignDto?>> GetCampaignById(string id,CancellationToken cancellationToken = default)
+        {
+            var result = await _mediator.Send(new GetCampaignByIdQuery(id), cancellationToken);
+            return result;
+        }
 
-    [HttpPut("update")]
-    public async Task<ResponseObject<string>> UpdateCampaign([FromBody] UpdateCampaignCommand command, CancellationToken cancellationToken = default)
-    {
-         var result = await _mediator.Send(command, cancellationToken);
-         return result;
+        [HttpPost("create")]
+        public async Task<ResponseObject<string>> CreateCampaign([FromBody] CreateCampaignCommand command, CancellationToken cancellationToken = default)
+        {
+            var result = await _mediator.Send(command, cancellationToken);
+            return result;
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ResponseObject<string>> DeleteCampaign(string id, CancellationToken cancellationToken = default)
+        {
+            var result = await _mediator.Send(new DeleteCampaignCommand(id), cancellationToken);
+            return result;
+        }
+
+        [HttpPut("")]
+        public async Task<ResponseObject<string>> UpdateCampaign([FromBody] UpdateCampaignCommand command, CancellationToken cancellationToken = default)
+        {
+            var result = await _mediator.Send(command, cancellationToken);
+            return result;
+        }
     }
 }
