@@ -25,7 +25,8 @@ namespace SWD.NextIntern.Service.Auth.ForgotPassword
 
         public async Task<string> Handle(ForgotPasswordQuery request, CancellationToken cancellationToken)
         {
-            if (_userRepository.FindAsync(i => i.Email.Equals(request.Email)) == null)
+            var user = await _userRepository.FindAsync(i => request.Email.Equals(i.Email));
+            if (!(user != null))
             {
                 throw new Exception("Email is not registed.");
             }
