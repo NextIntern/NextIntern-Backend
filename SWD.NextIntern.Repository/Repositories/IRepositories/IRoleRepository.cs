@@ -1,4 +1,4 @@
-using SWD.NextIntern.Repository.Common;
+﻿using SWD.NextIntern.Repository.Common;
 using SWD.NextIntern.Repository.Entities;
 using SWD.NextIntern.Repository.IRepositories;
 using System;
@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 
 namespace SWD.NextIntern.Repository.Repositories.IRepositories
 {
-    public interface IUniversityRepository : IEFRepository<University, University>
+    public interface IRoleRepository : IEFRepository<Role, Role>
     {
+        Task<Role> FindAsync(Expression<Func<Role, bool>> predicate);
     }
 }
