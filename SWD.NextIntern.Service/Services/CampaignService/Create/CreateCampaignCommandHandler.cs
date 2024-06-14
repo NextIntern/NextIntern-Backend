@@ -18,7 +18,6 @@ namespace SWD.NextIntern.Service.Services.CampaignService.Create
 
         public async Task<ResponseObject<string>> Handle(CreateCampaignCommand request, CancellationToken cancellationToken)
         {
-            //cần repo university để tham chie
             var university = await _universityRepository.FindAsync(u => u.UniversityId.ToString().Equals(request.UniversityId), cancellationToken);
 
             if (university is null)
