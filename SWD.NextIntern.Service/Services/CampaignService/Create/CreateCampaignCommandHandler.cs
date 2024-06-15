@@ -10,7 +10,6 @@ namespace SWD.NextIntern.Service.Services.CampaignService.Create
     {
         private readonly ICampaignRepository _campaignRepository;
         private readonly IUniversityRepository _universityRepository;
-
         public CreateCampaignCommandHandler(ICampaignRepository campaignRepository, IUniversityRepository universityRepository)
         {
             _campaignRepository = campaignRepository;
@@ -19,9 +18,7 @@ namespace SWD.NextIntern.Service.Services.CampaignService.Create
 
         public async Task<ResponseObject<string>> Handle(CreateCampaignCommand request, CancellationToken cancellationToken)
         {
-            //cần repo university để tham chieu
             var university = await _universityRepository.FindAsync(u => u.UniversityId.ToString().Equals(request.UniversityId) && u.DeletedDate == null, cancellationToken);
-
             if (university is null)
             {
                 return new ResponseObject<string>(HttpStatusCode.NotFound, $"University with id {request.UniversityId} doest not exist!");

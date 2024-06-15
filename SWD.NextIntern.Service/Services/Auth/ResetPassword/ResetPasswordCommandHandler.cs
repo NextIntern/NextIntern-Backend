@@ -30,7 +30,7 @@ namespace SWD.NextIntern.Service.Auth.ResetPassword
                 throw new Exception("Confirm password is not match.");
             }
 
-            var user = await _userRepository.FindAsync(u => u.Email.Equals(request.Email));
+            var user = await _userRepository.FindAsync(u => request.Email.Equals(u.Email));
 
             user.Password = BCrypt.Net.BCrypt.HashPassword(request.NewPassword);
 
