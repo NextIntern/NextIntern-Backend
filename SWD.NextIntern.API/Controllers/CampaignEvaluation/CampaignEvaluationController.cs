@@ -54,7 +54,7 @@ namespace SWD.NextIntern.API.Controllers.CampaignEvaluation
             return result;
         }
 
-        [HttpPut("")]
+        [HttpPut("update")]
         public async Task<ResponseObject<string>> UpdateCampaign([FromBody] UpdateCampaignEvaluationCommand command, CancellationToken cancellationToken = default)
         {
             var result = await _mediator.Send(command, cancellationToken);

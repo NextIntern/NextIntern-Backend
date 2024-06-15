@@ -18,11 +18,13 @@ namespace SWD.NextIntern.Service.Services.CampaignService.Create
                 .Must(BeAValidGuid).When(x => !string.IsNullOrEmpty(x.UniversityId)).WithMessage("University ID must be a valid GUID.");
 
             RuleFor(x => x.StartDate)
-                .NotNull().WithMessage("Start date is required.");
+                .NotNull().WithMessage("Start date is required.")
+                .GreaterThan(DateOnly.FromDateTime(DateTime.Today)).WithMessage("Start date must be greater than today.");
 
             RuleFor(x => x.EndDate)
                 .NotNull().WithMessage("End date is required.")
-                .GreaterThanOrEqualTo(x => x.StartDate).WithMessage("End date must be on or after the start date.");
+                .GreaterThanOrEqualTo(x => x.StartDate).WithMessage("End date must be on or after the start date.")
+                .GreaterThan(DateOnly.FromDateTime(DateTime.Today)).WithMessage("End date must be greater than today.");
         }
 
         private bool BeAValidGuid(string? id)
