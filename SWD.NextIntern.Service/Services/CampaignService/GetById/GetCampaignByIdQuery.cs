@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SWD.NextIntern.Service.Services.CampaignService.GetById
 {
-    public class GetCampaignByIdQuery : IRequest<ResponseObject<CampaignDto?>>, IQuery
+    public class GetCampaignByIdQuery : IRequest<ResponseObject<CampaignDto>>, IQuery
     {
         public string Id { get; set; }
 

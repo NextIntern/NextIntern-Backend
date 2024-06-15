@@ -32,7 +32,7 @@ namespace SWD.NextIntern.Repository
             services.AddScoped<ICampaignRepository, CampaignRepository>();
             services.AddScoped<IUniversityRepository, UniversityRepository>();
             services.AddScoped<ICampaignEvaluationRepository, CampaignEvaluationRepository>();
-            services.AddTransient<IRoleRepository, RoleRepository>();
+            services.AddScoped<IInternEvaluationRepository, InternEvaluationRepository>();
             services.AddTransient<IEvaluationFormRepository, EvaluationFormRepository>();
 
 
