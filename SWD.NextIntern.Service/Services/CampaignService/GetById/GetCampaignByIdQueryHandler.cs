@@ -26,7 +26,7 @@ namespace SWD.NextIntern.Service.Services.CampaignService.GetById
                 return query.Include(x => x.University);
             };
 
-            var campaign = await _campaignRepository.FindAsync(c => c.CampaignId.ToString().Equals(request.Id), queryOptions, cancellationToken);
+            var campaign = await _campaignRepository.FindAsync(c => c.CampaignId.ToString().Equals(request.Id) && c.DeletedDate == null, queryOptions, cancellationToken);
             if (campaign is null)
             {
                 return new ResponseObject<CampaignDto?>(HttpStatusCode.NotFound, $"Campaign with id {request.Id} doest not exist!");

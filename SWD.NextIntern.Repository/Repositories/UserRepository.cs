@@ -9,17 +9,17 @@ namespace SWD.NextIntern.Repository
 {
     public class UserRepository : RepositoryBase<User, User, AppDbContext>, IUserRepository
     {
-        private readonly AppDbContext _context;
+        //private readonly AppDbContext _context;
 
         public UserRepository(AppDbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {
-            _context = dbContext;
+            //_context = dbContext;
         }
 
-        public async Task<User> FindAsync(Expression<Func<User, bool>> predicate)
-        {
-            return await _context.Users.Include(i => i.Role).FirstOrDefaultAsync(predicate);
-        }
+        //public async Task<User> FindAsync(Expression<Func<User, bool>> predicate)
+        //{
+        //    return await _context.Users.Include(i => i.Role).FirstOrDefaultAsync(predicate);
+        //}
 
         //public async Task AddAsync(User intern)
         //{
@@ -30,5 +30,5 @@ namespace SWD.NextIntern.Repository
         //{
         //    await _context.SaveChangesAsync();
         //}
-    }
+  }
 }
