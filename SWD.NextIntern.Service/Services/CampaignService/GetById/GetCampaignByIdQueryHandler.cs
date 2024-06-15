@@ -8,7 +8,7 @@ using System.Net;
 
 namespace SWD.NextIntern.Service.Services.CampaignService.GetById
 {
-    public class GetCampaignByIdQueryHandler : IRequestHandler<GetCampaignByIdQuery, ResponseObject<CampaignDto?>>
+    public class GetCampaignByIdQueryHandler : IRequestHandler<GetCampaignByIdQuery, ResponseObject<CampaignDto>>
     {
         private readonly ICampaignRepository _campaignRepository;
         private readonly IMapper _mapper;
@@ -19,7 +19,7 @@ namespace SWD.NextIntern.Service.Services.CampaignService.GetById
             _campaignRepository = campaignRepository;
         }
 
-        public async Task<ResponseObject<CampaignDto?>> Handle(GetCampaignByIdQuery request, CancellationToken cancellationToken)
+        public async Task<ResponseObject<CampaignDto>> Handle(GetCampaignByIdQuery request, CancellationToken cancellationToken)
         {
             var queryOptions = (IQueryable<Campaign> query) =>
             {
@@ -29,9 +29,9 @@ namespace SWD.NextIntern.Service.Services.CampaignService.GetById
             var campaign = await _campaignRepository.FindAsync(c => c.CampaignId.ToString().Equals(request.Id) && c.DeletedDate == null, queryOptions, cancellationToken);
             if (campaign is null)
             {
-                return new ResponseObject<CampaignDto?>(HttpStatusCode.NotFound, $"Campaign with id {request.Id} doest not exist!");
+                return new ResponseObject<CampaignDto>(HttpStatusCode.NotFound, $"Campaign with id {request.Id} doest not exist!");
             }
-            return new ResponseObject<CampaignDto?>(_mapper.Map<CampaignDto>(campaign), HttpStatusCode.OK, "success!");
+            return new ResponseObject<CampaignDto>(_mapper.Map<CampaignDto>(campaign), HttpStatusCode.OK, "success!");
         }
     }
 }
