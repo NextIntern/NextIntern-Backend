@@ -23,9 +23,15 @@ namespace SWD.NextIntern.Service.Auth.SignIn
         {
             var existingUser = await _userRepository.FindAsync(i => request.Username.Equals(i.Username));
             var role = await _roleRepository.FindAsync(r => existingUser.RoleId == r.RoleId);
+
             string roleName = role.RoleName;
 
             if (existingUser == null || !BCrypt.Net.BCrypt.Verify(request.Password, existingUser.Password))
+            {
+                throw new Exception("Invalid username or password.");
+            }
+
+            if (existingUser.DeletedDate != null)
             {
                 throw new Exception("Invalid username or password.");
             }

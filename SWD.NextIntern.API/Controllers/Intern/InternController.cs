@@ -1,0 +1,51 @@
+﻿using MediatR;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using SWD.NextIntern.Service.DTOs.Responses;
+using SWD.NextIntern.Service.Services.InternService.Delete;
+using SWD.NextIntern.Service.Services.InternService.GetAll;
+using SWD.NextIntern.Service.Services.InternService.GetById;
+using SWD.NextIntern.Service.Services.InternService.Update;
+
+namespace SWD.NextIntern.API.Controllers.Intern
+{
+    [ApiController]
+    [Route("api/v1/intern")]
+    public class InternController : ControllerBase
+    {
+        private readonly IMediator _mediator;
+
+        public InternController(IMediator mediator)
+        {
+            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+        }
+
+        [HttpGet("all")]
+        public async Task<ResponseObject<List<InternDto>>> GetAllIntern(CancellationToken cancellationToken = default)
+        {
+            var result = await _mediator.Send(new GetAllQuery(), cancellationToken);
+            return result;
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ResponseObject<InternDto?>> GetEvaluationFormById(string id, CancellationToken cancellationToken = default)
+        {
+            var result = await _mediator.Send(new GetInternByIdQuery(id), cancellationToken);
+            return result;
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ResponseObject<string>> DeleteEvaluationForm(string id, CancellationToken cancellationToken = default)
+        {
+            var result = await _mediator.Send(new DeleteInternCommand(id), cancellationToken);
+            return result;
+        }
+
+        [HttpPut("update")]
+        public async Task<ResponseObject<string>> UpdateEvaluationForm([FromBody] UpdateInternCommand command, CancellationToken cancellationToken = default)
+        {
+            var result = await _mediator.Send(command, cancellationToken);
+            return result;
+        }
+    }
+}
