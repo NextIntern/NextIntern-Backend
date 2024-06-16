@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SWD.NextIntern.Service.DTOs.Responses;
@@ -9,6 +10,7 @@ using SWD.NextIntern.Service.Services.InternService.Update;
 
 namespace SWD.NextIntern.API.Controllers.Intern
 {
+    [Authorize]
     [ApiController]
     [Route("api/v1/intern")]
     public class InternController : ControllerBase

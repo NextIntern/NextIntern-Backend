@@ -95,25 +95,25 @@ namespace SWD.NextIntern.API.Controllers.Authentication
             }
         }
 
-        [HttpPost("refreshtoken")]
-        [Authorize]
-        public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenCommand command)
-        {
-            try
-            {
-                if (string.IsNullOrEmpty(command.AccessToken) || string.IsNullOrEmpty(command.RefreshToken))
-                {
-                    return BadRequest("Invalid access token and refresh token.");
-                }
-                var token = await _mediator.Send(command, default);
-                if (token == null)
-                    return Unauthorized();
-                return Ok(new { token });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
-        }
+        //[HttpPost("refreshtoken")]
+        //[Authorize]
+        //public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenCommand command)
+        //{
+        //    try
+        //    {
+        //        if (string.IsNullOrEmpty(command.AccessToken) || string.IsNullOrEmpty(command.RefreshToken))
+        //        {
+        //            return BadRequest("Invalid access token and refresh token.");
+        //        }
+        //        var token = await _mediator.Send(command, default);
+        //        if (token == null)
+        //            return Unauthorized();
+        //        return Ok(new { token });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(new { message = ex.Message });
+        //    }
+        //}
     }
 }
