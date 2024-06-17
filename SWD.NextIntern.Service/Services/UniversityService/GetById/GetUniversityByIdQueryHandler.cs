@@ -24,9 +24,16 @@ namespace SWD.NextIntern.Service.Services.UniversityService.GetById
 
         public async Task<ResponseObject<UniversityDto?>> Handle(GetUniversityByIdQuery request, CancellationToken cancellationToken)
         {
-            Expression<Func<University, bool>> queryFilter = (University u) => u.UniversityId.ToString().Equals(request.Id) && u.DeletedDate == null;
+            //Expression<Func<University, bool>> queryFilter = (University u) => u.UniversityId.ToString().Equals(request.Id) && u.DeletedDate == null;
 
-            var university = await _universityRepository.FindAsync(queryFilter, cancellationToken);
+            var queryOptions = (IQueryable<University> query) =>
+            {
+                return query
+                .Include(x => x.Campaigns)
+                .Where(x => x.DeletedDate == null); ;
+            };
+
+            var university = await _universityRepository.FindAsync(queryOptions, cancellationToken);
 
             if (university == null)
             {
