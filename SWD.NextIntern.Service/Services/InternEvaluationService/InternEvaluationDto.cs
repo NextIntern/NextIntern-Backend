@@ -2,7 +2,7 @@
 using SWD.NextIntern.Repository.Entities;
 using SWD.NextIntern.Service.Common.Mappings;
 
-namespace SWD.NextIntern.Service.Services.InvernEvaluationService
+namespace SWD.NextIntern.Service.Services.InternEvaluationService
 {
     public class InternEvaluationDto : IMapFrom<InternEvaluation>
     {
