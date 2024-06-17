@@ -55,6 +55,5 @@ namespace SWD.NextIntern.API.Controllers.EvaluationForm
             var result = await _mediator.Send(command, cancellationToken);
             return result;
         }
-
     }
 }
