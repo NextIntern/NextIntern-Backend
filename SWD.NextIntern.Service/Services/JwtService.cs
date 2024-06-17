@@ -1,4 +1,4 @@
-
+﻿
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
@@ -44,13 +44,13 @@ namespace SWD.NextIntern.Service
             var key = Encoding.ASCII.GetBytes(_configuration["Jwt:SecretKey"]);
             var securityKey = new SymmetricSecurityKey(key);
             var creds = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-            var existingUser = await _userRepository.FindAsync(i => i.UserId.ToString().Equals(ID));
+            var existingIntern = await _userRepository.FindAsync(i => i.UserId.ToString().Equals(ID));
             var claims = new List<Claim>
                 {
                    new Claim(JwtRegisteredClaimNames.Sub, ID),
-                   new Claim(JwtRegisteredClaimNames.Email, existingUser.Email),
-                   new Claim("name", existingUser.Username),
-                   //new Claim("admin", "false"),
+                   new Claim(JwtRegisteredClaimNames.Email, existingIntern.Email),
+                   new Claim("name", existingIntern.Username),
+                   new Claim("admin", "false"),
                    new Claim(JwtRegisteredClaimNames.Iat, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64),
                    new Claim(JwtRegisteredClaimNames.Exp, DateTimeOffset.UtcNow.AddMinutes(15).ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64),
                    new Claim(JwtRegisteredClaimNames.Aud, audience),
@@ -91,7 +91,7 @@ namespace SWD.NextIntern.Service
                   new Claim(JwtRegisteredClaimNames.Sub, ID),
                    new Claim(JwtRegisteredClaimNames.Email, existingIntern.Email),
                    new Claim("name", existingIntern.Username),
-                   //new Claim("admin", "false"),
+                   new Claim("admin", "false"),
                    new Claim(JwtRegisteredClaimNames.Iat, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64),
                    new Claim(JwtRegisteredClaimNames.Exp, DateTimeOffset.UtcNow.AddMinutes(15).ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64),
                    new Claim(JwtRegisteredClaimNames.Aud, audience),
