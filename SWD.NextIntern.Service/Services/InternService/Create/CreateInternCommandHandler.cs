@@ -5,37 +5,39 @@ using SWD.NextIntern.Repository.IRepositories;
 using SWD.NextIntern.Repository.Repositories.IRepositories;
 using SWD.NextIntern.Service.Common.Interfaces;
 using SWD.NextIntern.Service.DTOs.Responses;
+using System.Net;
 
 namespace SWD.NextIntern.Service.Auth.SignUp
 {
-    public class SignUpCommandHandler : IRequestHandler<SignUpCommand, TokenResponse>
+    public class CreateInternCommandHandler : IRequestHandler<CreateInternCommand, TokenResponse>
     {
         private readonly IUserRepository _userRepository;
         private readonly IJwtService _jwtService;
 
-        public SignUpCommandHandler(IUserRepository userRepository, IJwtService jwtService)
+        public CreateInternCommandHandler(IUserRepository userRepository, IJwtService jwtService)
         {
             _userRepository = userRepository;
             _jwtService = jwtService;
         }
 
-        public async Task<TokenResponse> Handle(SignUpCommand request, CancellationToken cancellationToken)
+        public async Task<TokenResponse> Handle(CreateInternCommand request, CancellationToken cancellationToken)
         {
             var existingIntern = await _userRepository.FindAsync(i => i.Username.Equals(request.Username));
+            var existEmailIntern = await _userRepository.FindAsync(i => i.Email.Equals(request.Email));
 
             if (existingIntern != null)
             {
                 throw new Exception("Username already has taken.");
             }
 
-            if (existingIntern.Email.Equals(request.Email))
+            if (existEmailIntern != null)
             {
                 throw new Exception("Email already has taken.");
             }
 
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(request.Password);
 
-            var newIntern = new User
+            var newIntern = new User    
             {
                 Username = request.Username,
                 Password = hashedPassword,

@@ -47,21 +47,21 @@ namespace SWD.NextIntern.Service
             var existingIntern = await _userRepository.FindAsync(i => i.UserId.ToString().Equals(ID));
             var claims = new List<Claim>
                 {
-                   new Claim(JwtRegisteredClaimNames.Sub, ID),
-                   new Claim(JwtRegisteredClaimNames.Email, existingIntern.Email),
-                   new Claim("name", existingIntern.Username),
-                   new Claim("admin", "false"),
-                   new Claim(JwtRegisteredClaimNames.Iat, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64),
-                   new Claim(JwtRegisteredClaimNames.Exp, DateTimeOffset.UtcNow.AddMinutes(15).ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64),
-                   new Claim(JwtRegisteredClaimNames.Aud, audience),
-                   new Claim("roles", roles),
+                   new (JwtRegisteredClaimNames.Sub, ID),
+                   new (JwtRegisteredClaimNames.NameId, existingIntern.Username),
+                   new (JwtRegisteredClaimNames.Email, existingIntern.Email),
+                   //new Claim(JwtRegisteredClaimNames.Iat, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64),
+                   //new Claim(JwtRegisteredClaimNames.Exp, DateTimeOffset.UtcNow.AddMinutes(15).ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64),
+                   //new Claim(JwtRegisteredClaimNames.Aud, audience),
+                   new (ClaimTypes.Role, roles),
+                   new (JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                  };
 
             var identity = new ClaimsIdentity(claims);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = identity,
-                Expires = DateTime.UtcNow.AddHours(1),
+                Expires = DateTime.UtcNow.AddDays(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256)
             };
 
@@ -88,14 +88,14 @@ namespace SWD.NextIntern.Service
             var existingIntern = await _userRepository.FindAsync(i => i.UserId.ToString().Equals(ID));
             var claims = new List<Claim>
                 {
-                  new Claim(JwtRegisteredClaimNames.Sub, ID),
-                   new Claim(JwtRegisteredClaimNames.Email, existingIntern.Email),
-                   new Claim("name", existingIntern.Username),
-                   new Claim("admin", "false"),
-                   new Claim(JwtRegisteredClaimNames.Iat, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64),
-                   new Claim(JwtRegisteredClaimNames.Exp, DateTimeOffset.UtcNow.AddMinutes(15).ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64),
-                   new Claim(JwtRegisteredClaimNames.Aud, audience),
-                   new Claim("roles", roles),
+                   new (JwtRegisteredClaimNames.Sub, ID),
+                   new (JwtRegisteredClaimNames.NameId, existingIntern.Username),
+                   new (JwtRegisteredClaimNames.Email, existingIntern.Email),
+                   //new Claim(JwtRegisteredClaimNames.Iat, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64),
+                   //new Claim(JwtRegisteredClaimNames.Exp, DateTimeOffset.UtcNow.AddMinutes(15).ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64),
+                   //new Claim(JwtRegisteredClaimNames.Aud, audience),
+                   new (ClaimTypes.Role, roles),
+                   new (JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                  };
 
             var identity = new ClaimsIdentity(claims);

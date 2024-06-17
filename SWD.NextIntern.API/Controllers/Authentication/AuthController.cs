@@ -23,22 +23,22 @@ namespace SWD.NextIntern.API.Controllers.Authentication
             _cache = cache;
         }
 
-        [HttpPost("signup")]
-        [AllowAnonymous]
-        public async Task<IActionResult> SignUp([FromBody] SignUpCommand command)
-        {
-            try
-            {
-                var token = await _mediator.Send(command, default);
-                if (token == null)
-                    return Unauthorized();
-                return Ok(new { token });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
-        }
+        //[HttpPost("signup")]
+        //[AllowAnonymous]
+        //public async Task<IActionResult> SignUp([FromBody] SignUpCommand command)
+        //{
+        //    try
+        //    {
+        //        var token = await _mediator.Send(command, default);
+        //        if (token == null)
+        //            return Unauthorized();
+        //        return Ok(new { token });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(new { message = ex.Message });
+        //    }
+        //}
 
         [HttpPost("signin")]
         [AllowAnonymous]
