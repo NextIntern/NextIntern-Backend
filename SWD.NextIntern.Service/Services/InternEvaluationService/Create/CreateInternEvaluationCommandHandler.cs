@@ -1,28 +1,27 @@
 ﻿using MediatR;
 using SWD.NextIntern.Repository.Entities;
-using SWD.NextIntern.Repository.Repositories;
 using SWD.NextIntern.Repository.Repositories.IRepositories;
 using SWD.NextIntern.Service.DTOs.Responses;
 using System.Net;
 
-namespace SWD.NextIntern.Service.Services.InvernEvaluationService.Create
+namespace SWD.NextIntern.Service.Services.InternEvaluationService.Create
 {
     public class CreateInternEvaluationCommandHandler : IRequestHandler<CreateInternEvaluationCommand, ResponseObject<string>>
     {
         private readonly IInternEvaluationRepository _internEvaluationRepository;
-        private readonly IUniversityRepository _universityRepository;
         private readonly ICampaignEvaluationRepository _campaignEvaluationRepository;
+        private readonly IUserRepository _userRepository;
 
-        public CreateInternEvaluationCommandHandler(IInternEvaluationRepository internEvaluationRepository, IUniversityRepository universityRepository, ICampaignEvaluationRepository campaignEvaluationRepository)
+        public CreateInternEvaluationCommandHandler(IInternEvaluationRepository internEvaluationRepository, ICampaignEvaluationRepository campaignEvaluationRepository, IUserRepository userRepository)
         {
             _internEvaluationRepository = internEvaluationRepository;
-            _universityRepository = universityRepository;
             _campaignEvaluationRepository = campaignEvaluationRepository;
+            _userRepository = userRepository;
         }
 
         public async Task<ResponseObject<string>> Handle(CreateInternEvaluationCommand request, CancellationToken cancellationToken)
         {
-            var intern = await _universityRepository.FindAsync(u => u.UniversityId.ToString().Equals(request.InternId) && u.DeletedDate == null, cancellationToken);
+            var intern = await _userRepository.FindAsync(u => u.UserId.ToString().Equals(request.InternId) && u.DeletedDate == null, cancellationToken);
 
             if (intern == null)
             {
