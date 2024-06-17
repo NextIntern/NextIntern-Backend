@@ -25,7 +25,7 @@ namespace SWD.NextIntern.Service.Services.CampaignService.Update
             Expression<Func<Campaign, bool>> queryFilter = (Campaign c) => c.CampaignId.ToString().Equals(request.Id) && c.DeletedDate == null;
 
             //check university is not null
-            var university = await _universityRepository.FindAsync(u => u.UniversityId.ToString().Equals(request.UniversityId), cancellationToken);
+            var university = await _universityRepository.FindAsync(u => u.UniversityId.ToString().Equals(request.UniversityId) && u.DeletedDate == null, cancellationToken);
 
             if (university is null)
             {
@@ -36,17 +36,10 @@ namespace SWD.NextIntern.Service.Services.CampaignService.Update
 
             if (campaign is null) return new ResponseObject<string>(HttpStatusCode.NotFound, $"Campaign with id {request.Id} does not exist!");
 
-            campaign.StartDate = request.StartDate ?? campaign.StartDate;
-            campaign.EndDate = request.EndDate ?? campaign.EndDate;
-            campaign.CampaignName = request.CampaignName ?? campaign.CampaignName;
-            if (Guid.TryParse(request.UniversityId, out Guid universityId))
-            {
-                campaign.UniversityId = universityId;
-            }
-            else
-            {
-                campaign.UniversityId = campaign.UniversityId; // No change if parsing fails
-            }
+            campaign.StartDate = request.StartDate;
+            campaign.EndDate = request.EndDate;
+            campaign.CampaignName = request.CampaignName;
+            campaign.UniversityId = Guid.Parse(request.UniversityId);
 
             _campaignRepository.Update(campaign);
 

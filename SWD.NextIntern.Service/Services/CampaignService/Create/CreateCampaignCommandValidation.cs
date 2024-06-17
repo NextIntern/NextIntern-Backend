@@ -12,19 +12,24 @@ namespace SWD.NextIntern.Service.Services.CampaignService.Create
         public CreateCampaignCommandValidation()
         {
             RuleFor(x => x.CampaignName)
-                .NotEmpty().WithMessage("Campaign name is required.")
-                .Length(1, 100).WithMessage("Campaign name can't be longer than 100 characters.");
+                .NotEmpty().WithMessage("Campaign name is required.");
+
+            RuleFor(x => x.UniversityId)
+                .Must(BeAValidGuid).When(x => !string.IsNullOrEmpty(x.UniversityId)).WithMessage("University ID must be a valid GUID.");
 
             RuleFor(x => x.StartDate)
-                .NotNull().WithMessage("Start date is required.");
+                .NotNull().WithMessage("Start date is required.")
+                .GreaterThan(DateOnly.FromDateTime(DateTime.Today)).WithMessage("Start date must be greater than today.");
 
             RuleFor(x => x.EndDate)
-                .NotNull().WithMessage("End date is required.");
+                .NotNull().WithMessage("End date is required.")
+                .GreaterThanOrEqualTo(x => x.StartDate).WithMessage("End date must be on or after the start date.")
+                .GreaterThan(DateOnly.FromDateTime(DateTime.Today)).WithMessage("End date must be greater than today.");
+        }
 
-            RuleFor(x => x)
-                .Must(x => x.EndDate >= x.StartDate)
-                .When(x => x.StartDate.HasValue && x.EndDate.HasValue)
-                .WithMessage("End date must be greater than or equal to start date.");
+        private bool BeAValidGuid(string? id)
+        {
+            return Guid.TryParse(id, out _);
         }
     }
 }

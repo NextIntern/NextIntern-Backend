@@ -6,7 +6,7 @@ namespace SWD.NextIntern.Repository.Repositories.IRepositories
 {
     public interface IUserRepository : IEFRepository<User, User>
     {
-        Task<User> FindAsync(Expression<Func<User, bool>> predicate);
+        //Task<User> FindAsync(Expression<Func<User, bool>> predicate);
         //Task AddAsync(User user);
         //Task SaveChangesAsync();
     }

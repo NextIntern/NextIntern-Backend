@@ -23,12 +23,10 @@ namespace SWD.NextIntern.Service.Services.CampaignService.GetAll
         {
             var queryOptions = (IQueryable<Campaign> query) =>
             {
-                return query
-                .Include(x => x.University)
-                .Where(x => x.DeletedDate == null);
+                return query.Include(x => x.University);
             };
 
-            var campaigns = await _campaignRepository.FindAllAsync(queryOptions, cancellationToken);
+            var campaigns = await _campaignRepository.FindAllAsync(c => c.DeletedDate == null, queryOptions, cancellationToken);
             var campaignDtos = _mapper.Map<List<CampaignDto>>(campaigns);
             return new ResponseObject<List<CampaignDto>>(campaignDtos, HttpStatusCode.OK, "success!");
         }
