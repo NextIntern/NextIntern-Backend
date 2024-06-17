@@ -33,6 +33,7 @@ namespace SWD.NextIntern.Repository
             services.AddTransient<IUniversityRepository, UniversityRepository>();
             services.AddTransient<IRoleRepository, RoleRepository>();
             services.AddTransient<IEvaluationFormRepository, EvaluationFormRepository>();
+            services.AddTransient<IFormCriteriaRepository, FormCriteriaRepository>();
 
             return services;
         }
