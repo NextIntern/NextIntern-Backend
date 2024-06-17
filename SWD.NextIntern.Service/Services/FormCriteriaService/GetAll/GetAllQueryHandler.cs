@@ -27,7 +27,7 @@ namespace SWD.NextIntern.Service.Services.FormCriteriaService.GetAll
             {
                 return query
                 .Include(x => x.EvaluationForm)
-                .Where(x => x.DeletedDate == null); ;
+                .Where(x => x.DeletedDate == null);
             };
 
             var forms = await _formCriteriaRepository.FindAllAsync(queryOptions, cancellationToken);

@@ -16,7 +16,11 @@ public class FormCriteriaDto : IMapFrom<FormCriterion>
 
     public DateTime? DeletedDate { get; set; }
 
-    public string? EvaluationFormId { get; set; }
+    //public string? EvaluationFormId { get; set; }
+
+    //public string? EvaluationFromName { get; set; }
+
+    public EvaluationForm? EvaluationForm { get; set; }
 
     public void Mapping(Profile profile)
     {
