@@ -2,11 +2,13 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SWD.NextIntern.Service.Auth.SignUp;
 using SWD.NextIntern.Service.DTOs.Responses;
 using SWD.NextIntern.Service.Services.InternService.Delete;
 using SWD.NextIntern.Service.Services.InternService.GetAll;
 using SWD.NextIntern.Service.Services.InternService.GetById;
 using SWD.NextIntern.Service.Services.InternService.Update;
+using System.Threading;
 
 namespace SWD.NextIntern.API.Controllers.Intern
 {
@@ -48,6 +50,23 @@ namespace SWD.NextIntern.API.Controllers.Intern
         {
             var result = await _mediator.Send(command, cancellationToken);
             return result;
+        }
+
+        [AllowAnonymous]
+        [HttpPost("create")]
+        public async Task<IActionResult> CreateIntern([FromBody] CreateInternCommand command, CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                var token = await _mediator.Send(command, default);
+                if (token == null)
+                    return Unauthorized();
+                return Ok(new { token });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
     }
 }
