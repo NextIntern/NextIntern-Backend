@@ -30,21 +30,21 @@ namespace SWD.NextIntern.API.Controllers.Intern
         }
 
         [HttpGet("{id}")]
-        public async Task<ResponseObject<InternDto?>> GetEvaluationFormById(string id, CancellationToken cancellationToken = default)
+        public async Task<ResponseObject<InternDto?>> GetInternById(string id, CancellationToken cancellationToken = default)
         {
             var result = await _mediator.Send(new GetInternByIdQuery(id), cancellationToken);
             return result;
         }
 
         [HttpDelete("{id}")]
-        public async Task<ResponseObject<string>> DeleteEvaluationForm(string id, CancellationToken cancellationToken = default)
+        public async Task<ResponseObject<string>> DeleteIntern(string id, CancellationToken cancellationToken = default)
         {
             var result = await _mediator.Send(new DeleteInternCommand(id), cancellationToken);
             return result;
         }
 
         [HttpPut("update")]
-        public async Task<ResponseObject<string>> UpdateEvaluationForm([FromBody] UpdateInternCommand command, CancellationToken cancellationToken = default)
+        public async Task<ResponseObject<string>> UpdateIntern([FromBody] UpdateInternCommand command, CancellationToken cancellationToken = default)
         {
             var result = await _mediator.Send(command, cancellationToken);
             return result;

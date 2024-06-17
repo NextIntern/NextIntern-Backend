@@ -11,6 +11,22 @@ namespace SWD.NextIntern.Service.Services.InternService.Update
 {
     public class UpdateInternCommand : IRequest<ResponseObject<string>>, ICommand
     {
+        public UpdateInternCommand(string id, string fullname, DateOnly? dob, string gender, string telephone, string address, string menterUsername, string campaignId, string roleName, DateTime? createDate, DateTime? modifyDate, DateTime? deleteDate)
+        {
+            Id = id;
+            Fullname = fullname;
+            Dob = dob;
+            Gender = gender;
+            Telephone = telephone;
+            Address = address;
+            MenterUsername = menterUsername;
+            CampaignId = campaignId;
+            RoleName = roleName;
+            CreateDate = createDate;
+            ModifyDate = modifyDate;
+            DeleteDate = deleteDate;
+        }
+
         public string Id { get; set; }
 
         //[JsonIgnore]
