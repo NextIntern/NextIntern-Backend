@@ -7,7 +7,7 @@ using SWD.NextIntern.Service.Common.Interfaces;
 using SWD.NextIntern.Service.DTOs.Responses;
 using System.Net;
 
-namespace SWD.NextIntern.Service.Auth.SignUp
+namespace SWD.NextIntern.Service.InternService.Create
 {
     public class CreateInternCommandHandler : IRequestHandler<CreateInternCommand, TokenResponse>
     {

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SWD.NextIntern.Service.Auth.SignUp;
 using SWD.NextIntern.Service.DTOs.Responses;
+using SWD.NextIntern.Service.InternService.Create;
 using SWD.NextIntern.Service.Services.InternService.Delete;
 using SWD.NextIntern.Service.Services.InternService.GetAll;
 using SWD.NextIntern.Service.Services.InternService.GetById;

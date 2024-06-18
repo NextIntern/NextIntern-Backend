@@ -1,5 +1,6 @@
 ﻿
 using FluentValidation;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace SWD.NextIntern.Service.Services.FormCriteriaService.Update
 {
@@ -8,21 +9,25 @@ namespace SWD.NextIntern.Service.Services.FormCriteriaService.Update
         public UpdateFormCriteriaCommandValidation()
         {
             RuleFor(command => command.Id)
-                .NotEmpty().WithMessage("Id is required.")
-                .Must(BeAValidGuid).WithMessage("Id must be a valid GUID.");
+                 .NotEmpty().WithMessage("Id is required.")
+                 .Must(BeAValidGuid).WithMessage("Id must be a valid GUID.");
 
             RuleFor(command => command.EvaluationFormId)
-                .Must(BeAValidGuidOrEmpty).WithMessage("EvaluationFormId must be a valid GUID or empty.");
+                 .Must(BeAValidGuidOrEmpty).WithMessage("EvaluationFormId must be a valid GUID or empty.");
 
             RuleFor(command => command.FormCriteriaName)
-                    .MaximumLength(100).WithMessage("EvaluationFormId must not exceed 100 characters.");
+                 .MaximumLength(100).WithMessage("EvaluationFormId must not exceed 100 characters.");
 
             RuleFor(command => command.Guide)
-                    .MaximumLength(1000).WithMessage("EvaluationFormId must not exceed 1000 characters.");
+                 .MaximumLength(1000).WithMessage("EvaluationFormId must not exceed 1000 characters.");
 
             RuleFor(command => command.MinScore)
-                .GreaterThanOrEqualTo(0).WithMessage("MinScore must be greater than or equal to 0")
-                .LessThanOrEqualTo(10).WithMessage("MaxScore must be less than or equal to 0");
+                 .LessThanOrEqualTo(command => command.MaxScore).WithMessage("MinScore must be less than or equal to MaxScore")
+                 .GreaterThanOrEqualTo(0).WithMessage("MinScore must be greater than or equal to 0");
+
+            RuleFor(command => command.MaxScore)
+                 .GreaterThanOrEqualTo(command => command.MinScore).WithMessage("MaxScore must be greater than or equal to MinScore")
+                 .LessThanOrEqualTo(10).WithMessage("MaxScore must be less than or equal to 10");
         }
 
         private bool BeAValidGuid(string id)
