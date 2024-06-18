@@ -28,21 +28,21 @@ namespace SWD.NextIntern.Service.Services.InternEvaluationCriteriaService.Update
         {
             Expression<Func<InternEvaluationCriterion, bool>> queryFilter = (InternEvaluationCriterion u) => u.InternEvaluationCriteriaId.ToString().Equals(request.InternEvaluationCriteriaId) && u.DeletedDate == null;
             Expression<Func<InternEvaluation, bool>> queryFilter1 = (!request.InternEvaluationId.IsNullOrEmpty()) ? (InternEvaluation c) => c.InternEvaluationId.ToString().Equals(request.InternEvaluationId) && c.DeletedDate == null : null;
-            Expression<Func<FormCriterion, bool>> queryFilter2 = (!request.FromCriteriaId.IsNullOrEmpty()) ? (FormCriterion r) => r.FormCriteriaId.Equals(request.FromCriteriaId) && r.DeletedDate == null : null;
+            Expression<Func<FormCriterion, bool>> queryFilter2 = (!request.FromCriteriaId.IsNullOrEmpty()) ? (FormCriterion r) => r.FormCriteriaId.ToString().Equals(request.FromCriteriaId) && r.DeletedDate == null : null;
           
             if (queryFilter is null)
             {
-                return new ResponseObject<string>(HttpStatusCode.NotFound, $"InternEvaluationCriteria with id {request.InternEvaluationCriteriaId}does not exist!");
+                return new ResponseObject<string>(HttpStatusCode.NotFound, $"InternEvaluationCriteria with id {request.InternEvaluationCriteriaId} does not exist!");
             }         
 
             if (!request.InternEvaluationId.IsNullOrEmpty() && queryFilter1 is null)
             {
-                return new ResponseObject<string>(HttpStatusCode.NotFound, $"InternEvaluation with id {request.InternEvaluationId}does not exist!");
+                return new ResponseObject<string>(HttpStatusCode.NotFound, $"InternEvaluation with id {request.InternEvaluationId} does not exist!");
             }                
 
             if (!request.FromCriteriaId.IsNullOrEmpty() && queryFilter2 is null)
             {
-                return new ResponseObject<string>(HttpStatusCode.NotFound, $"FromCriteria with name {request.FromCriteriaId}does not exist!");
+                return new ResponseObject<string>(HttpStatusCode.NotFound, $"FromCriteria with name {request.FromCriteriaId} does not exist!");
             }
 
             var ivaCriteria = await _internEvaluationCriteriaRepository.FindAsync(queryFilter, cancellationToken);
