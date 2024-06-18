@@ -32,7 +32,7 @@ namespace SWD.NextIntern.Service.Services.FormCriteriaService.GetAll
 
             var forms = await _formCriteriaRepository.FindAllAsync(queryOptions, cancellationToken);
             var formDtos = _mapper.Map<List<FormCriteriaDto>>(forms);
-            return new ResponseObject<List<FormCriteriaDto>>(formDtos, HttpStatusCode.OK, "success!"); ;
+            return new ResponseObject<List<FormCriteriaDto>>(formDtos, HttpStatusCode.OK, "Success!"); ;
         }
     }
 }

@@ -30,12 +30,12 @@ namespace SWD.NextIntern.Service.Services.FormCriteriaService.Update
 
             if (queryFilter is null)
             {
-                return new ResponseObject<string>(HttpStatusCode.NotFound, $"Form Criteria with id {request.Id}doesnt not exist!");
+                return new ResponseObject<string>(HttpStatusCode.NotFound, $"Form Criteria with id {request.Id}does not exist!");
             }
 
             if (!request.EvaluationFormId.IsNullOrEmpty() && queryFilter is null)
             {
-                return new ResponseObject<string>(HttpStatusCode.NotFound, $"Evaluation Form with id {request.EvaluationFormId}doesnt not exist!");
+                return new ResponseObject<string>(HttpStatusCode.NotFound, $"Evaluation Form with id {request.EvaluationFormId}does not exist!");
             }
 
             var form = await _formCriteriaRepository.FindAsync(queryFilter, cancellationToken);

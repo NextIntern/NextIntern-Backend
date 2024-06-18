@@ -31,7 +31,7 @@ namespace SWD.NextIntern.Service.Services.RoleService.GetAll
 
             var roles = await _roleRepository.FindAllAsync(queryOptions, cancellationToken);
             var roleDtos = _mapper.Map<List<RoleDto>>(roles);
-            return new ResponseObject<List<RoleDto>>(roleDtos, HttpStatusCode.OK, "success!"); ;
+            return new ResponseObject<List<RoleDto>>(roleDtos, HttpStatusCode.OK, "Success!"); ;
         }
     }
 }

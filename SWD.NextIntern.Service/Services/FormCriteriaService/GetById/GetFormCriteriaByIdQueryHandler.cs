@@ -28,10 +28,10 @@ namespace SWD.NextIntern.Service.Services.FormCriteriaService.GetById
 
             if (form == null)
             {
-                return new ResponseObject<FormCriteriaDto?>(HttpStatusCode.NotFound, $"Form Criteria with id {request.Id}doesnt not exist!");
+                return new ResponseObject<FormCriteriaDto?>(HttpStatusCode.NotFound, $"Form Criteria with id {request.Id}does not exist!");
             }
 
-            return new ResponseObject<FormCriteriaDto?>(_mapper.Map<FormCriteriaDto>(form), HttpStatusCode.OK, "success!");
+            return new ResponseObject<FormCriteriaDto?>(_mapper.Map<FormCriteriaDto>(form), HttpStatusCode.OK, "Success!");
         }
     }
 }

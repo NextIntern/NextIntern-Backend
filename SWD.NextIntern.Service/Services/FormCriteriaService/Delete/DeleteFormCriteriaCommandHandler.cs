@@ -19,7 +19,7 @@ namespace SWD.NextIntern.Service.Services.FormCriteriaService.Delete
             var form = await _formCriteriaRepository.FindAsync(c => c.FormCriteriaId.ToString().Equals(request.Id), cancellationToken);
             if (form == null)
             {
-                return new ResponseObject<string>(HttpStatusCode.NotFound, $"Form Criteria with id {request.Id}doesn not exist!");
+                return new ResponseObject<string>(HttpStatusCode.NotFound, $"Form Criteria with id {request.Id}does not exist!");
             }
 
             _formCriteriaRepository.Remove(form);

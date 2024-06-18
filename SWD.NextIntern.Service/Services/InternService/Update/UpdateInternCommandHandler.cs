@@ -33,22 +33,22 @@ namespace SWD.NextIntern.Service.Services.InternService.Update
 
             if (queryFilter is null)
             {
-                return new ResponseObject<string>(HttpStatusCode.NotFound, $"User with id {request.Id}doesnt not exist!");
+                return new ResponseObject<string>(HttpStatusCode.NotFound, $"User with id {request.Id}does not exist!");
             }         
 
             if (!request.CampaignId.IsNullOrEmpty() && queryFilter1 is null)
             {
-                return new ResponseObject<string>(HttpStatusCode.NotFound, $"Campaign with id {request.CampaignId}doesnt not exist!");
+                return new ResponseObject<string>(HttpStatusCode.NotFound, $"Campaign with id {request.CampaignId}does not exist!");
             }                
 
             if (!request.RoleName.IsNullOrEmpty() && queryFilter2 is null)
             {
-                return new ResponseObject<string>(HttpStatusCode.NotFound, $"Role with name {request.RoleName}doesnt not exist!");
+                return new ResponseObject<string>(HttpStatusCode.NotFound, $"Role with name {request.RoleName}does not exist!");
             }
 
             if (!request.MenterUsername.IsNullOrEmpty() && queryFilter3 is null)
             {
-                return new ResponseObject<string>(HttpStatusCode.NotFound, $"MentorUsername with name {request.MenterUsername}doesnt not exist!");
+                return new ResponseObject<string>(HttpStatusCode.NotFound, $"MentorUsername with name {request.MenterUsername}does not exist!");
             }
 
             var user = await _userRepository.FindAsync(queryFilter, cancellationToken);

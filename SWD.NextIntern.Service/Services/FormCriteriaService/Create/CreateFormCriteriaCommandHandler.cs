@@ -26,7 +26,7 @@ namespace SWD.NextIntern.Service.Services.FormCriteriaService.Create
 
             if (queryFilter is null)
             {
-                return new ResponseObject<string>(HttpStatusCode.NotFound, $"Evaluation Form with id {request.EvaluationFormId}doesnt not exist!");
+                return new ResponseObject<string>(HttpStatusCode.NotFound, $"Evaluation Form with id {request.EvaluationFormId}does not exist!");
             }
 
             var form = new FormCriterion

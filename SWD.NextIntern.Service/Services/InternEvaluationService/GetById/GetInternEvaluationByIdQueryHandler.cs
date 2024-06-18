@@ -27,7 +27,7 @@ namespace SWD.NextIntern.Service.Services.InternEvaluationService.GetInternEvalu
                 return new ResponseObject<InternEvaluationDto>(System.Net.HttpStatusCode.NotFound, $"Intern Evaluation with id {request.Id} does not exist!");
             }
 
-            return new ResponseObject<InternEvaluationDto>(_mapper.Map<InternEvaluationDto>(internEvaluation), HttpStatusCode.OK, "success!");
+            return new ResponseObject<InternEvaluationDto>(_mapper.Map<InternEvaluationDto>(internEvaluation), HttpStatusCode.OK, "Success!");
         }
     }
 }

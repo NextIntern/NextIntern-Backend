@@ -36,10 +36,10 @@ namespace SWD.NextIntern.Service.Services.EvaluationFormService.GetById
 
             if (form == null)
             {
-                return new ResponseObject<EvaluationFormDto?>(HttpStatusCode.NotFound, $"Evaluation Form with id {request.Id} doest not exist!");
+                return new ResponseObject<EvaluationFormDto?>(HttpStatusCode.NotFound, $"Evaluation Form with id {request.Id} does not exist!");
             }
 
-            return new ResponseObject<EvaluationFormDto?>(_mapper.Map<EvaluationFormDto>(form), HttpStatusCode.OK, "success!");
+            return new ResponseObject<EvaluationFormDto?>(_mapper.Map<EvaluationFormDto>(form), HttpStatusCode.OK, "Success!");
         }
     }
 }

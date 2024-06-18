@@ -24,7 +24,8 @@ namespace SWD.NextIntern.Service.Services.UniversityService.Update
 
             RuleFor(command => command.Phone)
                 .NotEmpty().WithMessage("Phone is required.")
-                .MaximumLength(100).WithMessage("Phone must not exceed 11 characters.");
+                .MinimumLength(10).WithMessage("Phone must not at least 10 characters.")
+                .MaximumLength(11).WithMessage("Phone must not exceed 11 characters.");
         }
 
         private bool BeAValidGuid(string id)

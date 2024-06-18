@@ -22,7 +22,7 @@ namespace SWD.NextIntern.Service.Services.InternEvaluationService.GetAllInternEv
         {
             var internEvaluations = await _internEvaluationRepository.FindAllAsync(ie => ie.DeletedDate == null, cancellationToken);
 
-            return new ResponseObject<List<InternEvaluationDto>>(_mapper.Map<List<InternEvaluationDto>>(internEvaluations), HttpStatusCode.OK, "success!");
+            return new ResponseObject<List<InternEvaluationDto>>(_mapper.Map<List<InternEvaluationDto>>(internEvaluations), HttpStatusCode.OK, "Success!");
         }
     }
 }
