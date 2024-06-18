@@ -32,7 +32,7 @@ namespace SWD.NextIntern.Service.Services.EvaluationFormService.GetAll
 
             var forms = await _evaluationFormRepository.FindAllAsync(queryOptions, cancellationToken);
             var formDtos = _mapper.Map<List<EvaluationFormDto>>(forms);
-            return new ResponseObject<List<EvaluationFormDto>>(formDtos, HttpStatusCode.OK, "success!"); ;
+            return new ResponseObject<List<EvaluationFormDto>>(formDtos, HttpStatusCode.OK, "Success!"); ;
         }
     }
 }

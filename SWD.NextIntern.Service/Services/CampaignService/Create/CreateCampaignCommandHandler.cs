@@ -21,7 +21,7 @@ namespace SWD.NextIntern.Service.Services.CampaignService.Create
             var university = await _universityRepository.FindAsync(u => u.UniversityId.ToString().Equals(request.UniversityId) && u.DeletedDate == null, cancellationToken);
             if (university is null)
             {
-                return new ResponseObject<string>(HttpStatusCode.NotFound, $"University with id {request.UniversityId} doest not exist!");
+                return new ResponseObject<string>(HttpStatusCode.NotFound, $"University with id {request.UniversityId} does not exist!");
             }
 
             var campaign = new Campaign

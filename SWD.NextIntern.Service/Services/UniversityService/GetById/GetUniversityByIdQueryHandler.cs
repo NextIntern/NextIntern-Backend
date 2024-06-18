@@ -37,10 +37,10 @@ namespace SWD.NextIntern.Service.Services.UniversityService.GetById
 
             if (university == null)
             {
-                return new ResponseObject<UniversityDto?>(HttpStatusCode.NotFound, $"University with id {request.Id} doest not exist!");
+                return new ResponseObject<UniversityDto?>(HttpStatusCode.NotFound, $"University with id {request.Id} does not exist!");
             }
 
-            return new ResponseObject<UniversityDto?>(_mapper.Map<UniversityDto>(university), HttpStatusCode.OK, "success!");
+            return new ResponseObject<UniversityDto?>(_mapper.Map<UniversityDto>(university), HttpStatusCode.OK, "Success!");
         }
     }
 }

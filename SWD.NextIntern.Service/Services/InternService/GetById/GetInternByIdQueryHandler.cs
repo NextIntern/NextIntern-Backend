@@ -37,10 +37,10 @@ namespace SWD.NextIntern.Service.Services.InternService.GetById
 
             if (intern == null)
             {
-                return new ResponseObject<InternDto?>(HttpStatusCode.NotFound, $"Intern with id {request.Id} doesnt not exist!");
+                return new ResponseObject<InternDto?>(HttpStatusCode.NotFound, $"Intern with id {request.Id} does not exist!");
             }
 
-            return new ResponseObject<InternDto?>(_mapper.Map<InternDto>(intern), HttpStatusCode.OK, "success!");
+            return new ResponseObject<InternDto?>(_mapper.Map<InternDto>(intern), HttpStatusCode.OK, "Success!");
         }
     }
 }

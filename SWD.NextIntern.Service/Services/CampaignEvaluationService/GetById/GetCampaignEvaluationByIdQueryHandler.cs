@@ -28,7 +28,7 @@ namespace SWD.NextIntern.Service.Services.CampaignEvaluationService.GetById
                 return new ResponseObject<CampaignEvaluationDto>(HttpStatusCode.NotFound, $"Campaign Evaluation with id {request.Id} does not exist");
             }
 
-            return new ResponseObject<CampaignEvaluationDto>(_mapper.Map<CampaignEvaluationDto>(campaignEvaluation), HttpStatusCode.OK, "success!");
+            return new ResponseObject<CampaignEvaluationDto>(_mapper.Map<CampaignEvaluationDto>(campaignEvaluation), HttpStatusCode.OK, "Success!");
         }
     }
 }

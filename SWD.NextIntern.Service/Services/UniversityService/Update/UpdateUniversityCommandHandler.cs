@@ -27,7 +27,7 @@ namespace SWD.NextIntern.Service.Services.UniversityService.Update
 
             if (queryFilter is null)
             {
-                return new ResponseObject<string>(HttpStatusCode.NotFound, $"University with id {request.UniversityId} doest not exist!");
+                return new ResponseObject<string>(HttpStatusCode.NotFound, $"University with id {request.UniversityId} does not exist!");
             }
 
             var university = await _universityRepository.FindAsync(queryFilter, cancellationToken);

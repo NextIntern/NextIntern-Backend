@@ -33,7 +33,7 @@ namespace SWD.NextIntern.Service.Services.InternService.GetAll
 
             var intern = await _userRepository.FindAllAsync(queryOptions, cancellationToken);
             var internDtos = _mapper.Map<List<InternDto>>(intern);
-            return new ResponseObject<List<InternDto>>(internDtos, HttpStatusCode.OK, "success!"); ;
+            return new ResponseObject<List<InternDto>>(internDtos, HttpStatusCode.OK, "Success!"); ;
         }
     }
 }
