@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SWD.NextIntern.Service.DTOs.Responses;
@@ -12,6 +13,7 @@ namespace SWD.NextIntern.API.Controllers.InternEvaluationCriteria
 {
     [Route("api/v1/intern-evaluation-criteria")]
     [ApiController]
+    [Authorize]
     public class InternEvaluationCriteriaController : ControllerBase
     {
         private readonly IMediator _mediator;
