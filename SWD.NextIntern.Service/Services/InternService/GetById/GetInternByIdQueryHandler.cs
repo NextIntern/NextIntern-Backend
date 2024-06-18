@@ -30,7 +30,8 @@ namespace SWD.NextIntern.Service.Services.InternService.GetById
                 return query
                 .Include(x => x.Campaign)
                 .Include(x => x.Mentor)
-                .Where(x => x.DeletedDate == null); ;
+                .Where(x => x.DeletedDate == null
+                && x.UserId.ToString().Equals(request.Id)); ;
             };
 
             var intern = await _userRepository.FindAsync(queryOptions, cancellationToken);

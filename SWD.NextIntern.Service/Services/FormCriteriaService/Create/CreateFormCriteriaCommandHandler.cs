@@ -22,7 +22,7 @@ namespace SWD.NextIntern.Service.Services.FormCriteriaService.Create
 
         public async Task<ResponseObject<string>> Handle(CreateFormCriteriaCommand request, CancellationToken cancellationToken)
         {
-            Expression<Func<FormCriterion, bool>> queryFilter = (FormCriterion f) => f.Id.ToString().Equals(request.EvaluationFormId) && f.DeletedDate == null;
+            Expression<Func<EvaluationForm, bool>> queryFilter = (EvaluationForm f) => f.EvaluationFormId.ToString().Equals(request.EvaluationFormId) && f.DeletedDate == null;
 
             if (queryFilter is null)
             {

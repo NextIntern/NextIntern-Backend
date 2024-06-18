@@ -30,7 +30,8 @@ namespace SWD.NextIntern.Service.Services.InternEvaluationCriteriaService.GetByI
                 return query
                 .Include(x => x.InternEvaluation)
                 .Include(x => x.FormCriteria)
-                .Where(x => x.DeletedDate == null); ;
+                .Where(x => x.DeletedDate == null
+                && x.InternEvaluationCriteriaId.ToString().Equals(request.Id));
             };
 
             var ivaCriteria = await _internEvaluationCriteriaRepository.FindAsync(queryOptions, cancellationToken);

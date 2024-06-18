@@ -30,7 +30,8 @@ namespace SWD.NextIntern.Service.Services.UniversityService.GetById
             {
                 return query
                 .Include(x => x.Campaigns)
-                .Where(x => x.DeletedDate == null); ;
+                .Where(x => x.DeletedDate == null
+                && x.UniversityId.ToString().Equals(request.Id)); ;
             };
 
             var university = await _universityRepository.FindAsync(queryOptions, cancellationToken);

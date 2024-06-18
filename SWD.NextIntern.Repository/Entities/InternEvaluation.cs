@@ -18,8 +18,10 @@ public partial class InternEvaluation
 
     public DateTime? DeletedDate { get; set; }
 
+    [JsonIgnore]
     public virtual CampaignEvaluation? CampaignEvaluation { get; set; }
 
+    [JsonIgnore]
     public virtual User? Intern { get; set; }
 
     [JsonIgnore]

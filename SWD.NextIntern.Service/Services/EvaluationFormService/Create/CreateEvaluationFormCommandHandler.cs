@@ -22,7 +22,7 @@ namespace SWD.NextIntern.Service.Services.EvaluationFormService.Create
 
         public async Task<ResponseObject<string>> Handle(CreateEvaluationFormCommand request, CancellationToken cancellationToken)
         {
-            Expression<Func<University, bool>> queryFilter = (University u) => u.Id.ToString().Equals(request.UniversityId) && u.DeletedDate == null;
+            Expression<Func<University, bool>> queryFilter = (University u) => u.UniversityId.ToString().Equals(request.UniversityId) && u.DeletedDate == null;
 
             if (queryFilter is null)
             {
