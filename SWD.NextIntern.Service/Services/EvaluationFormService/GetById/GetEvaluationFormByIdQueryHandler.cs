@@ -29,7 +29,8 @@ namespace SWD.NextIntern.Service.Services.EvaluationFormService.GetById
             {
                 return query
                 .Include(x => x.University)
-                .Where(x => x.DeletedDate == null); ;
+                .Where(x => x.DeletedDate == null
+                 && x.EvaluationFormId.ToString().Equals(request.Id)); ;
             };
 
             var form = await _evaluationFormRepository.FindAsync(queryOptions, cancellationToken);
