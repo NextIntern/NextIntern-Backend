@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SWD.NextIntern.Service.DTOs.Responses;
 using SWD.NextIntern.Service.Services.ExcelService.DownloadTemplate;
@@ -8,6 +9,7 @@ namespace SWD.NextIntern.API.Controllers.Excel
 {
     [Route("api/v1/excel")]
     [ApiController]
+    [Authorize(Policy = "AdminPolicy")]
     public class ExcelController : ControllerBase
     {
         private readonly IMediator _mediator;
