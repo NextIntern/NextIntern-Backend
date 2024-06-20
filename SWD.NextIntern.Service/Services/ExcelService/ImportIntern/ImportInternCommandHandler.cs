@@ -10,16 +10,35 @@ namespace SWD.NextIntern.Service.Services.ExcelService.ImportIntern
     public class ImportInternCommandHandler : IRequestHandler<ImportInternCommand, ResponseObject<string>>
     {
         private readonly IUserRepository _userRepository;
+        private readonly IRoleRepository _roleRepository;
+        private readonly ICampaignRepository _campaignRepository;
 
-        public ImportInternCommandHandler(IUserRepository userRepository)
+        public ImportInternCommandHandler(IUserRepository userRepository, IRoleRepository roleRepository, ICampaignRepository campaignRepository)
         {
             _userRepository = userRepository;
+            _roleRepository = roleRepository;
+            _campaignRepository = campaignRepository;
         }
 
         public async Task<ResponseObject<string>> Handle(ImportInternCommand request, CancellationToken cancellationToken)
         {
-            var interns = new List<User>();
             string defaultPassword = "123456";
+
+            var campaign = await _campaignRepository.FindAsync(c => c.CampaignId.ToString().Equals(request.CampaignId) && c.DeletedDate == null, cancellationToken);
+
+            if (campaign == null)
+            {
+                return new ResponseObject<string>(HttpStatusCode.NotFound, $"Campaign with id {request.CampaignId} does not exist!");
+            }
+
+            var role = await _roleRepository.FindAsync(r => r.RoleName.Equals("User") && r.DeletedDate == null, cancellationToken);
+
+            if (role == null)
+            {
+                return new ResponseObject<string>(HttpStatusCode.NotFound, "Role does not exist!");
+            }
+
+            var interns = new List<User>();
 
             using (var stream = new MemoryStream())
             {
@@ -32,6 +51,43 @@ namespace SWD.NextIntern.Service.Services.ExcelService.ImportIntern
 
                     interns = range.ToCollectionWithMappings<User>(row =>
                     {
+                        if (string.IsNullOrEmpty(row.GetText("Id")))
+                        {
+                            return null;
+                        }
+
+                        if (string.IsNullOrEmpty(row.GetText("FullName")))
+                        {
+                            return null;
+                        }
+
+                        if (string.IsNullOrEmpty(row.GetText("Dob")))
+                        {
+                            return null;
+                        }
+
+                        if (string.IsNullOrEmpty(row.GetText("Gender")))
+                        {
+                            return null;
+                        }
+
+                        if (string.IsNullOrEmpty(row.GetText("Telephone")))
+                        {
+                            return null;
+                        }
+
+                        if (string.IsNullOrEmpty(row.GetText("Email")))
+                        {
+                            return null;
+                        }
+
+                        if (string.IsNullOrEmpty(row.GetText("Address")))
+                        {
+                            return null;
+                        }
+                        //add check field null or empty
+                        //add intern vao` campaign
+
                         var user = new User
                         {
                             FullName = row.GetText("FullName"),
@@ -42,7 +98,8 @@ namespace SWD.NextIntern.Service.Services.ExcelService.ImportIntern
                             Address = row.GetText("Address"),
                             Username = row.GetText("Email"),
                             Password = BCrypt.Net.BCrypt.HashPassword(defaultPassword),
-                            RoleId = Guid.Parse("bcc9620f-02c5-4eb1-a8c0-ecbe0a882e66")
+                            RoleId = role.RoleId,
+                            CampaignId = Guid.Parse(request.CampaignId)
                         };
 
                         return user;

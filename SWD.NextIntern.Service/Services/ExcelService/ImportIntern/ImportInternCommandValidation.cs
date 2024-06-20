@@ -10,6 +10,14 @@ namespace SWD.NextIntern.Service.Services.ExcelService.ImportIntern
             RuleFor(x => x.File)
                 .NotEmpty().WithMessage("File is required.")
                 .Must(BeAValidExcelFile).WithMessage("File must be a valid Excel file.");
+            RuleFor(x => x.CampaignId)
+                .NotEmpty().WithMessage("Campaign ID is required.")
+                .Must(BeAValidGuid).WithMessage("Campaign ID must be a valid GUID.");
+        }
+
+        private bool BeAValidGuid(string? campaignId)
+        {
+            return Guid.TryParse(campaignId, out _);
         }
 
         private bool BeAValidExcelFile(IFormFile file)
