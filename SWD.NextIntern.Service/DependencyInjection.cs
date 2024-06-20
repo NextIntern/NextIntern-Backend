@@ -15,7 +15,7 @@ namespace SWD.NextIntern.Service
             services.AddMediatR(cfg =>
             {
                 cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
-                //cfg.AddOpenBehavior(typeof(AuthorizationBehaviour<,>));
+                cfg.AddOpenBehavior(typeof(AuthorizationBehaviour<,>));
                 cfg.AddOpenBehavior(typeof(ValidationBehaviour<,>));
                 cfg.AddOpenBehavior(typeof(UnitOfWorkBehaviour<,>));
             });
