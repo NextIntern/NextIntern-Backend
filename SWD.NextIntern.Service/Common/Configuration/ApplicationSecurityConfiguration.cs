@@ -48,6 +48,7 @@ namespace SWD.NextIntern.Service.Common.Configuration
             });
 
             //services.AddControllers();
+          
             services.AddAuthorization(ConfigureAuthorization);
             services.AddCors(options =>
             {
@@ -71,9 +72,11 @@ namespace SWD.NextIntern.Service.Common.Configuration
             //Configure policies and other authorization options here. For example:
             //options.AddPolicy("EmployeeOnly", policy => policy.RequireClaim("role", "employee"));
             //options.AddPolicy("AdminOnly", policy => policy.RequireClaim("role", "Admin"));
+
             options.AddPolicy("AdminPolicy", policy => policy.RequireClaim("role", "Admin"));
             options.AddPolicy("UserPolicy", policy => policy.RequireClaim("role", "User"));
             //options.AddPolicy("UserPolicy", policy => policy.RequireClaim("role", "User"));
+
             //options.AddPolicy("UserPolicy", policy =>
             //{
             //    policy.RequireAuthenticatedUser();
@@ -82,6 +85,7 @@ namespace SWD.NextIntern.Service.Common.Configuration
 
             //options.AddPolicy("AdminPolicy", policy =>
             //     policy.RequireRole("Admin"));
+
         }
     }
 }
