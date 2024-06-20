@@ -12,6 +12,7 @@ namespace SWD.NextIntern.API.Controllers.University
 {
     [Route("api/v1/university")]
     [ApiController]
+    [Authorize(Policy = "AdminPolicy")]
     public class UniversityController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -28,16 +29,15 @@ namespace SWD.NextIntern.API.Controllers.University
             return result;
         }
 
-        [Authorize(Policy = "Admin")]
+        [Authorize]
         [HttpGet("all")]
         public async Task<ResponseObject<List<UniversityDto>>> GetAllUniversity(CancellationToken cancellationToken = default)
         {
-            var user = HttpContext.Items["User"];
             var result = await _mediator.Send(new GetAllQuery(), cancellationToken);
             return result;
         }
 
-        
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ResponseObject<UniversityDto>> GetUniversityById(string id, CancellationToken cancellationToken = default)
         {          

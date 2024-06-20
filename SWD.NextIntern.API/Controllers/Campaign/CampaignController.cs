@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SWD.NextIntern.Service.Common.ResponseType;
 using SWD.NextIntern.Service.DTOs.Responses;
@@ -13,6 +14,7 @@ namespace SWD.NextIntern.API.Controllers.CampaignService
 {
     [Route("api/v1/campaign")]
     [ApiController]
+    [Authorize(Policy = "AdminPolicy")]
     public class CampaignController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -22,6 +24,7 @@ namespace SWD.NextIntern.API.Controllers.CampaignService
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
+        [Authorize]
         [HttpGet("all")]
         public async Task<ResponseObject<List<CampaignDto>>> GetAllCampaign(CancellationToken cancellationToken = default)
         {
@@ -29,6 +32,7 @@ namespace SWD.NextIntern.API.Controllers.CampaignService
             return result;
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ResponseObject<CampaignDto?>> GetCampaignById(string id, CancellationToken cancellationToken = default)
         {

@@ -13,7 +13,7 @@ namespace SWD.NextIntern.API.Controllers.InternEvaluationCriteria
 {
     [Route("api/v1/intern-evaluation-criteria")]
     [ApiController]
-    [Authorize]
+    [Authorize(Policy = "AdminPolicy")]
     public class InternEvaluationCriteriaController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -37,6 +37,7 @@ namespace SWD.NextIntern.API.Controllers.InternEvaluationCriteria
             return result;
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ResponseObject<InternEvaluationCriteriaDto>> GetInternEvaluationCriteriaById(string id, CancellationToken cancellationToken = default)
         {

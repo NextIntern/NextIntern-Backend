@@ -73,7 +73,7 @@ namespace SWD.NextIntern.API
             app.UseHttpsRedirection();
             app.UseRouting();
 
-            app.UseMiddleware<JwtMiddleware>();
+            //app.UseMiddleware<JwtMiddleware>();
 
             app.UseAuthentication();
             app.UseAuthorization();

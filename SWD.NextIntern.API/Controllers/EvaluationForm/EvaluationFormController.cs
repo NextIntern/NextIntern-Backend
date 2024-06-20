@@ -10,7 +10,7 @@ using SWD.NextIntern.Service.Services.EvaluationFormService.Update;
 namespace SWD.NextIntern.API.Controllers.EvaluationForm
 {
     [ApiController]
-    [Authorize]
+    [Authorize(Policy = "AdminPolicy")]
     [Route("api/v1/evaluation-form")]
     public class EvaluationFormController : ControllerBase
     {

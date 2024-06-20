@@ -9,11 +9,13 @@ using SWD.NextIntern.Service.Services.InternEvaluationService.GetAllInternEvalua
 using SWD.NextIntern.Service.Services.InternEvaluationService.GetInternEvaluationById;
 using SWD.NextIntern.Service.Services.InternEvaluationService.Delete;
 using SWD.NextIntern.Service.Services.InternEvaluationService.Update;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SWD.NextIntern.API.Controllers.InternEvaluation
 {
     [Route("api/v1/intern-evaluation")]
     [ApiController]
+    [Authorize(Policy = "AdminPolicy")]
     public class InternEvaluationController
     {
         private readonly IMediator _mediator;
@@ -30,6 +32,7 @@ namespace SWD.NextIntern.API.Controllers.InternEvaluation
             return result;
         }
 
+
         [HttpGet("all")]
         public async Task<ResponseObject<List<InternEvaluationDto>>> GetAllInternEvaluation(CancellationToken cancellationToken = default)
         {
@@ -37,6 +40,7 @@ namespace SWD.NextIntern.API.Controllers.InternEvaluation
             return result;
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ResponseObject<InternEvaluationDto>> GetInternEvaluationById(string id, CancellationToken cancellationToken = default)
         {

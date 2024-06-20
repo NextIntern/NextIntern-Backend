@@ -10,7 +10,7 @@ using SWD.NextIntern.Service.Services.FormCriteriaService.Update;
 namespace SWD.NextIntern.API.Controllers.FormCriteria
 {
     [ApiController]
-    [Authorize]
+    [Authorize(Policy = "AdminPolicy")]
     [Route("api/v1/form-criteria")]
     public class FormCriteriaController : ControllerBase
     {
@@ -21,6 +21,7 @@ namespace SWD.NextIntern.API.Controllers.FormCriteria
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
+        [Authorize]
         [HttpGet("all")]
         public async Task<ResponseObject<List<FormCriteriaDto>>> GetAllFormCriteria(CancellationToken cancellationToken = default)
         {
@@ -28,6 +29,7 @@ namespace SWD.NextIntern.API.Controllers.FormCriteria
                 return result;
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ResponseObject<FormCriteriaDto?>> GetFormCriteriaById(string id, CancellationToken cancellationToken = default)
         {
