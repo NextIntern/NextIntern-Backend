@@ -1,13 +1,12 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SWD.NextIntern.Service.DTOs.Responses;
-using SWD.NextIntern.Service.Services.UniversityService;
 using SWD.NextIntern.Service.Services.UniversityService.GetById;
 using SWD.NextIntern.Service.Services.UniversityService.Create;
 using SWD.NextIntern.Service.Services.UniversityService.Update;
 using SWD.NextIntern.Service.Services.UniversityService.Delete;
-using SWD.NextIntern.Service.Services.UniversityService.Create;
 using SWD.NextIntern.Service.Services.UniversityService.GetAll;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SWD.NextIntern.API.Controllers.University
 {
@@ -29,16 +28,19 @@ namespace SWD.NextIntern.API.Controllers.University
             return result;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet("all")]
         public async Task<ResponseObject<List<UniversityDto>>> GetAllUniversity(CancellationToken cancellationToken = default)
         {
+            var user = HttpContext.Items["User"];
             var result = await _mediator.Send(new GetAllQuery(), cancellationToken);
             return result;
         }
 
+        
         [HttpGet("{id}")]
         public async Task<ResponseObject<UniversityDto>> GetUniversityById(string id, CancellationToken cancellationToken = default)
-        {
+        {          
             var result = await _mediator.Send(new GetUniversityByIdQuery(id), cancellationToken);
             return result;
         }

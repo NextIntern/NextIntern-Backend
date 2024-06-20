@@ -72,6 +72,9 @@ namespace SWD.NextIntern.API
 
             app.UseHttpsRedirection();
             app.UseRouting();
+
+            app.UseMiddleware<JwtMiddleware>();
+
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseCors("AllowOrigin");
