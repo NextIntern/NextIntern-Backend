@@ -8,7 +8,7 @@ using SWD.NextIntern.Service.Services.RoleService.GetAll;
 
 namespace SWD.NextIntern.API.Controllers.Role
 {
-    [Authorize]
+    [Authorize(Policy = "AdminPolicy")]
     [ApiController]
     [Route("api/v1/role")]
     public class RoleController : ControllerBase

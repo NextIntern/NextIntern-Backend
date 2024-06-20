@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using SWD.NextIntern.Service.Auth.SignUp;
 using SWD.NextIntern.Service.DTOs.Responses;
 using SWD.NextIntern.Service.InternService.Create;
 using SWD.NextIntern.Service.Services.InternService.Delete;
@@ -13,9 +12,9 @@ using System.Threading;
 
 namespace SWD.NextIntern.API.Controllers.Intern
 {
-    [Authorize]
     [ApiController]
     [Route("api/v1/intern")]
+    [Authorize(Policy = "AdminPolicy")]
     public class InternController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -53,7 +52,6 @@ namespace SWD.NextIntern.API.Controllers.Intern
             return result;
         }
 
-        [AllowAnonymous]
         [HttpPost("create")]
         public async Task<IActionResult> CreateIntern([FromBody] CreateInternCommand command, CancellationToken cancellationToken = default)
         {

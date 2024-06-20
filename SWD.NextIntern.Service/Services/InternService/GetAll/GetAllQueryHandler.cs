@@ -28,6 +28,7 @@ namespace SWD.NextIntern.Service.Services.InternService.GetAll
                 return query
                 .Include(x => x.Campaign)
                 .Include(x => x.Mentor)
+                .Include(x => x.Role)
                 .Where(x => x.DeletedDate == null); ;
             };
 

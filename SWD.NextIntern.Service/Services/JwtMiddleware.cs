@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
+using SWD.NextIntern.Service.Common.Interfaces;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 public class JwtMiddleware
@@ -12,27 +14,19 @@ public class JwtMiddleware
         _next = next;
     }
 
-    public async Task Invoke(HttpContext context)
+    public async Task Invoke(HttpContext context, IJwtService jwtService)
     {
         var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
 
         if (token != null)
         {
-            AttachRoleToContext(context, token);
+            var principal = jwtService.GetPrincipal(token);
+            if (principal != null)
+            {
+                context.Items["User"] = principal;
+            }
         }
 
         await _next(context);
-    }
-
-    private void AttachRoleToContext(HttpContext context, string token)
-    {
-        var tokenHandler = new JwtSecurityTokenHandler();
-        var jwtToken = tokenHandler.ReadJwtToken(token);
-
-        var roleClaim = jwtToken.Claims.FirstOrDefault(c => c.Type == "roles");
-        if (roleClaim != null)
-        {
-            context.Items["User"] = roleClaim.Value;
-        }
     }
 }

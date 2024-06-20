@@ -31,7 +31,9 @@ public class InternDto : IMapFrom<User>
 
     public DateTime? ModifyDate { get; set; }
 
-    public string RoleName { get; set; }
+    //public string RoleName { get; set; }
+
+    public Role? Role { get; set; }
 
     [JsonIgnore]
     public DateTime? DeletedDate { get; set; }
