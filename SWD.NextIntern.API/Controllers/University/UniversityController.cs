@@ -28,7 +28,7 @@ namespace SWD.NextIntern.API.Controllers.University
             return result;
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "Admin")]
         [HttpGet("all")]
         public async Task<ResponseObject<List<UniversityDto>>> GetAllUniversity(CancellationToken cancellationToken = default)
         {
