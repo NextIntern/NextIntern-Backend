@@ -33,12 +33,6 @@ namespace SWD.NextIntern.API.Controllers.Excel
         [HttpPost("import-intern")]
         public async Task<ResponseObject<string>> ImportFromExcel([FromForm] ImportInternCommand command, CancellationToken cancellationToken = default)
         {
-            //if (file == null || file.Length == 0)
-            //{
-            //    return new ResponseObject<string>(System.Net.HttpStatusCode.BadRequest, "No file uploaded.");
-            //}
-
-            //var command = new ImportInternCommand { File = file };
             var result = await _mediator.Send(command, cancellationToken);
             return result;
         }
