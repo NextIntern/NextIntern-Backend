@@ -12,7 +12,7 @@ namespace SWD.NextIntern.API.Controllers.University
 {
     [Route("api/v1/university")]
     [ApiController]
-    [Authorize(Policy = "AdminPolicy")]
+    [Authorize]
     public class UniversityController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -22,6 +22,7 @@ namespace SWD.NextIntern.API.Controllers.University
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
+        [Authorize(Policy = "AdminPolicy")]
         [HttpPost("create")]
         public async Task<ResponseObject<string>> CreateUniversity([FromBody] CreateUniversityCommand command, CancellationToken cancellationToken = default)
         {
@@ -29,7 +30,6 @@ namespace SWD.NextIntern.API.Controllers.University
             return result;
         }
 
-        [Authorize]
         [HttpGet("all")]
         public async Task<ResponseObject<List<UniversityDto>>> GetAllUniversity(CancellationToken cancellationToken = default)
         {
@@ -37,7 +37,6 @@ namespace SWD.NextIntern.API.Controllers.University
             return result;
         }
 
-        [Authorize]
         [HttpGet("{id}")]
         public async Task<ResponseObject<UniversityDto>> GetUniversityById(string id, CancellationToken cancellationToken = default)
         {          
@@ -45,6 +44,7 @@ namespace SWD.NextIntern.API.Controllers.University
             return result;
         }
 
+        [Authorize(Policy = "AdminPolicy")]
         [HttpDelete("{id}")]
         public async Task<ResponseObject<string>> DeleteUniversity(string id, CancellationToken cancellationToken = default)
         {
@@ -52,6 +52,7 @@ namespace SWD.NextIntern.API.Controllers.University
             return result;
         }
 
+        [Authorize(Policy = "AdminPolicy")]
         [HttpPut("update")]
         public async Task<ResponseObject<string>> UpdateUniversity([FromBody] UpdateUniversityCommand command, CancellationToken cancellationToken = default)
         {
