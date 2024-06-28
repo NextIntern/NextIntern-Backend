@@ -10,7 +10,7 @@ using SWD.NextIntern.Service.Services.FormCriteriaService.Update;
 namespace SWD.NextIntern.API.Controllers.FormCriteria
 {
     [ApiController]
-    [Authorize(Policy = "AdminPolicy")]
+    [Authorize]
     [Route("api/v1/form-criteria")]
     public class FormCriteriaController : ControllerBase
     {
@@ -21,7 +21,6 @@ namespace SWD.NextIntern.API.Controllers.FormCriteria
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
-        [Authorize]
         [HttpGet("all")]
         public async Task<ResponseObject<List<FormCriteriaDto>>> GetAllFormCriteria(CancellationToken cancellationToken = default)
         {
@@ -29,7 +28,6 @@ namespace SWD.NextIntern.API.Controllers.FormCriteria
                 return result;
         }
 
-        [Authorize]
         [HttpGet("{id}")]
         public async Task<ResponseObject<FormCriteriaDto?>> GetFormCriteriaById(string id, CancellationToken cancellationToken = default)
         {
@@ -37,6 +35,7 @@ namespace SWD.NextIntern.API.Controllers.FormCriteria
             return result;
         }
 
+        [Authorize(Policy = "AdminPolicy")]
         [HttpPost("create")]
         public async Task<ResponseObject<string>> CreateFormCriteria([FromBody] CreateFormCriteriaCommand command, CancellationToken cancellationToken = default)
         {
@@ -44,6 +43,7 @@ namespace SWD.NextIntern.API.Controllers.FormCriteria
             return result;
         }
 
+        [Authorize(Policy = "AdminPolicy")]
         [HttpDelete("{id}")]
         public async Task<ResponseObject<string>> DeleteFormCriteria(string id, CancellationToken cancellationToken = default)
         {
@@ -51,6 +51,7 @@ namespace SWD.NextIntern.API.Controllers.FormCriteria
             return result;
         }
 
+        [Authorize(Policy = "AdminPolicy")]
         [HttpPut("update")]
         public async Task<ResponseObject<string>> UpdateFormCriteria([FromBody] UpdateFormCriteriaCommand command, CancellationToken cancellationToken = default)
         {

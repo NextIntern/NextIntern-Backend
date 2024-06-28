@@ -13,7 +13,7 @@ namespace SWD.NextIntern.API.Controllers.InternEvaluationCriteria
 {
     [Route("api/v1/intern-evaluation-criteria")]
     [ApiController]
-    [Authorize(Policy = "AdminPolicy")]
+    [Authorize]
     public class InternEvaluationCriteriaController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -23,6 +23,7 @@ namespace SWD.NextIntern.API.Controllers.InternEvaluationCriteria
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
+        [Authorize(Policy = "AdminPolicy")]
         [HttpPost("create")]
         public async Task<ResponseObject<string>> CreateInternEvaluationCriteria([FromBody] CreateInternEvaluationCriteriaCommand command, CancellationToken cancellationToken = default)
         {
@@ -30,6 +31,7 @@ namespace SWD.NextIntern.API.Controllers.InternEvaluationCriteria
             return result;
         }
 
+        [Authorize(Policy = "AdminPolicy")]
         [HttpGet("all")]
         public async Task<ResponseObject<List<InternEvaluationCriteriaDto>>> GetAllInternEvaluationCriteria(CancellationToken cancellationToken = default)
         {
@@ -37,7 +39,6 @@ namespace SWD.NextIntern.API.Controllers.InternEvaluationCriteria
             return result;
         }
 
-        [Authorize]
         [HttpGet("{id}")]
         public async Task<ResponseObject<InternEvaluationCriteriaDto>> GetInternEvaluationCriteriaById(string id, CancellationToken cancellationToken = default)
         {
@@ -45,6 +46,7 @@ namespace SWD.NextIntern.API.Controllers.InternEvaluationCriteria
             return result;
         }
 
+        [Authorize(Policy = "AdminPolicy")]
         [HttpDelete("{id}")]
         public async Task<ResponseObject<string>> DeleteInternEvaluationCriteria(string id, CancellationToken cancellationToken = default)
         {
@@ -52,6 +54,7 @@ namespace SWD.NextIntern.API.Controllers.InternEvaluationCriteria
             return result;
         }
 
+        [Authorize(Policy = "AdminPolicy")]
         [HttpPut("update")]
         public async Task<ResponseObject<string>> UpdateInternEvaluationCriteria([FromBody] UpdateInternEvaluationCriteriaCommand command, CancellationToken cancellationToken = default)
         {
