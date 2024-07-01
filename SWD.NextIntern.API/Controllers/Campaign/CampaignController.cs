@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SWD.NextIntern.Service.Common.ResponseType;
 using SWD.NextIntern.Service.DTOs.Responses;

@@ -38,7 +38,7 @@ namespace SWD.NextIntern.Service.Services.CampaignEvaluationService.Update
 
             _campaignEvaluationRepository.Update(campaignEvaluation);
 
-            return await _campaignEvaluationRepository.UnitOfWork.SaveChangesAsync(cancellationToken) > 0 ? new ResponseObject<string>(HttpStatusCode.Created, "Success!") : new ResponseObject<string>(HttpStatusCode.BadRequest, "Fail!");
+            return await _campaignEvaluationRepository.UnitOfWork.SaveChangesAsync(cancellationToken) > 0 ? new ResponseObject<string>(HttpStatusCode.OK, "Success!") : new ResponseObject<string>(HttpStatusCode.BadRequest, "Fail!");
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+using AutoMapper;
+
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using SWD.NextIntern.Repository.Entities;
@@ -23,16 +24,24 @@ namespace SWD.NextIntern.Service.Services.UniversityService.GetById
 
         public async Task<ResponseObject<UniversityDto?>> Handle(GetUniversityByIdQuery request, CancellationToken cancellationToken)
         {
-            Expression<Func<University, bool>> queryFilter = (University u) => u.UniversityId.ToString().Equals(request.Id) && u.DeletedDate == null;
+            //Expression<Func<University, bool>> queryFilter = (University u) => u.UniversityId.ToString().Equals(request.Id) && u.DeletedDate == null;
 
-            var university = await _universityRepository.FindAsync(queryFilter, cancellationToken);
+            var queryOptions = (IQueryable<University> query) =>
+            {
+                return query
+                .Include(x => x.Campaigns)
+                .Where(x => x.DeletedDate == null
+                && x.UniversityId.ToString().Equals(request.Id)); ;
+            };
+
+            var university = await _universityRepository.FindAsync(queryOptions, cancellationToken);
 
             if (university == null)
             {
-                return new ResponseObject<UniversityDto?>(HttpStatusCode.NotFound, $"University with id {request.Id} doest not exist!");
+                return new ResponseObject<UniversityDto?>(HttpStatusCode.NotFound, $"University with id {request.Id} does not exist!");
             }
 
-            return new ResponseObject<UniversityDto?>(_mapper.Map<UniversityDto>(university), HttpStatusCode.OK, "success!");
+            return new ResponseObject<UniversityDto?>(_mapper.Map<UniversityDto>(university), HttpStatusCode.OK, "Success!");
         }
     }
 }

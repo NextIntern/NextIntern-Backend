@@ -1,7 +1,15 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SWD.NextIntern.Service.DTOs.Responses;
-using SWD.NextIntern.Service.Services.InvernEvaluationService.Create;
+using SWD.NextIntern.Service.Services.CampaignService.Delete;
+using SWD.NextIntern.Service.Services.CampaignService.Update;
+using SWD.NextIntern.Service.Services.InternEvaluationService.Create;
+using SWD.NextIntern.Service.Services.InternEvaluationService;
+using SWD.NextIntern.Service.Services.InternEvaluationService.GetAllInternEvaluation;
+using SWD.NextIntern.Service.Services.InternEvaluationService.GetInternEvaluationById;
+using SWD.NextIntern.Service.Services.InternEvaluationService.Delete;
+using SWD.NextIntern.Service.Services.InternEvaluationService.Update;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SWD.NextIntern.API.Controllers.InternEvaluation
 {

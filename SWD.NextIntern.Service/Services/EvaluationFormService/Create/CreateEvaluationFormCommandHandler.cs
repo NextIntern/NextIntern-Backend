@@ -22,11 +22,11 @@ namespace SWD.NextIntern.Service.Services.EvaluationFormService.Create
 
         public async Task<ResponseObject<string>> Handle(CreateEvaluationFormCommand request, CancellationToken cancellationToken)
         {
-            Expression<Func<University, bool>> queryFilter = (University u) => u.Id.ToString().Equals(request.UniversityId) && u.DeletedDate == null;
+            Expression<Func<University, bool>> queryFilter = (University u) => u.UniversityId.ToString().Equals(request.UniversityId) && u.DeletedDate == null;
 
             if (queryFilter is null)
             {
-                return new ResponseObject<string>(HttpStatusCode.NotFound, $"University with id {request.UniversityId} doest not exist!");
+                return new ResponseObject<string>(HttpStatusCode.NotFound, $"University with id {request.UniversityId} does not exist!");
             }
 
             var form = new EvaluationForm

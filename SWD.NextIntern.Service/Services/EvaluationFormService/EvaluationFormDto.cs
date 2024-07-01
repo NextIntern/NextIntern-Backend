@@ -4,7 +4,11 @@ using SWD.NextIntern.Service.Common.Mappings;
 
 public class EvaluationFormDto : IMapFrom<EvaluationForm>
 {
-    public Guid UniversityId { get; set; }
+    public Guid EvaluationFormId { get; set; }
+
+    //public Guid UniversityId { get; set; }
+
+    public University? University { get; set; }
 
     public bool IsActive { get; set; }
 

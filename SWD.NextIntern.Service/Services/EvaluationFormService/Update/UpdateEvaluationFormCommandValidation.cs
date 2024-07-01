@@ -13,6 +13,9 @@ namespace SWD.NextIntern.Service.Services.EvaluationFormService.Update
 
             RuleFor(command => command.UniversityId)
                 .Must(BeAValidGuidOrEmpty).WithMessage("UniversityId must be a valid GUID or empty.");
+
+            RuleFor(command => command.IsActive)
+                .Must(BeAValidBoolean).WithMessage("IsActive must be either true or false.");
         }
 
         private bool BeAValidGuid(string id)
@@ -23,6 +26,11 @@ namespace SWD.NextIntern.Service.Services.EvaluationFormService.Update
         private bool BeAValidGuidOrEmpty(string? id)
         {
             return string.IsNullOrEmpty(id) || Guid.TryParse(id, out _);
+        }
+
+        private bool BeAValidBoolean(bool isActive)
+        {
+            return isActive == true || isActive == false;
         }
     }
 }

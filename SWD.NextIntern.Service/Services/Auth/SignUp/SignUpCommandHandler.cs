@@ -2,9 +2,12 @@
 using MediatR;
 using SWD.NextIntern.Repository.Entities;
 using SWD.NextIntern.Repository.IRepositories;
+using SWD.NextIntern.Repository.Repositories;
 using SWD.NextIntern.Repository.Repositories.IRepositories;
 using SWD.NextIntern.Service.Common.Interfaces;
 using SWD.NextIntern.Service.DTOs.Responses;
+using System.Linq.Expressions;
+using System.Net;
 
 namespace SWD.NextIntern.Service.Auth.SignUp
 {
@@ -12,20 +15,30 @@ namespace SWD.NextIntern.Service.Auth.SignUp
     {
         private readonly IUserRepository _userRepository;
         private readonly IJwtService _jwtService;
+        private readonly IRoleRepository _roleRepository;
 
-        public SignUpCommandHandler(IUserRepository userRepository, IJwtService jwtService)
+        public SignUpCommandHandler(IUserRepository userRepository, IJwtService jwtService, IRoleRepository roleRepository)
         {
             _userRepository = userRepository;
             _jwtService = jwtService;
+            _roleRepository = roleRepository;
         }
 
         public async Task<TokenResponse> Handle(SignUpCommand request, CancellationToken cancellationToken)
         {
             var existingIntern = await _userRepository.FindAsync(i => i.Username.Equals(request.Username));
+            var existEmailIntern = await _userRepository.FindAsync(i => i.Email.Equals(request.Email));
+            Expression<Func<Role, bool>> queryFilter = (Role r) => r.RoleName.Equals(request.RoleName) && r.DeletedDate == null;
+            var role = await _roleRepository.FindAsync(queryFilter, cancellationToken);
 
             if (existingIntern != null)
             {
-                throw new Exception("Username already taken.");
+                throw new Exception("Username already has taken.");
+            }
+
+            if (existEmailIntern != null)
+            {
+                throw new Exception("Email already has taken.");
             }
 
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(request.Password);
@@ -40,7 +53,7 @@ namespace SWD.NextIntern.Service.Auth.SignUp
                 Telephone = request.Telephone,
                 Dob = request.Dob,
                 Address = request.Address,
-                Role = new Role { RoleName = "User" }
+                RoleId = role.RoleId
             };
 
             _userRepository.Add(newIntern);

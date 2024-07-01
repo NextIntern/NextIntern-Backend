@@ -21,5 +21,10 @@ namespace SWD.NextIntern.Service.DTOs.Responses
             Status = status;
             Message = message;
         }
+
+        public ResponseObject(T? data)
+        {
+            Data = data;
+        }
     }
 }

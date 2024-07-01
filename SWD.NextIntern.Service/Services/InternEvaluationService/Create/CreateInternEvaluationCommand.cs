@@ -2,7 +2,7 @@
 using SWD.NextIntern.Service.Common.Interfaces;
 using SWD.NextIntern.Service.DTOs.Responses;
 
-namespace SWD.NextIntern.Service.Services.InvernEvaluationService.Create
+namespace SWD.NextIntern.Service.Services.InternEvaluationService.Create
 {
     public class CreateInternEvaluationCommand : IRequest<ResponseObject<string>>, ICommand
     {

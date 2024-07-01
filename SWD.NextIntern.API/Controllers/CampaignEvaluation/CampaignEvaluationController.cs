@@ -12,11 +12,13 @@ using SWD.NextIntern.Service.Services.CampaignService.GetById;
 using SWD.NextIntern.Service.Services.CampaignEvaluationService.GetById;
 using SWD.NextIntern.Service.Services.CampaignEvaluationService.Delete;
 using SWD.NextIntern.Service.Services.CampaignEvaluationService.Update;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SWD.NextIntern.API.Controllers.CampaignEvaluation
 {
     [Route("api/v1/campaign-evaluation")]
     [ApiController]
+    [Authorize(Policy = "AdminPolicy")]
     public class CampaignEvaluationController : ControllerBase
     {
         private readonly IMediator _mediator;

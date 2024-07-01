@@ -36,7 +36,7 @@ namespace SWD.NextIntern.Service.Services.CampaignEvaluationService.GetAll
 
             var campaignEvaluations = await _campaignEvaluationRepository.FindAllAsync(ce => ce.DeletedDate == null, queryOptions, cancellationToken);
             var campaignEvaluationDtos = _mapper.Map<List<CampaignEvaluationDto>>(campaignEvaluations);
-            return new ResponseObject<List<CampaignEvaluationDto>>(campaignEvaluationDtos, HttpStatusCode.OK, "success!");
+            return new ResponseObject<List<CampaignEvaluationDto>>(campaignEvaluationDtos, HttpStatusCode.OK, "Success!");
         }
     }
 }

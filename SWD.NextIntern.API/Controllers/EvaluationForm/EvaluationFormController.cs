@@ -10,7 +10,7 @@ using SWD.NextIntern.Service.Services.EvaluationFormService.Update;
 namespace SWD.NextIntern.API.Controllers.EvaluationForm
 {
     [ApiController]
-    [Authorize]
+    [Authorize(Policy = "AdminPolicy")]
     [Route("api/v1/evaluation-form")]
     public class EvaluationFormController : ControllerBase
     {
@@ -55,6 +55,5 @@ namespace SWD.NextIntern.API.Controllers.EvaluationForm
             var result = await _mediator.Send(command, cancellationToken);
             return result;
         }
-
     }
 }

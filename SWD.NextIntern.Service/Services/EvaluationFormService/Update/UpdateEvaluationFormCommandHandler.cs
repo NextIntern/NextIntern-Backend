@@ -25,14 +25,14 @@ namespace SWD.NextIntern.Service.Services.EvaluationFormService.Update
 
             if (queryFilter is null)
             {
-                return new ResponseObject<string>(HttpStatusCode.NotFound, $"Evaluation Form with id {request.Id} doest not exist!");
+                return new ResponseObject<string>(HttpStatusCode.NotFound, $"Evaluation Form with id {request.Id} does not exist!");
             }
 
             Expression<Func<University, bool>> queryFilter1 = (University u) => u.Id.ToString().Equals(request.UniversityId) && u.DeletedDate == null;
 
             if (queryFilter1 is null)
             {
-                return new ResponseObject<string>(HttpStatusCode.NotFound, $"University with id {request.UniversityId} doest not exist!");
+                return new ResponseObject<string>(HttpStatusCode.NotFound, $"University with id {request.UniversityId} does not exist!");
             }
 
             var form = await _evaluationFormRepository.FindAsync(queryFilter, cancellationToken);
