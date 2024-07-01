@@ -30,7 +30,8 @@ namespace SWD.NextIntern.Service.Services.CampaignEvaluationService.GetAll
         {
             var queryOptions = (IQueryable<CampaignEvaluation> query) =>
             {
-                return query.Include(x => x.InternEvaluations);
+                return query.Include(x => x.InternEvaluations)
+                            .Include(x => x.Campaign);
             };
 
             var campaignEvaluations = await _campaignEvaluationRepository.FindAllAsync(ce => ce.DeletedDate == null, queryOptions, cancellationToken);

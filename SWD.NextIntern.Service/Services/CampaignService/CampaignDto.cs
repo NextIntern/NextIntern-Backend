@@ -32,7 +32,8 @@ namespace SWD.NextIntern.Service.Services.CampaignService
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<Campaign, CampaignDto>();
+            profile.CreateMap<Campaign, CampaignDto>()
+                .ForMember(dest => dest.UniversityName, opt => opt.MapFrom(src => src.University.UniversityName));
         }
     }
 }
