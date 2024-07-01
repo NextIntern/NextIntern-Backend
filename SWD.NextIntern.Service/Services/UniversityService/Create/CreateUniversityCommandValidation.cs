@@ -1,19 +1,17 @@
-﻿
-using FluentValidation;
+﻿using FluentValidation;
+using SWD.NextIntern.Service.Services.InternEvaluationService.Create;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace SWD.NextIntern.Service.Services.UniversityService.Update
+namespace SWD.NextIntern.Service.Services.UniversityService.Create
 {
-    public class UpdateUniversityCommandValidation : AbstractValidator<UpdateUniversityCommand>
+    public class CreateUniversityCommandValidation : AbstractValidator<CreateUniversityCommand>
     {
-        public UpdateUniversityCommandValidation()
+        public CreateUniversityCommandValidation()
         {
-            RuleFor(command => command.Id)
-                .NotEmpty().WithMessage("Id is required.")
-                .Must(BeAValidGuid).WithMessage("Id must be a valid GUID.");
-
-            RuleFor(command => command.UniversityId)
-                .Must(BeAValidGuid).WithMessage("UniversityId must be a valid GUID.");
-
             RuleFor(command => command.UniversityName)
                 .NotEmpty().WithMessage("UniversityName is required.")
                 .MaximumLength(100).WithMessage("UniversityName must not exceed 100 characters.");

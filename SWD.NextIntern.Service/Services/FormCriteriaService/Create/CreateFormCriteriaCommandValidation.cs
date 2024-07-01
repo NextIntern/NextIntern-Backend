@@ -1,20 +1,17 @@
-﻿
-using FluentValidation;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+﻿using FluentValidation;
+using SWD.NextIntern.Service.Services.FormCriteriaService.Update;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace SWD.NextIntern.Service.Services.FormCriteriaService.Update
+namespace SWD.NextIntern.Service.Services.FormCriteriaService.Create
 {
-    public class UpdateFormCriteriaCommandValidation : AbstractValidator<UpdateFormCriteriaCommand>
+    public class CreateFormCriteriaCommandValidation : AbstractValidator<CreateFormCriteriaCommand>
     {
-        public UpdateFormCriteriaCommandValidation()
+        public CreateFormCriteriaCommandValidation()
         {
-            RuleFor(command => command.Id)
-                 .NotEmpty().WithMessage("Id is required.")
-                 .Must(BeAValidGuid).WithMessage("Id must be a valid GUID.");
-
-            RuleFor(command => command.EvaluationFormId)
-                 .Must(BeAValidGuid).WithMessage("EvaluationFormId must be a valid GUID.");
-
             RuleFor(command => command.FormCriteriaName)
                  .MaximumLength(100).WithMessage("EvaluationFormId must not exceed 100 characters.");
 
