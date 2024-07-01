@@ -13,7 +13,7 @@ namespace SWD.NextIntern.Service.Services.CampaignQuestionService.Create
         public CreateCampaignQuestionCommandValidation()
         {
             RuleFor(x => x.CampaignId)
-                .Must(BeAValidGuid).When(x => !string.IsNullOrEmpty(x.CampaignId)).WithMessage("University ID must be a valid GUID.");
+                .Must(BeAValidGuid).When(x => !string.IsNullOrEmpty(x.CampaignId)).WithMessage("Campaign ID must be a valid GUID.");
 
             RuleFor(command => command.CampaignQuestion)
                 .MaximumLength(100).WithMessage("CampaignQuestion must not exceed 100 characters.");

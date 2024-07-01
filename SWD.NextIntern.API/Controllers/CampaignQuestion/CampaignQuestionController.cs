@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SWD.NextIntern.Service.Common.ResponseType;
 using SWD.NextIntern.Service.DTOs.Responses;
 using SWD.NextIntern.Service.Services.CampaignQuestionService;
 using SWD.NextIntern.Service.Services.CampaignQuestionService.Create;
@@ -9,9 +8,8 @@ using SWD.NextIntern.Service.Services.CampaignQuestionService.Delete;
 using SWD.NextIntern.Service.Services.CampaignQuestionService.GetAll;
 using SWD.NextIntern.Service.Services.CampaignQuestionService.GetId;
 using SWD.NextIntern.Service.Services.CampaignQuestionService.Update;
-using SWD.NextIntern.Service.Services.RoleService;
 
-namespace SWD.NextIntern.API.Controllers.CampaignQuestionService
+namespace SWD.NextIntern.API.Controllers.CampaignQuestion
 {
     [Route("api/v1/campaign-question")]
     [ApiController]

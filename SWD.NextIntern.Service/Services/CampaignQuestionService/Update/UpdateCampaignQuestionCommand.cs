@@ -12,16 +12,6 @@ namespace SWD.NextIntern.Service.Services.CampaignQuestionService.Update
 {
     public class UpdateCampaignQuestionCommand : IRequest<ResponseObject<string>>, ICommand
     {
-        public UpdateCampaignQuestionCommand(string campaignQuestionId, string campaignId, string campaignQuestion, DateTime? createDate, DateTime? modifyDate, DateTime? deletedDate)
-        {
-            CampaignQuestionId = campaignQuestionId;
-            CampaignId = campaignId;
-            CampaignQuestion = campaignQuestion;
-            CreateDate = createDate;
-            ModifyDate = modifyDate;
-            DeletedDate = deletedDate;
-        }
-
         public string CampaignQuestionId { get; set; }
 
         public string CampaignId { get; set; }

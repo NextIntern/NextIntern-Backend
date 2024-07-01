@@ -50,9 +50,9 @@ namespace SWD.NextIntern.Service.Services.CampaignQuestionService.Update
             question.ModifyDate = request.ModifyDate;
 
 
-            if (request.CampaignId != null && Guid.TryParse(request.CampaignId, out Guid internEvaluationId))
+            if (request.CampaignId != null && Guid.TryParse(request.CampaignId, out Guid campaignQuestionId))
             {
-                question.CampaignId = internEvaluationId;
+                question.CampaignId = campaignQuestionId;
             }
             else
             {

@@ -14,11 +14,11 @@ namespace SWD.NextIntern.Service.Services.CampaignQuestionService.Update
         {
             RuleFor(command => command.CampaignQuestionId)
                  .NotEmpty().WithMessage("Id is required.")
-                 .Must(BeAValidGuid).WithMessage("InternEvaluationCriteriaId must be a valid GUID.");
+                 .Must(BeAValidGuid).WithMessage("CampaignQuestionId must be a valid GUID.");
 
             RuleFor(command => command.CampaignId)
                 .NotEmpty().WithMessage("Id is required.")
-                .Must(BeAValidGuid).WithMessage("InternEvaluationId must be a valid GUID.");
+                .Must(BeAValidGuid).WithMessage("CampaignId must be a valid GUID.");
 
             RuleFor(command => command.CampaignQuestion)
                 .MaximumLength(100).WithMessage("CampaignQuestion must not exceed 100 characters.");
