@@ -13,7 +13,7 @@ namespace SWD.NextIntern.Service.Services.FormCriteriaService.Update
                  .Must(BeAValidGuid).WithMessage("Id must be a valid GUID.");
 
             RuleFor(command => command.EvaluationFormId)
-                 .Must(BeAValidGuidOrEmpty).WithMessage("EvaluationFormId must be a valid GUID or empty.");
+                 .Must(BeAValidGuid).WithMessage("EvaluationFormId must be a valid GUID.");
 
             RuleFor(command => command.FormCriteriaName)
                  .MaximumLength(100).WithMessage("EvaluationFormId must not exceed 100 characters.");

@@ -7,11 +7,12 @@ namespace SWD.NextIntern.Service.InternService.Create
 {
     public class CreateInternCommand : IRequest<TokenResponse>, ICommand
     {
-        public CreateInternCommand(string username, string password, string fullName, string email, string gender, string telephone, DateOnly? dob, string roleName, string address)
+        public CreateInternCommand(string username, string password, string confirmedPassword, string fullName, string email, string gender, string telephone, DateOnly? dob, string roleName, string address)
         {
             Username = username;
             Password = password;
-            FullName = fullName;
+            ConfirmedPassword = confirmedPassword;
+            Fullname = fullName;
             Email = email;
             Gender = gender;
             Telephone = telephone;
@@ -22,7 +23,8 @@ namespace SWD.NextIntern.Service.InternService.Create
 
         public string Username { get; set; }
         public string Password { get; set; }
-        public string FullName { get; set; }
+        public string ConfirmedPassword { get; set; }
+        public string Fullname { get; set; }
         public string Email { get; set; }
         public string Gender { get; set; }
         public string Telephone { get; set; }

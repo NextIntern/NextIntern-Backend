@@ -12,5 +12,5 @@ namespace SWD.NextIntern.Repository
         public UserRepository(AppDbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {
         }
-  }
+    }
 }

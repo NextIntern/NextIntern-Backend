@@ -40,13 +40,18 @@ namespace SWD.NextIntern.Service.InternService.Create
                 throw new Exception("Email already has taken.");
             }
 
+            if (!request.Password.Equals(request.ConfirmedPassword))
+            {
+                throw new Exception("Passwords do not match.");
+            }
+
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(request.Password);
 
             var newIntern = new User    
             {
                 Username = request.Username,
                 Password = hashedPassword,
-                FullName = request.FullName,
+                FullName = request.Fullname,
                 Email = request.Email,
                 Gender = request.Gender,
                 Telephone = request.Telephone,

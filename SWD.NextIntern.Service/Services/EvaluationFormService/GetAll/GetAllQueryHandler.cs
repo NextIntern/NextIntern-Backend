@@ -5,7 +5,7 @@ using SWD.NextIntern.Repository.Entities;
 using SWD.NextIntern.Repository.Repositories;
 using SWD.NextIntern.Repository.Repositories.IRepositories;
 using SWD.NextIntern.Service.DTOs.Responses;
-using SWD.NextIntern.Service.Services.CampaignService;
+using SWD.NextIntern.Service.Services.EvaluationFormService;
 using System.Net;
 
 namespace SWD.NextIntern.Service.Services.EvaluationFormService.GetAll
