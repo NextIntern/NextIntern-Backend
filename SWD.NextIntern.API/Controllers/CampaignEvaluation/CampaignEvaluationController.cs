@@ -2,13 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using SWD.NextIntern.Service.DTOs.Responses;
 using SWD.NextIntern.Service.Services.CampaignEvaluationService.Create;
-using SWD.NextIntern.Service.Services.CampaignService.GetAll;
-using SWD.NextIntern.Service.Services.CampaignService;
 using SWD.NextIntern.Service.Services.CampaignEvaluationService.GetAll;
 using SWD.NextIntern.Service.Services.CampaignEvaluationService;
-using SWD.NextIntern.Service.Services.CampaignService.Delete;
-using SWD.NextIntern.Service.Services.CampaignService.Update;
-using SWD.NextIntern.Service.Services.CampaignService.GetById;
 using SWD.NextIntern.Service.Services.CampaignEvaluationService.GetById;
 using SWD.NextIntern.Service.Services.CampaignEvaluationService.Delete;
 using SWD.NextIntern.Service.Services.CampaignEvaluationService.Update;
