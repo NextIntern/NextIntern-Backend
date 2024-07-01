@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using SWD.NextIntern.Repository.Entities;
 using SWD.NextIntern.Repository.Repositories.IRepositories;
 using SWD.NextIntern.Service.DTOs.Responses;
@@ -21,7 +22,13 @@ namespace SWD.NextIntern.Service.Services.CampaignEvaluationService.GetById
 
         public async Task<ResponseObject<CampaignEvaluationDto>> Handle(GetCampaignEvaluationByIdQuery request, CancellationToken cancellationToken)
         {
-            var campaignEvaluation = await _campaignEvaluationRepository.FindAsync(ce => ce.CampaignEvaluationId.ToString().Equals(request.Id) && ce.DeletedDate == null, cancellationToken);
+            var queryOptions = (IQueryable<CampaignEvaluation> query) =>
+            {
+                return query.Include(x => x.InternEvaluations)
+                            .Include(x => x.Campaign);
+            };
+
+            var campaignEvaluation = await _campaignEvaluationRepository.FindAsync(ce => ce.CampaignEvaluationId.ToString().Equals(request.Id) && ce.DeletedDate == null, queryOptions, cancellationToken);
 
             if (campaignEvaluation is null)
             {

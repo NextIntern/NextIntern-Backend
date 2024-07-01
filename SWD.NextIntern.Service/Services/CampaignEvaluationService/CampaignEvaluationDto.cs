@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SWD.NextIntern.Repository.Entities;
 using SWD.NextIntern.Service.Common.Mappings;
+using SWD.NextIntern.Service.Services.CampaignService;
 
 namespace SWD.NextIntern.Service.Services.CampaignEvaluationService
 {
@@ -9,6 +10,7 @@ namespace SWD.NextIntern.Service.Services.CampaignEvaluationService
         public Guid CampaignEvaluationId { get; set; }
 
         public Guid? CampaignId { get; set; }
+        public string CampaignName { get; set; }
 
         public DateOnly? StartDate { get; set; }
 
@@ -16,7 +18,8 @@ namespace SWD.NextIntern.Service.Services.CampaignEvaluationService
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<CampaignEvaluation, CampaignEvaluationDto>();
+            profile.CreateMap<CampaignEvaluation, CampaignEvaluationDto>()
+                .ForMember(dest => dest.CampaignName, opt => opt.MapFrom(src => src.Campaign.CampaignName));
         }
     }
 }

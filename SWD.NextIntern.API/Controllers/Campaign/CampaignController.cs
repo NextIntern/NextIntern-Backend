@@ -13,6 +13,7 @@ namespace SWD.NextIntern.API.Controllers.CampaignService
 {
     [Route("api/v1/campaign")]
     [ApiController]
+    [Authorize]
     public class CampaignController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -36,6 +37,7 @@ namespace SWD.NextIntern.API.Controllers.CampaignService
             return result;
         }
 
+        [Authorize(Policy = "AdminPolicy")]
         [HttpPost("create")]
         public async Task<ResponseObject<string>> CreateCampaign([FromBody] CreateCampaignCommand command, CancellationToken cancellationToken = default)
         {
@@ -43,6 +45,7 @@ namespace SWD.NextIntern.API.Controllers.CampaignService
             return result;
         }
 
+        [Authorize(Policy = "AdminPolicy")]
         [HttpDelete("{id}")]
         public async Task<ResponseObject<string>> DeleteCampaign(string id, CancellationToken cancellationToken = default)
         {
@@ -50,6 +53,7 @@ namespace SWD.NextIntern.API.Controllers.CampaignService
             return result;
         }
 
+        [Authorize(Policy = "AdminPolicy")]
         [HttpPut("update")]
         public async Task<ResponseObject<string>> UpdateCampaign([FromBody] UpdateCampaignCommand command, CancellationToken cancellationToken = default)
         {
