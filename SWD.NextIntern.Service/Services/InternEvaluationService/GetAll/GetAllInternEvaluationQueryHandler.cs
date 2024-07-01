@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using SWD.NextIntern.Repository.Entities;
 using SWD.NextIntern.Repository.Repositories.IRepositories;
 using SWD.NextIntern.Service.DTOs.Responses;
 using SWD.NextIntern.Service.Services.CampaignService;
@@ -20,7 +22,14 @@ namespace SWD.NextIntern.Service.Services.InternEvaluationService.GetAllInternEv
 
         public async Task<ResponseObject<List<InternEvaluationDto>>> Handle(GetAllInternEvaluationQuery request, CancellationToken cancellationToken)
         {
-            var internEvaluations = await _internEvaluationRepository.FindAllAsync(ie => ie.DeletedDate == null, cancellationToken);
+            var queryOptions = (IQueryable<InternEvaluation> query) =>
+            {
+                return query
+                .Include(x => x.Intern)
+                .Where(x => x.DeletedDate == null); ;
+            };
+
+            var internEvaluations = await _internEvaluationRepository.FindAllAsync(queryOptions, cancellationToken);
 
             return new ResponseObject<List<InternEvaluationDto>>(_mapper.Map<List<InternEvaluationDto>>(internEvaluations), HttpStatusCode.OK, "Success!");
         }

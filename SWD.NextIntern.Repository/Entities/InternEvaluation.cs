@@ -21,7 +21,7 @@ public partial class InternEvaluation
     [JsonIgnore]
     public virtual CampaignEvaluation? CampaignEvaluation { get; set; }
 
-    [JsonIgnore]
+    //[JsonIgnore]
     public virtual User? Intern { get; set; }
 
     [JsonIgnore]
