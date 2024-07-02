@@ -14,7 +14,7 @@ public partial class User
 
     public string? Password { get; set; }
 
-    public string FullName { get; set; } = null!;
+    public string FullName { get; set; }
 
     public DateOnly? Dob { get; set; }
 
@@ -46,6 +46,7 @@ public partial class User
 
     public virtual ICollection<CampaignQuestionResponse> CampaignQuestionResponses { get; set; } = new List<CampaignQuestionResponse>();
 
+    [JsonIgnore]
     public virtual ICollection<InternEvaluation> InternEvaluations { get; set; } = new List<InternEvaluation>();
 
     public virtual ICollection<User> InverseMentor { get; set; } = new List<User>();

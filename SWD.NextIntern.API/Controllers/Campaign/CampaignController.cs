@@ -10,7 +10,7 @@ using SWD.NextIntern.Service.Services.CampaignService.GetAll;
 using SWD.NextIntern.Service.Services.CampaignService.GetById;
 using SWD.NextIntern.Service.Services.CampaignService.Update;
 
-namespace SWD.NextIntern.API.Controllers.CampaignService
+namespace SWD.NextIntern.API.Controllers.Campaign
 {
     [Route("api/v1/campaign")]
     [ApiController]

@@ -12,7 +12,7 @@ namespace SWD.NextIntern.Service.Services.EvaluationFormService.Update
                 .Must(BeAValidGuid).WithMessage("Id must be a valid GUID.");
 
             RuleFor(command => command.UniversityId)
-                .Must(BeAValidGuidOrEmpty).WithMessage("UniversityId must be a valid GUID or empty.");
+                .Must(BeAValidGuid).WithMessage("UniversityId must be a valid GUID.");
 
             RuleFor(command => command.IsActive)
                 .Must(BeAValidBoolean).WithMessage("IsActive must be either true or false.");

@@ -3,6 +3,7 @@ using SWD.NextIntern.API.Filters;
 using SWD.NextIntern.Repository;
 using SWD.NextIntern.Service;
 using SWD.NextIntern.Service.Common.Configuration;
+using SWD.NextIntern.Service.Common.Mappings;
 
 
 namespace SWD.NextIntern.API
@@ -59,7 +60,6 @@ namespace SWD.NextIntern.API
                     }
                 });
             });
-
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
