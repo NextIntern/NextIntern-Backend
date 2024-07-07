@@ -27,6 +27,7 @@ namespace SWD.NextIntern.Service.Services.FormCriteriaService.GetAll
             {
                 return query
                 .Include(x => x.EvaluationForm)
+                    .ThenInclude(x => x.University)
                 .Where(x => x.DeletedDate == null);
             };
 

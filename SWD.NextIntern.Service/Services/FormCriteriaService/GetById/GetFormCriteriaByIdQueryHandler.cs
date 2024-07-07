@@ -1,6 +1,7 @@
 ﻿
 using AutoMapper;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using SWD.NextIntern.Repository.Entities;
 using SWD.NextIntern.Repository.Repositories.IRepositories;
 using SWD.NextIntern.Service.DTOs.Responses;
@@ -24,7 +25,15 @@ namespace SWD.NextIntern.Service.Services.FormCriteriaService.GetById
         {
             Expression<Func<FormCriterion, bool>> queryFilter = (FormCriterion f) => f.FormCriteriaId.ToString().Equals(request.Id) && f.DeletedDate == null;
 
-            var form = await _formCriteriaRepository.FindAsync(queryFilter, cancellationToken);
+            var queryOptions = (IQueryable<FormCriterion> query) =>
+            {
+                return query
+                .Include(x => x.EvaluationForm)
+                    .ThenInclude(x => x.University)
+                .Where(x => x.DeletedDate == null);
+            };
+
+            var form = await _formCriteriaRepository.FindAsync(queryFilter, queryOptions, cancellationToken);
 
             if (form == null)
             {
