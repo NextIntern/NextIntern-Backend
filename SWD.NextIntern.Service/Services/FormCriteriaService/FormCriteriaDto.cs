@@ -6,6 +6,8 @@ public class FormCriteriaDto : IMapFrom<FormCriterion>
 {
     public Guid FormCriteriaId { get; set; }
 
+    public string UniversityName { get; set; }
+
     public string? Name { get; set; }
 
     public string? Guide { get; set; }
@@ -24,6 +26,6 @@ public class FormCriteriaDto : IMapFrom<FormCriterion>
 
     public void Mapping(Profile profile)
     {
-        profile.CreateMap<FormCriterion, FormCriteriaDto>();
+        profile.CreateMap<FormCriterion, FormCriteriaDto>().ForMember(dest => dest.UniversityName, opt => opt.MapFrom(src => src.EvaluationForm.University.UniversityName));
     }
 }
