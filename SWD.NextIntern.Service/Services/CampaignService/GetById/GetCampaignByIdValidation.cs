@@ -6,7 +6,7 @@ namespace SWD.NextIntern.Service.Services.CampaignService.GetById
     {
         public GetCampaignByIdValidation()
         {
-            RuleFor(query => query.Id).NotEmpty().WithMessage("Id khong duoc de trong");
+            RuleFor(query => query.Id).NotEmpty().WithMessage("Id can not be null");
         }
     }
 }

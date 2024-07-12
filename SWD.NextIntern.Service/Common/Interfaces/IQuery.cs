@@ -1,4 +1,3 @@
-
 namespace SWD.NextIntern.Service.Common.Interfaces
 
 {

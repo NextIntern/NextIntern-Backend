@@ -1,4 +1,8 @@
-﻿using System;
+﻿using AutoMapper;
+using SWD.NextIntern.Repository.Entities;
+using SWD.NextIntern.Service.Common.Mappings;
+using SWD.NextIntern.Service.Services.CampaignService.Update;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SWD.NextIntern.Service.Services.CampaignService
 {
-    public class CampaignDto
+    public class CampaignDto : IMapFrom<Campaign>
     {
         public Guid CampaignId { get; set; }
 
@@ -26,5 +30,10 @@ namespace SWD.NextIntern.Service.Services.CampaignService
 
         public DateTime? ModifyDate { get; set; }
 
+        public void Mapping(Profile profile)
+        {
+            profile.CreateMap<Campaign, CampaignDto>()
+                .ForMember(dest => dest.UniversityName, opt => opt.MapFrom(src => src.University.UniversityName));
+        }
     }
 }

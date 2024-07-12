@@ -25,12 +25,17 @@ namespace SWD.NextIntern.Service.Auth.ForgotPassword
 
         public async Task<string> Handle(ForgotPasswordQuery request, CancellationToken cancellationToken)
         {
-            if (_userRepository.FindAsync(i => i.Email.Equals(request.Email)) == null)
+            var user = await _userRepository.FindAsync(i => request.Email.Equals(i.Email));
+            if (user == null)
             {
                 throw new Exception("Email is not registed.");
             }
 
             var otp = GenerateOTP();
+
+            var cachedValue = await _cache.GetStringAsync(request.Email);
+            if (cachedValue != null) await _cache.RemoveAsync(request.Email);
+
             await _cache.SetStringAsync(request.Email, otp, new DistributedCacheEntryOptions
             {
                 AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(30)
@@ -44,7 +49,7 @@ namespace SWD.NextIntern.Service.Auth.ForgotPassword
 
             await SendAsync(request.Email, "Reset Your Password", emailBody);
 
-            return "Thanh cong!";
+            return "Success!";
         }
 
         private string GenerateOTP()

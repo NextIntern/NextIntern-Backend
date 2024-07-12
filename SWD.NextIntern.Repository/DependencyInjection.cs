@@ -1,13 +1,10 @@
-
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SWD.NextIntern.Repository.Common;
 using SWD.NextIntern.Repository.Persistence;
 using SWD.NextIntern.Repository.Repositories;
 using SWD.NextIntern.Repository.Repositories.IRepositories;
-using SWD.NextIntern.Repository.IRepositories;
 
 
 namespace SWD.NextIntern.Repository
@@ -31,8 +28,17 @@ namespace SWD.NextIntern.Repository
             });
 
             services.AddScoped<IUnitOfWork>(provider => provider.GetRequiredService<AppDbContext>());
-            services.AddScoped<IInternRepository, InternRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ICampaignRepository, CampaignRepository>();
+            services.AddScoped<IUniversityRepository, UniversityRepository>();
+            services.AddScoped<ICampaignEvaluationRepository, CampaignEvaluationRepository>();
+            services.AddScoped<IInternEvaluationRepository, InternEvaluationRepository>();
+            services.AddScoped<IEvaluationFormRepository, EvaluationFormRepository>();
+            services.AddScoped<IFormCriteriaRepository, FormCriteriaRepository>();
+            services.AddScoped<IRoleRepository, RoleRepository>();
+            services.AddScoped<IInternEvaluationCriteriaRepository, InternEvaluationCriteriaRepository>();
+            services.AddScoped<ICampaignQuestionRepository, CampaignQuestionRepository>();
+            services.AddScoped<ICampaignQuestionResponseRepository, CampaignQuestionResponseRepository>();
 
             return services;
         }

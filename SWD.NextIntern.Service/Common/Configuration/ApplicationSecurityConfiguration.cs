@@ -1,14 +1,13 @@
 ﻿
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
 using SWD.NextIntern.Service.Common.Interfaces;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
+using SWD.NextIntern.Service.Services;
 
 namespace SWD.NextIntern.Service.Common.Configuration
 {
@@ -19,6 +18,7 @@ namespace SWD.NextIntern.Service.Common.Configuration
             IConfiguration configuration)
         {
             services.AddTransient<IJwtService, JwtService>();
+            services.AddTransient<ICurrentUserService, CurrentUserService>();
 
             JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
             services.AddHttpContextAccessor();
@@ -47,7 +47,8 @@ namespace SWD.NextIntern.Service.Common.Configuration
                 };
             });
 
-            services.AddControllers();
+            //services.AddControllers();
+          
             services.AddAuthorization(ConfigureAuthorization);
             services.AddCors(options =>
             {
@@ -71,13 +72,20 @@ namespace SWD.NextIntern.Service.Common.Configuration
             //Configure policies and other authorization options here. For example:
             //options.AddPolicy("EmployeeOnly", policy => policy.RequireClaim("role", "employee"));
             //options.AddPolicy("AdminOnly", policy => policy.RequireClaim("role", "Admin"));
-            options.AddPolicy("AdminPolicy", policy => policy.RequireClaim("roles", "Admin"));
-            //options.AddPolicy("UserPolicy", policy => policy.RequireClaim("roles", "User"));
-            options.AddPolicy("UserPolicy", policy =>
-            {
-                policy.RequireAuthenticatedUser();
-                policy.RequireRole("User");
-            });
+
+            options.AddPolicy("AdminPolicy", policy => policy.RequireClaim("role", "Admin"));
+            options.AddPolicy("UserPolicy", policy => policy.RequireClaim("role", "User"));
+            //options.AddPolicy("UserPolicy", policy => policy.RequireClaim("role", "User"));
+
+            //options.AddPolicy("UserPolicy", policy =>
+            //{
+            //    policy.RequireAuthenticatedUser();
+            //    policy.RequireRole("User");
+            //});
+
+            //options.AddPolicy("AdminPolicy", policy =>
+            //     policy.RequireRole("Admin"));
+
         }
     }
 }

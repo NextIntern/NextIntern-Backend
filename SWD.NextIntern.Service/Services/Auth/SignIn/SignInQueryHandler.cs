@@ -10,26 +10,36 @@ namespace SWD.NextIntern.Service.Auth.SignIn
     {
         private readonly IUserRepository _userRepository;
         private readonly IJwtService _jwtService;
+        private readonly IRoleRepository _roleRepository;
 
-        public SignInQueryHandler(IUserRepository userRepository, IJwtService jwtService)
+        public SignInQueryHandler(IUserRepository userRepository, IJwtService jwtService, IRoleRepository roleRepository)
         {
             _userRepository = userRepository;
             _jwtService = jwtService;
+            _roleRepository = roleRepository;
         }
 
         public async Task<TokenResponse> Handle(SignInQuery request, CancellationToken cancellationToken)
         {
-            var existingIntern = await _userRepository.FindAsync(i => i.Username.Equals(request.Username));
+            var existingUser = await _userRepository.FindAsync(i => request.Username.Equals(i.Username));
+            var role = await _roleRepository.FindAsync(r => existingUser.RoleId == r.RoleId);
 
-            if (existingIntern == null || !BCrypt.Net.BCrypt.Verify(request.Password, existingIntern.Password))
+            string roleName = role.RoleName;
+
+            if (existingUser == null || !BCrypt.Net.BCrypt.Verify(request.Password, existingUser.Password))
+            {
+                throw new Exception("Invalid username or password.");
+            }
+
+            if (existingUser.DeletedDate != null)
             {
                 throw new Exception("Invalid username or password.");
             }
 
             return new TokenResponse
             {
-                AccessToken = await _jwtService.CreateToken(existingIntern.UserId.ToString(), existingIntern.Role.RoleName),
-                RefreshToken = await _jwtService.GenerateRefreshToken(existingIntern.UserId.ToString(), existingIntern.Role.RoleName)
+                AccessToken = await _jwtService.CreateToken(existingUser.UserId.ToString(), existingUser.Role.RoleName),
+                RefreshToken = await _jwtService.GenerateRefreshToken(existingUser.UserId.ToString(), existingUser.Role.RoleName)
             };
         }
     }
