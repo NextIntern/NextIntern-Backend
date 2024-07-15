@@ -1,11 +1,12 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SWD.NextIntern.Service.Common.ResponseType;
+using SWD.NextIntern.Repository.Repositories.IRepositories;
 using SWD.NextIntern.Service.DTOs.Responses;
 using SWD.NextIntern.Service.Services.CampaignService;
 using SWD.NextIntern.Service.Services.CampaignService.Create;
 using SWD.NextIntern.Service.Services.CampaignService.Delete;
+using SWD.NextIntern.Service.Services.CampaignService.FilterCampaign;
 using SWD.NextIntern.Service.Services.CampaignService.GetAll;
 using SWD.NextIntern.Service.Services.CampaignService.GetById;
 using SWD.NextIntern.Service.Services.CampaignService.Update;
@@ -24,10 +25,17 @@ namespace SWD.NextIntern.API.Controllers.Campaign
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
+        //[HttpGet("all")]
+        //public async Task<ResponseObject<List<CampaignDto>>> GetAllCampaign(CancellationToken cancellationToken = default)
+        //{
+        //    var result = await _mediator.Send(new GetAllQuery(), cancellationToken);
+        //    return result;
+        //}
+
         [HttpGet("all")]
-        public async Task<ResponseObject<List<CampaignDto>>> GetAllCampaign(CancellationToken cancellationToken = default)
+        public async Task<ResponseObject<IPagedResult<CampaignDto>>> GetAllCampaignWithFilter(int pageSize = 10, int pageNo = 1, CancellationToken cancellationToken = default)
         {
-            var result = await _mediator.Send(new GetAllQuery(), cancellationToken);
+            var result = await _mediator.Send(new FilterCampaignQuery(pageSize, pageNo), cancellationToken);
             return result;
         }
 

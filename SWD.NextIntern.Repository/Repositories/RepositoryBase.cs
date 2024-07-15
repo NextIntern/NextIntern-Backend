@@ -6,6 +6,7 @@ using SWD.NextIntern.Repository.Common;
 using SWD.NextIntern.Repository.IRepositories;
 using SWD.NextIntern.Repository.Repositories;
 using SWD.NextIntern.Repository.Repositories.IRepositories;
+using System.Linq;
 
 namespace SWD.NextIntern.Repository
 
@@ -233,6 +234,22 @@ namespace SWD.NextIntern.Repository
         {
             var queryable = QueryInternal(queryOptions);
             var projection = queryable.ProjectTo<TProjection>(_mapper.ConfigurationProvider);
+            return await PagedList<TProjection>.CreateAsync(
+                projection,
+                pageNo,
+                pageSize,
+                cancellationToken);
+        }
+
+        public async Task<IPagedResult<TProjection>> FindAllProjectToAsync<TProjection>(
+            Expression<Func<TPersistence, bool>> filterExpression,
+            int pageNo,
+            int pageSize,
+            Func<IQueryable<TPersistence>, IQueryable<TPersistence>> queryOptions,
+            CancellationToken cancellationToken = default)
+        {
+            var query = QueryInternal(filterExpression, queryOptions);
+            var projection = query.ProjectTo<TProjection>(_mapper.ConfigurationProvider);
             return await PagedList<TProjection>.CreateAsync(
                 projection,
                 pageNo,
