@@ -37,8 +37,8 @@ namespace SWD.NextIntern.API.Filters
                 context.ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
             }
 
-            var response = new ResponseObject<ValidationProblemDetails>(System.Net.HttpStatusCode.InternalServerError, "Validation errors occurred.");
             var errors = new ValidationProblemDetails(context.ModelState);
+            var response = new ResponseObject<ValidationProblemDetails>(errors, System.Net.HttpStatusCode.InternalServerError, "Validation errors occurred.");
 
             context.Result = new BadRequestObjectResult(response);
             context.ExceptionHandled = true;
