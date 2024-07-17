@@ -31,7 +31,7 @@ namespace SWD.NextIntern.Service.Services.UniversityService.GetAll
 
             var universities = await _universityRepository.FindAllAsync(queryOptions, cancellationToken);
             var universityDtos = _mapper.Map<List<UniversityDto>>(universities);
-            return new ResponseObject<List<UniversityDto>>(universityDtos, HttpStatusCode.OK, "Success!"); ;
+            return new ResponseObject<List<UniversityDto>>(universityDtos, HttpStatusCode.OK, "Success!");
         }
     }
 }
