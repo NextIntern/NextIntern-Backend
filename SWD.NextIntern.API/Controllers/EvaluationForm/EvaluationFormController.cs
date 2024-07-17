@@ -7,6 +7,8 @@ using SWD.NextIntern.Service.Services.EvaluationFormService.GetById;
 using SWD.NextIntern.Service.Services.EvaluationFormService.Create;
 using SWD.NextIntern.Service.Services.EvaluationFormService.Delete;
 using SWD.NextIntern.Service.Services.EvaluationFormService.Update;
+using SWD.NextIntern.Service.Services.CampaignEvaluationService.FilterCampaignEvaluation;
+using SWD.NextIntern.Service.Services.EvaluationFormService.FilterEvaluationForm;
 namespace SWD.NextIntern.API.Controllers.EvaluationForm
 {
     [ApiController]
@@ -21,11 +23,18 @@ namespace SWD.NextIntern.API.Controllers.EvaluationForm
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
+        //[HttpGet("all")]
+        //public async Task<ResponseObject<List<EvaluationFormDto>>> GetAllEvaluationForm(CancellationToken cancellationToken = default)
+        //{
+        //        var result = await _mediator.Send(new GetAllQuery(), cancellationToken);
+        //        return result;
+        //}
+
         [HttpGet("all")]
-        public async Task<ResponseObject<List<EvaluationFormDto>>> GetAllEvaluationForm(CancellationToken cancellationToken = default)
+        public async Task<ResponseObject<PagedListResponse<EvaluationFormDto>>> GetAllEvaluationForm(int pageNo = 1, int pageSize = 10, CancellationToken cancellationToken = default)
         {
-                var result = await _mediator.Send(new GetAllQuery(), cancellationToken);
-                return result;
+            var result = await _mediator.Send(new FilterEvaluationFormQuery(pageSize, pageNo), cancellationToken);
+            return result;
         }
 
         [HttpGet("{id}")]

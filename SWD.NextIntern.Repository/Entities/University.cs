@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SWD.NextIntern.Repository.Entities;
 
@@ -20,9 +21,9 @@ public partial class University
 
     public DateTime? DeletedDate { get; set; }
 
-    [JsonIgnore]
+    public string? ImgUrl { get; set; }
+
     public virtual ICollection<Campaign> Campaigns { get; set; } = new List<Campaign>();
 
-    [JsonIgnore]
     public virtual ICollection<EvaluationForm> EvaluationForms { get; set; } = new List<EvaluationForm>();
 }

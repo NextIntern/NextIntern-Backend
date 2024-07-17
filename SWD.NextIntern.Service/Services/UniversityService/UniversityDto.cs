@@ -17,6 +17,7 @@ public class UniversityDto : IMapFrom<University>
     public DateTime? ModifyDate { get; set; }
 
     public DateTime? DeletedDate { get; set; }
+    public string? ImgUrl { get; set; }
 
     public void Mapping(Profile profile)
     {

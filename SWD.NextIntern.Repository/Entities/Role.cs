@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace SWD.NextIntern.Repository.Entities;
 
@@ -12,9 +11,7 @@ public partial class Role
 
     public string RoleName { get; set; } = null!;
 
-    [JsonIgnore]
     public DateTime? DeletedDate { get; set; }
 
-    [JsonIgnore]
     public virtual ICollection<User> Users { get; set; } = new List<User>();
 }

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using SWD.NextIntern.Service.DTOs.Responses;
 using SWD.NextIntern.Service.InternService.Create;
 using SWD.NextIntern.Service.Services.InternService.Delete;
+using SWD.NextIntern.Service.Services.InternService.FilterIntern;
 using SWD.NextIntern.Service.Services.InternService.GetAll;
 using SWD.NextIntern.Service.Services.InternService.GetById;
 using SWD.NextIntern.Service.Services.InternService.Update;
@@ -24,10 +25,17 @@ namespace SWD.NextIntern.API.Controllers.Intern
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
+        //[HttpGet("all")]
+        //public async Task<ResponseObject<List<InternDto>>> GetAllIntern(CancellationToken cancellationToken = default)
+        //{
+        //    var result = await _mediator.Send(new GetAllQuery(), cancellationToken);
+        //    return result;
+        //}
+
         [HttpGet("all")]
-        public async Task<ResponseObject<List<InternDto>>> GetAllIntern(CancellationToken cancellationToken = default)
+        public async Task<ResponseObject<PagedListResponse<InternDto>>> GetAllIntern(int pageNo = 1, int pageSize = 10, CancellationToken cancellationToken = default)
         {
-            var result = await _mediator.Send(new GetAllQuery(), cancellationToken);
+            var result = await _mediator.Send(new FilterInternQuery(pageNo, pageSize), cancellationToken);
             return result;
         }
 
