@@ -18,6 +18,12 @@ namespace SWD.NextIntern.Service.Services.CampaignService.Create
 
         public async Task<ResponseObject<string>> Handle(CreateCampaignCommand request, CancellationToken cancellationToken)
         {
+            var existCampaign = await _campaignRepository.FindAsync(c => c.CampaignName.Equals(request.CampaignName) && c.DeletedDate == null, cancellationToken);
+            if (existCampaign != null)
+            {
+                return new ResponseObject<string>(HttpStatusCode.NotFound, $"Campaign with name {request.CampaignName} is exist!");
+            }
+
             var university = await _universityRepository.FindAsync(u => u.UniversityId.ToString().Equals(request.UniversityId) && u.DeletedDate == null, cancellationToken);
 
             if (university is null)
