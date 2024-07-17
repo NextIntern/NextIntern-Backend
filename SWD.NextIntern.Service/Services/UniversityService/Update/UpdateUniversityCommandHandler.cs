@@ -23,6 +23,13 @@ namespace SWD.NextIntern.Service.Services.UniversityService.Update
 
         public async Task<ResponseObject<string>> Handle(UpdateUniversityCommand request, CancellationToken cancellationToken)
         {
+            var existUniversity = await _universityRepository.FindAsync(u => u.UniversityName.Equals(request.UniversityName) && !u.UniversityId.ToString().Equals(request.Id) && u.DeletedDate == null, cancellationToken);
+
+            if (existUniversity != null)
+            {
+                return new ResponseObject<string>(HttpStatusCode.BadRequest, $"University with name {request.UniversityName} is exist!");
+            }
+
             Expression<Func<University, bool>> queryFilter = (University u) => u.UniversityId.ToString().Equals(request.Id) && u.DeletedDate == null;
 
             if (queryFilter is null)
@@ -38,6 +45,7 @@ namespace SWD.NextIntern.Service.Services.UniversityService.Update
             university.Address = request.Address ?? university.Address;
             university.Phone = request.Phone ?? university.Phone;
             university.ModifyDate = DateTime.Now;
+            university.ImgUrl = request.ImgUrl ?? university.ImgUrl;
 
             if (Guid.TryParse(request.UniversityId, out Guid universityId))
             {
