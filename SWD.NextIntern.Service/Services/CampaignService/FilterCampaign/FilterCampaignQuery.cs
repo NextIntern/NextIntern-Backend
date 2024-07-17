@@ -5,15 +5,15 @@ using SWD.NextIntern.Service.DTOs.Responses;
 
 namespace SWD.NextIntern.Service.Services.CampaignService.FilterCampaign
 {
-    public class FilterCampaignQuery : IRequest<ResponseObject<IPagedResult<CampaignDto>>>
+    public class FilterCampaignQuery : IRequest<ResponseObject<PagedListResponse<CampaignDto>>>
     {
-        public int PageNumber { get; set; }
+        public int PageNo { get; set; }
         public int PageSize { get; set; }
 
-        public FilterCampaignQuery(int pageSize, int pageNumber)
+        public FilterCampaignQuery(int pageSize, int pageNo)
         {
             PageSize = pageSize;
-            PageNumber = pageNumber;
+            PageNo = pageNo;
         }
     }
 }

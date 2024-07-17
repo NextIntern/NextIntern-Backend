@@ -2,16 +2,9 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using SWD.NextIntern.Repository.Entities;
-using SWD.NextIntern.Repository.Repositories;
 using SWD.NextIntern.Repository.Repositories.IRepositories;
 using SWD.NextIntern.Service.DTOs.Responses;
-using SWD.NextIntern.Service.Services.CampaignService;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SWD.NextIntern.Service.Services.CampaignEvaluationService.GetAll
 {

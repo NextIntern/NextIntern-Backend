@@ -37,6 +37,7 @@ public class InternDto : IMapFrom<User>
 
     [JsonIgnore]
     public DateTime? DeletedDate { get; set; }
+    public string? ImgUrl { get; set; }
 
     public void Mapping(Profile profile)
     {

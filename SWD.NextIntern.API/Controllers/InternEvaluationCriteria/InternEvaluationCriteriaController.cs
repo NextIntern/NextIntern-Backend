@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using SWD.NextIntern.Service.DTOs.Responses;
 using SWD.NextIntern.Service.InternEvaluationCriteriaService.Create;
 using SWD.NextIntern.Service.Services.InternEvaluationCriteriaService.Delete;
+using SWD.NextIntern.Service.Services.InternEvaluationCriteriaService.FilterInternEvaluationCriteria;
 using SWD.NextIntern.Service.Services.InternEvaluationCriteriaService.GetAll;
 using SWD.NextIntern.Service.Services.InternEvaluationCriteriaService.GetById;
 using SWD.NextIntern.Service.Services.InternEvaluationCriteriaService.Update;
@@ -31,11 +32,19 @@ namespace SWD.NextIntern.API.Controllers.InternEvaluationCriteria
             return result;
         }
 
+        //[Authorize(Policy = "AdminPolicy")]
+        //[HttpGet("all")]
+        //public async Task<ResponseObject<List<InternEvaluationCriteriaDto>>> GetAllInternEvaluationCriteria(CancellationToken cancellationToken = default)
+        //{
+        //    var result = await _mediator.Send(new GetAllQuery(), cancellationToken);
+        //    return result;
+        //}
+
         [Authorize(Policy = "AdminPolicy")]
         [HttpGet("all")]
-        public async Task<ResponseObject<List<InternEvaluationCriteriaDto>>> GetAllInternEvaluationCriteria(CancellationToken cancellationToken = default)
+        public async Task<ResponseObject<PagedListResponse<InternEvaluationCriteriaDto>>> GetAllInternEvaluationCriteria(int pageNo = 1, int pageSize = 10, CancellationToken cancellationToken = default)
         {
-            var result = await _mediator.Send(new GetAllQuery(), cancellationToken);
+            var result = await _mediator.Send(new FilterInternEvaluationCriteriaQuery(pageNo, pageSize), cancellationToken);
             return result;
         }
 

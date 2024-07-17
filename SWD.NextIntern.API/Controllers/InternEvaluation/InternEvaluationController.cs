@@ -10,6 +10,7 @@ using SWD.NextIntern.Service.Services.InternEvaluationService.GetInternEvaluatio
 using SWD.NextIntern.Service.Services.InternEvaluationService.Delete;
 using SWD.NextIntern.Service.Services.InternEvaluationService.Update;
 using Microsoft.AspNetCore.Authorization;
+using SWD.NextIntern.Service.Services.InternEvaluationService.FilterInternEvaluation;
 
 namespace SWD.NextIntern.API.Controllers.InternEvaluation
 {
@@ -33,11 +34,19 @@ namespace SWD.NextIntern.API.Controllers.InternEvaluation
             return result;
         }
 
+        //[Authorize(Policy = "AdminPolicy")]
+        //[HttpGet("all")]
+        //public async Task<ResponseObject<List<InternEvaluationDto>>> GetAllInternEvaluation(CancellationToken cancellationToken = default)
+        //{
+        //    var result = await _mediator.Send(new GetAllInternEvaluationQuery(), cancellationToken);
+        //    return result;
+        //}
+
         [Authorize(Policy = "AdminPolicy")]
         [HttpGet("all")]
-        public async Task<ResponseObject<List<InternEvaluationDto>>> GetAllInternEvaluation(CancellationToken cancellationToken = default)
+        public async Task<ResponseObject<PagedListResponse<InternEvaluationDto>>> GetAllInternEvaluation(int pageNo = 1, int pageSize = 10, CancellationToken cancellationToken = default)
         {
-            var result = await _mediator.Send(new GetAllInternEvaluationQuery(), cancellationToken);
+            var result = await _mediator.Send(new FilterInternEvaluationQuery(pageNo, pageSize), cancellationToken);
             return result;
         }
 

@@ -7,6 +7,7 @@ using SWD.NextIntern.Service.Services.UniversityService.Update;
 using SWD.NextIntern.Service.Services.UniversityService.Delete;
 using SWD.NextIntern.Service.Services.UniversityService.GetAll;
 using Microsoft.AspNetCore.Authorization;
+using SWD.NextIntern.Service.Services.UniversityService.FilterUniversity;
 
 namespace SWD.NextIntern.API.Controllers.University
 {
@@ -30,16 +31,23 @@ namespace SWD.NextIntern.API.Controllers.University
             return result;
         }
 
+        //[HttpGet("all")]
+        //public async Task<ResponseObject<List<UniversityDto>>> GetAllUniversity(CancellationToken cancellationToken = default)
+        //{
+        //    var result = await _mediator.Send(new GetAllQuery(), cancellationToken);
+        //    return result;
+        //}
+
         [HttpGet("all")]
-        public async Task<ResponseObject<List<UniversityDto>>> GetAllUniversity(CancellationToken cancellationToken = default)
+        public async Task<ResponseObject<PagedListResponse<UniversityDto>>> GetAllUniversity(int pageNo = 1, int pageSize = 10, CancellationToken cancellationToken = default)
         {
-            var result = await _mediator.Send(new GetAllQuery(), cancellationToken);
+            var result = await _mediator.Send(new FilterUniversityQuery(pageNo, pageSize), cancellationToken);
             return result;
         }
 
         [HttpGet("{id}")]
         public async Task<ResponseObject<UniversityDto>> GetUniversityById(string id, CancellationToken cancellationToken = default)
-        {          
+        {
             var result = await _mediator.Send(new GetUniversityByIdQuery(id), cancellationToken);
             return result;
         }
