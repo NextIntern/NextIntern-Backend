@@ -7,7 +7,7 @@ namespace SWD.NextIntern.Service.Services.UniversityService.Create
 {
     public class CreateUniversityCommand : IRequest<ResponseObject<string>>, ICommand
     {
-        public CreateUniversityCommand(string universityName, string address, string phone, DateTime? createDate, DateTime? modifyDate, DateTime? deleteDate)
+        public CreateUniversityCommand(string universityName, string address, string phone, DateTime? createDate, DateTime? modifyDate, DateTime? deleteDate, string? imgUrl)
         {
             UniversityName = universityName;
             Address = address;
@@ -15,6 +15,7 @@ namespace SWD.NextIntern.Service.Services.UniversityService.Create
             CreateDate = createDate;
             ModifyDate = modifyDate;
             DeleteDate = deleteDate;
+            ImgUrl = imgUrl;
         }
 
         public string UniversityName { get; set; }
@@ -31,5 +32,6 @@ namespace SWD.NextIntern.Service.Services.UniversityService.Create
 
         [JsonIgnore]
         public DateTime? DeleteDate { get; set; }
+        public string? ImgUrl { get; set; }
     }
 }
