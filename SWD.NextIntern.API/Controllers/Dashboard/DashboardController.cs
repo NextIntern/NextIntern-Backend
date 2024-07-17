@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SWD.NextIntern.Service.DTOs.Responses;
+using SWD.NextIntern.Service.Services.DashboardService._5MostIntern;
 using SWD.NextIntern.Service.Services.DashboardService.CountIntern;
 using SWD.NextIntern.Service.Services.DashboardService.Items;
+using SWD.NextIntern.Service.Services.DashboardService.MostIntern;
 
 namespace SWD.NextIntern.API.Controllers.Dashboard
 {
@@ -31,6 +33,13 @@ namespace SWD.NextIntern.API.Controllers.Dashboard
         public async Task<ResponseObject<List<CountInternDto>>> CountIntern(CancellationToken cancellationToken = default)
         {
             var result = await _mediator.Send(new CountInternQuery(), cancellationToken);
+            return result;
+        }
+
+        [HttpGet("5-most-intern")]
+        public async Task<ResponseObject<List<MostInternDto>>> GetMostIntern(CancellationToken cancellationToken = default)
+        {
+            var result = await _mediator.Send(new MostInternQuery(), cancellationToken);
             return result;
         }
     }
