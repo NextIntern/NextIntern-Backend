@@ -23,8 +23,9 @@ namespace SWD.NextIntern.Service.Services.UniversityService.Update
 
         [JsonIgnore]
         public DateTime? ModifyDate { get; set; }
+        public string ImgUrl { get; set; }
 
-        public UpdateUniversityCommand(string? universityName,string? universityId, string address, string phone, DateTime? modifyDate, string id)
+        public UpdateUniversityCommand(string? universityName, string? universityId, string address, string phone, DateTime? modifyDate, string id, string imgUrl)
         {
             UniversityName = universityName;
             UniversityId = universityId;
@@ -32,6 +33,7 @@ namespace SWD.NextIntern.Service.Services.UniversityService.Update
             Phone = phone;
             ModifyDate = modifyDate;
             Id = id;
+            ImgUrl = imgUrl;
         }
     }
 }
