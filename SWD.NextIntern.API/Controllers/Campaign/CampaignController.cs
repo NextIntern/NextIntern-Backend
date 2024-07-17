@@ -33,7 +33,7 @@ namespace SWD.NextIntern.API.Controllers.Campaign
         //}
 
         [HttpGet("all")]
-        public async Task<ResponseObject<IPagedResult<CampaignDto>>> GetAllCampaignWithFilter(int pageSize = 10, int pageNo = 1, CancellationToken cancellationToken = default)
+        public async Task<ResponseObject<PagedListResponse<CampaignDto>>> GetAllCampaignWithFilter(int pageSize = 10, int pageNo = 1, CancellationToken cancellationToken = default)
         {
             var result = await _mediator.Send(new FilterCampaignQuery(pageSize, pageNo), cancellationToken);
             return result;

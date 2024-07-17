@@ -15,23 +15,6 @@ public partial class AppDbContext : DbContext, IUnitOfWork
     {
     }
 
-    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
-    {
-        foreach (var entry in ChangeTracker.Entries())
-        {
-            if (entry.State == EntityState.Deleted)
-            {
-                entry.State = EntityState.Modified;
-                var deletedDateProperty = entry.Entity.GetType().GetProperty("DeletedDate");
-                if (deletedDateProperty is not null)
-                {
-                    deletedDateProperty.SetValue(entry.Entity, DateTime.Now);
-                }
-            }
-        }
-        return base.SaveChangesAsync(cancellationToken);
-    }
-
     public virtual DbSet<Campaign> Campaigns { get; set; }
 
     public virtual DbSet<CampaignEvaluation> CampaignEvaluations { get; set; }
@@ -53,6 +36,10 @@ public partial class AppDbContext : DbContext, IUnitOfWork
     public virtual DbSet<University> Universities { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
+
+    //    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+    //        => optionsBuilder.UseNpgsql("Host=database.nextintern.tech;Database=nextintern;Username=root;Password=iumaycauratnhiu");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -334,6 +321,9 @@ public partial class AppDbContext : DbContext, IUnitOfWork
             entity.Property(e => e.Id)
                 .ValueGeneratedOnAdd()
                 .HasColumnName("id");
+            entity.Property(e => e.ImgUrl)
+                .HasMaxLength(255)
+                .HasColumnName("imgUrl");
             entity.Property(e => e.ModifyDate)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .HasColumnType("timestamp without time zone")
@@ -379,6 +369,9 @@ public partial class AppDbContext : DbContext, IUnitOfWork
             entity.Property(e => e.Id)
                 .HasDefaultValueSql("nextval('intern_id_seq'::regclass)")
                 .HasColumnName("id");
+            entity.Property(e => e.ImgUrl)
+                .HasMaxLength(255)
+                .HasColumnName("imgUrl");
             entity.Property(e => e.MentorId).HasColumnName("mentor_id");
             entity.Property(e => e.ModifyDate)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")

@@ -1,12 +1,12 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SWD.NextIntern.Service.DTOs.Responses;
-using SWD.NextIntern.Service.Services.FormCriteriaService.GetAll;
 using Microsoft.AspNetCore.Authorization;
 using SWD.NextIntern.Service.Services.FormCriteriaService.GetById;
 using SWD.NextIntern.Service.Services.FormCriteriaService.Create;
 using SWD.NextIntern.Service.Services.FormCriteriaService.Delete;
 using SWD.NextIntern.Service.Services.FormCriteriaService.Update;
+using SWD.NextIntern.Service.Services.FormCriteriaService.FilterFormCriteria;
 namespace SWD.NextIntern.API.Controllers.FormCriteria
 {
     [ApiController]
@@ -21,11 +21,18 @@ namespace SWD.NextIntern.API.Controllers.FormCriteria
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
+        //[HttpGet("all")]
+        //public async Task<ResponseObject<List<FormCriteriaDto>>> GetAllFormCriteria(CancellationToken cancellationToken = default)
+        //{
+        //        var result = await _mediator.Send(new GetAllQuery(), cancellationToken);
+        //        return result;
+        //}
+
         [HttpGet("all")]
-        public async Task<ResponseObject<List<FormCriteriaDto>>> GetAllFormCriteria(CancellationToken cancellationToken = default)
+        public async Task<ResponseObject<PagedListResponse<FormCriteriaDto>>> GetAllFormCriteria(int pageNo = 1, int pageSize = 10, CancellationToken cancellationToken = default)
         {
-                var result = await _mediator.Send(new GetAllQuery(), cancellationToken);
-                return result;
+            var result = await _mediator.Send(new FilterFormCriteriaQuery(pageSize, pageNo), cancellationToken);
+            return result;
         }
 
         [HttpGet("{id}")]

@@ -8,6 +8,9 @@ using SWD.NextIntern.Service.Services.CampaignEvaluationService.GetById;
 using SWD.NextIntern.Service.Services.CampaignEvaluationService.Delete;
 using SWD.NextIntern.Service.Services.CampaignEvaluationService.Update;
 using Microsoft.AspNetCore.Authorization;
+using SWD.NextIntern.Service.Services.CampaignEvaluationService.FilterCampaignEvaluation;
+using SWD.NextIntern.Repository.Repositories.IRepositories;
+using SWD.NextIntern.Repository.Repositories;
 
 namespace SWD.NextIntern.API.Controllers.CampaignEvaluation
 {
@@ -24,9 +27,9 @@ namespace SWD.NextIntern.API.Controllers.CampaignEvaluation
         }
 
         [HttpGet("all")]
-        public async Task<ResponseObject<List<CampaignEvaluationDto>>> GetAllCampaign(CancellationToken cancellationToken = default)
+        public async Task<ResponseObject<PagedListResponse<CampaignEvaluationDto>>> GetAllCampaign(int pageNo = 1, int pageSize = 10, CancellationToken cancellationToken = default)
         {
-            var result = await _mediator.Send(new GetAllCampaignEvaluationQuery(), cancellationToken);
+            var result = await _mediator.Send(new FilterCampaignEvaluationQuery(pageSize, pageNo), cancellationToken);
             return result;
         }
 
