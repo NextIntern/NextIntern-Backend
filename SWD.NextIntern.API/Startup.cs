@@ -75,8 +75,8 @@ namespace SWD.NextIntern.API
             })
             .AddGoogle(googleOptions =>
             {
-                //googleOptions.ClientId = "172802685733-8o2atnnhq7vqq2da3gjb9g4u60nq17au.apps.googleusercontent.com";
-                //googleOptions.ClientSecret = "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";
+                googleOptions.ClientId = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_ID");
+                googleOptions.ClientSecret = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_SECRET");
                 googleOptions.CorrelationCookie.SecurePolicy = CookieSecurePolicy.Always;
                 googleOptions.CorrelationCookie.SameSite = SameSiteMode.None;
                 //googleOptions.SaveTokens = true;
