@@ -13,11 +13,13 @@ namespace SWD.NextIntern.Service.Services.InternEvaluationService
         //public User Intern { get; set; }
         public Guid? CampaignEvaluationId { get; set; }
         public string? Feedback { get; set; }
+        public string UniversityName { get; set; }
 
         public void Mapping(Profile profile)
         {
             profile.CreateMap<InternEvaluation, InternEvaluationDto>()
-                .ForMember(dest => dest.InternName, opt => opt.MapFrom(src => src.Intern != null ? src.Intern.FullName : string.Empty));
+                .ForMember(dest => dest.InternName, opt => opt.MapFrom(src => src.Intern != null ? src.Intern.FullName : string.Empty))
+                .ForMember(dest => dest.UniversityName, opt => opt.MapFrom(src => src.CampaignEvaluation.Campaign.University.UniversityName));
         }
     }
 }
