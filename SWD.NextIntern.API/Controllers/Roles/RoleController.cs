@@ -6,7 +6,7 @@ using SWD.NextIntern.Service.DTOs.Responses;
 using SWD.NextIntern.Service.Services.RoleService;
 using SWD.NextIntern.Service.Services.RoleService.GetAll;
 
-namespace SWD.NextIntern.API.Controllers.Role
+namespace SWD.NextIntern.API.Controllers.Roles
 {
     [Authorize(Policy = "AdminPolicy")]
     [ApiController]

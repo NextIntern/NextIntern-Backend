@@ -13,6 +13,7 @@ using MediatR;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.EntityFrameworkCore;
 using SWD.NextIntern.Repository.Repositories.IRepositories;
+using System.Data;
 
 namespace SWD.NextIntern.Service
 {
@@ -191,28 +192,41 @@ namespace SWD.NextIntern.Service
             }
         }
 
-        public string GenerateJwtTokenGoogle(ClaimsPrincipal user)
+        public async Task<string> GenerateJwtTokenGoogle(ClaimsPrincipal user)
         {
+
+
+            var authority = _configuration["Security:Bearer:Authority"];
+            var audience = _configuration["Security:Bearer:Audience"];
+            var key = Encoding.ASCII.GetBytes(_configuration["Jwt:SecretKey"]);
+            var securityKey = new SymmetricSecurityKey(key);
+            var creds = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             var claims = new List<Claim>
         {
             new Claim(JwtRegisteredClaimNames.Sub, user.FindFirstValue(ClaimTypes.NameIdentifier)),
             new Claim(JwtRegisteredClaimNames.Email, user.FindFirstValue(ClaimTypes.Email)),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+            new Claim(ClaimTypes.Role, "Admin")
         };
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:SecretKey"]));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var expires = DateTime.Now.AddDays(Convert.ToDouble(_configuration["Jwt:ExpireDays"]));
+            var identity = new ClaimsIdentity(claims);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = identity,
+                Expires = DateTime.UtcNow.AddDays(1),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256)
+            };
 
-            var token = new JwtSecurityToken(
-                _configuration["Jwt:Issuer"],
-                _configuration["Jwt:Audience"],
-                claims,
-                expires: expires,
-                signingCredentials: creds
-            );
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            var tokenString = tokenHandler.WriteToken(token);
 
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            await _cache.SetStringAsync("Token_" + user.FindFirstValue(ClaimTypes.NameIdentifier), tokenString, new DistributedCacheEntryOptions
+            {
+                AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(1)
+            });
+
+            return tokenString;
         }
     }
 }
