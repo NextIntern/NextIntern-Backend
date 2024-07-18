@@ -1,4 +1,6 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
@@ -7,6 +9,8 @@ using SWD.NextIntern.Service.Auth.ResetPassword;
 using SWD.NextIntern.Service.Auth.SignIn;
 using SWD.NextIntern.Service.Auth.SignUp;
 using SWD.NextIntern.Service.Services.Auth.RefreshToken;
+using SWD.NextIntern.Service;
+using SWD.NextIntern.Service.Common.Interfaces;
 
 namespace SWD.NextIntern.API.Controllers.Authentication
 {
@@ -16,11 +20,13 @@ namespace SWD.NextIntern.API.Controllers.Authentication
     {
         private readonly IMediator _mediator;
         private readonly IDistributedCache _cache;
+        private readonly IJwtService _jwtService;
 
-        public AuthController(IMediator mediator, IDistributedCache cache)
+        public AuthController(IMediator mediator, IDistributedCache cache, IJwtService jwtService)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
             _cache = cache;
+            _jwtService = jwtService;
         }
 
         //[HttpPost("signup")]
@@ -62,7 +68,7 @@ namespace SWD.NextIntern.API.Controllers.Authentication
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordQuery query)
         {
             try
-            {  
+            {
                 if (string.IsNullOrEmpty(query.Email))
                 {
                     throw new Exception("Email is required.");
@@ -115,5 +121,33 @@ namespace SWD.NextIntern.API.Controllers.Authentication
         //        return BadRequest(new { message = ex.Message });
         //    }
         //}
+
+        [HttpGet("signin-google")]
+        public IActionResult SignInGoogle()
+        {
+            var properties = new AuthenticationProperties { RedirectUri = Url.Action("GoogleCallback") };
+            return Challenge(properties, GoogleDefaults.AuthenticationScheme);
+        }
+
+        [HttpGet("google-callback")]
+        public async Task<IActionResult> GoogleCallback()
+        {
+            var result = await HttpContext.AuthenticateAsync(GoogleDefaults.AuthenticationScheme);
+            if (!result.Succeeded)
+            {
+                return BadRequest("Google authentication failed");
+            }
+
+            var token = _jwtService.GenerateJwtTokenGoogle(result.Principal);
+            return Ok(new { Token = token });
+        }
+
+        [HttpPost("signout")]
+        [Authorize]
+        public async Task<IActionResult> SignOut()
+        {
+            await HttpContext.SignOutAsync();
+            return Ok(new { message = "Signed out" });
+        }
     }
 }
