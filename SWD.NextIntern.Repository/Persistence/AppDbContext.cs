@@ -225,6 +225,10 @@ public partial class AppDbContext : DbContext, IUnitOfWork
 
         modelBuilder.Entity<InternEvaluation>(entity =>
         {
+            //entity.HasMany(e => e.InternEvaluationCriteria)
+            //      .WithOne(c => c.InternEvaluation)
+            //      .OnDelete(DeleteBehavior.Cascade);
+
             entity.HasKey(e => e.InternEvaluationId).HasName("intern_evaluation_pkey");
 
             entity.ToTable("intern_evaluation");
@@ -277,6 +281,7 @@ public partial class AppDbContext : DbContext, IUnitOfWork
             entity.HasOne(d => d.InternEvaluation).WithMany(p => p.InternEvaluationCriteria)
                 .HasForeignKey(d => d.InternEvaluationId)
                 .HasConstraintName("intern_evaluation_criteria_intern_evaluation_id_fkey");
+                //.OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<Role>(entity =>
