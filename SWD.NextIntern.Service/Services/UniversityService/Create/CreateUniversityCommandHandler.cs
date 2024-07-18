@@ -19,7 +19,7 @@ namespace SWD.NextIntern.Service.Services.UniversityService.Create
 
         public async Task<ResponseObject<string>> Handle(CreateUniversityCommand request, CancellationToken cancellationToken)
         {
-            var existUniversity = await _universityRepository.FindAsync(u => u.UniversityName.Equals(request.UniversityName), cancellationToken);
+            var existUniversity = await _universityRepository.FindAsync(u => u.UniversityName.Equals(request.UniversityName) && u.DeletedDate == null, cancellationToken); ;
 
             if (existUniversity != null)
             {
