@@ -13,6 +13,7 @@ namespace SWD.NextIntern.Service.Services.DashboardService.MostIntern
     {
         public Guid? InternId { get; set; }
         public string? Name { get; set; }
+        public string? InternMail { get; set; }
         public int? Score { get; set; }
     }
 }

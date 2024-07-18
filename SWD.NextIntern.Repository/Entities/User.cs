@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace SWD.NextIntern.Repository.Entities;
 
@@ -43,6 +44,7 @@ public partial class User
 
     public string? ImgUrl { get; set; }
 
+    [JsonIgnore]
     public virtual Campaign? Campaign { get; set; }
 
     public virtual ICollection<CampaignQuestionResponse> CampaignQuestionResponses { get; set; } = new List<CampaignQuestionResponse>();

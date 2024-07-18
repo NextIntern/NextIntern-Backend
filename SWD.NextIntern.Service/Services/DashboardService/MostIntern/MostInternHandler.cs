@@ -51,6 +51,7 @@ namespace SWD.NextIntern.Service.Services.DashboardService.MostIntern
                 {
                     InternId = user.UserId,
                     Name = user.FullName,
+                    InternMail = user.Email,
                     Score = ie.Score
                 });
             }

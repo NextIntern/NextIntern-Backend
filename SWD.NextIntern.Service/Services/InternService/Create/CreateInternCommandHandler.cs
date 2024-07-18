@@ -57,7 +57,8 @@ namespace SWD.NextIntern.Service.InternService.Create
                 Telephone = request.Telephone,
                 Dob = request.Dob,
                 Address = request.Address,
-                RoleId = role.RoleId
+                RoleId = role.RoleId,
+                ImgUrl = request.ImgUrl,
             };
 
             _userRepository.Add(newIntern);
