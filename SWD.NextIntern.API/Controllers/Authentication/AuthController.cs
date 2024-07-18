@@ -149,10 +149,10 @@ namespace SWD.NextIntern.API.Controllers.Authentication
             var tokenString = token.Result;
             //return Ok(tokenString);
 
-            return Redirect($"https://nextintern.tech/dashboard?token=tokenString");
+            return Redirect($"https://nextintern.tech/dashboard?token={tokenString}");
         }
 
-        [HttpPost("signout")]
+        [HttpPost("signout")]   
         [Authorize]
         public async Task<IActionResult> SignOut()
         {
