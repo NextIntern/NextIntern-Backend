@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using SWD.NextIntern.Service.Services.CampaignEvaluationService.FilterCampaignEvaluation;
 using SWD.NextIntern.Repository.Repositories.IRepositories;
 using SWD.NextIntern.Repository.Repositories;
+using SWD.NextIntern.Service.Services.CampaignEvaluationService.GetCEByCampaignId;
 
 namespace SWD.NextIntern.API.Controllers.CampaignEvaluation
 {
@@ -30,6 +31,13 @@ namespace SWD.NextIntern.API.Controllers.CampaignEvaluation
         public async Task<ResponseObject<PagedListResponse<CampaignEvaluationDto>>> GetAllCampaign(int pageNo = 1, int pageSize = 10, CancellationToken cancellationToken = default)
         {
             var result = await _mediator.Send(new FilterCampaignEvaluationQuery(pageSize, pageNo), cancellationToken);
+            return result;
+        }
+
+        [HttpGet("university/{id}")]
+        public async Task<ResponseObject<PagedListResponse<CampaignEvaluationDto>>> GetAllCampaignEvaluationByCampaignId(string id, int pageNo = 1, int pageSize = 10, CancellationToken cancellationToken = default)
+        {
+            var result = await _mediator.Send(new GetCEByCampaignIdQuery(pageSize, pageNo, id), cancellationToken);
             return result;
         }
 
