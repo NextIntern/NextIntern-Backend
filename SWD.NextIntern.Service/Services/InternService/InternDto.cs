@@ -43,11 +43,14 @@ public class InternDto : IMapFrom<User>
 
     public string? ImgUrl { get; set; }
 
-    public string UniversityName { get; set; }
+    public string? UniversityName { get; set; }
+
+    public string? State { get; set; }
 
     public void Mapping(Profile profile)
     {
         profile.CreateMap<User, InternDto>()
-        .ForMember(dest => dest.UniversityName, opt => opt.MapFrom(src => src.University.UniversityName));
+        .ForMember(dest => dest.UniversityName, opt => opt.MapFrom(src => src.University.UniversityName))
+        .ForMember(dest => dest.State, opt => opt.MapFrom(src => src.State == 2 ? "Completed" : src.State == 1 ? "During" : "Failed"));
     }
 }
