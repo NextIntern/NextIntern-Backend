@@ -37,7 +37,6 @@ namespace SWD.NextIntern.Service
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddScoped<IValidatorProvider, ValidatorProvider>();
 
-
             // Add Quartz services
             services.AddQuartz(q =>
             {
@@ -80,7 +79,6 @@ namespace SWD.NextIntern.Service
             services.AddTransient<DeleteFormCriteriaCommandHandler>();
             services.AddTransient<DeleteCampaignQuestionCommandHandler>();
             services.AddTransient<DeleteCampaignQuestionResponseCommandHandler>();
-
 
             return services;
         }
