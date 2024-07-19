@@ -25,14 +25,8 @@ namespace SWD.NextIntern.Service.InternEvaluationCriteriaService.Create
 
         public async Task<ResponseObject<string>> Handle(CreateInternEvaluationCriteriaCommand request, CancellationToken cancellationToken)
         {
-            //var ievaCriteria = await _internEvaluationCriteriaRepository.FindAsync(i => i.InternEvaluationCriteriaId.Equals(request.InternEvaluationCriteriaId));
             var ieva = await _internEvaluationRepository.FindAsync(i => i.InternEvaluationId.ToString().Equals(request.InternEvaluationId) && i.DeletedDate == null);
             var formCriteria = await _formCriteriaRepository.FindAsync(i => i.FormCriteriaId.ToString().Equals(request.FromCriteriaId) && i.DeletedDate == null);
-
-            //if (ievaCriteria == null)
-            //{
-            //    return new ResponseObject<string>(HttpStatusCode.NotFound, $"InternEvaluationCriteriaId with id {request.InternEvaluationCriteriaId} does not exist!");
-            //}
 
             if (ieva == null)
             {
