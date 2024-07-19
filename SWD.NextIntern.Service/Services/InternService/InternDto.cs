@@ -48,28 +48,6 @@ public class InternDto : IMapFrom<User>
     public void Mapping(Profile profile)
     {
         profile.CreateMap<User, InternDto>()
-        .ForMember(dest => dest.UniversityName, opt => opt.MapFrom(src => src.Campaign.University.UniversityName));
+        .ForMember(dest => dest.UniversityName, opt => opt.MapFrom(src => src.University.UniversityName));
     }
-
-    //public void Mapping(Profile profile)
-    //{
-    //    profile.CreateMap<User, InternDto>()
-    //    .ForMember(dest => dest.UniversityName, opt => opt.MapFrom(src => new UniversityNameResolver(_universityRepository)));
-    //}
-
-    //private class UniversityNameResolver : IValueResolver<User, InternDto, string>
-    //{
-    //    private readonly IUniversityRepository _universityRepository;
-
-    //    public UniversityNameResolver(IUniversityRepository universityRepository)
-    //    {
-    //        _universityRepository = universityRepository;
-    //    }
-
-    //    public string Resolve(User source, InternDto destination, string destMember, ResolutionContext context)
-    //    {
-    //        var uni = _universityRepository.GetUniversityNameById(source.UniversityId);
-    //        return uni ?? string.Empty;
-    //    }
-    //}
 }

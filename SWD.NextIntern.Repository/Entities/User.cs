@@ -64,4 +64,6 @@ public partial class User
 
     [JsonIgnore]
     public virtual Role? Role { get; set; }
+
+    public virtual University? University { get; set; }
 }

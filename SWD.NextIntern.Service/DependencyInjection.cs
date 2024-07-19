@@ -17,6 +17,8 @@ using SWD.NextIntern.Service.Services.InternEvaluationService.Delete;
 using MediatR;
 using SWD.NextIntern.Service.DTOs.Responses;
 using SWD.NextIntern.Service.Services.CampaignQuestionResponseService.Delete;
+using AutoMapper;
+using SWD.NextIntern.Repository.Repositories.IRepositories;
 
 
 namespace SWD.NextIntern.Service
@@ -35,6 +37,7 @@ namespace SWD.NextIntern.Service
             });
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
             services.AddScoped<IValidatorProvider, ValidatorProvider>();
 
             // Add Quartz services

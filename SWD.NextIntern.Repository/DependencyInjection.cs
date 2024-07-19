@@ -5,7 +5,7 @@ using SWD.NextIntern.Repository.Common;
 using SWD.NextIntern.Repository.Persistence;
 using SWD.NextIntern.Repository.Repositories;
 using SWD.NextIntern.Repository.Repositories.IRepositories;
-
+using AutoMapper;
 
 namespace SWD.NextIntern.Repository
 {
