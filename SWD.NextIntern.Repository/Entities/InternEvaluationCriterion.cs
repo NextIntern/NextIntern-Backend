@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace SWD.NextIntern.Repository.Entities;
 
@@ -17,7 +18,9 @@ public partial class InternEvaluationCriterion
 
     public DateTime? DeletedDate { get; set; }
 
+    [JsonIgnore]
     public virtual FormCriterion? FormCriteria { get; set; }
 
+    [JsonIgnore]
     public virtual InternEvaluation? InternEvaluation { get; set; }
 }

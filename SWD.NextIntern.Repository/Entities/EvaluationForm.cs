@@ -23,5 +23,6 @@ public partial class EvaluationForm
     [JsonIgnore]
     public virtual ICollection<FormCriterion> FormCriteria { get; set; } = new List<FormCriterion>();
 
+    [JsonIgnore]
     public virtual University? University { get; set; }
 }

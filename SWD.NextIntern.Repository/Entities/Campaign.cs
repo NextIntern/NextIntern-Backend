@@ -24,10 +24,13 @@ public partial class Campaign
 
     public DateTime? DeletedDate { get; set; }
 
+    [JsonIgnore]
     public virtual ICollection<CampaignEvaluation> CampaignEvaluations { get; set; } = new List<CampaignEvaluation>();
 
+    [JsonIgnore]
     public virtual ICollection<CampaignQuestion> CampaignQuestions { get; set; } = new List<CampaignQuestion>();
 
+    [JsonIgnore]
     public virtual University? University { get; set; }
 
     [JsonIgnore]
