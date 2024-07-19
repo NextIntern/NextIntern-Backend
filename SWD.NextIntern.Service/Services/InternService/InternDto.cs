@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using SWD.NextIntern.Repository.Entities;
+using SWD.NextIntern.Repository.Repositories;
+using SWD.NextIntern.Repository.Repositories.IRepositories;
 using SWD.NextIntern.Service.Common.Mappings;
 using System.Text.Json.Serialization;
 
@@ -37,10 +40,36 @@ public class InternDto : IMapFrom<User>
 
     [JsonIgnore]
     public DateTime? DeletedDate { get; set; }
+
     public string? ImgUrl { get; set; }
+
+    public string UniversityName { get; set; }
 
     public void Mapping(Profile profile)
     {
-        profile.CreateMap<User, InternDto>();
+        profile.CreateMap<User, InternDto>()
+        .ForMember(dest => dest.UniversityName, opt => opt.MapFrom(src => src.Campaign.University.UniversityName));
     }
+
+    //public void Mapping(Profile profile)
+    //{
+    //    profile.CreateMap<User, InternDto>()
+    //    .ForMember(dest => dest.UniversityName, opt => opt.MapFrom(src => new UniversityNameResolver(_universityRepository)));
+    //}
+
+    //private class UniversityNameResolver : IValueResolver<User, InternDto, string>
+    //{
+    //    private readonly IUniversityRepository _universityRepository;
+
+    //    public UniversityNameResolver(IUniversityRepository universityRepository)
+    //    {
+    //        _universityRepository = universityRepository;
+    //    }
+
+    //    public string Resolve(User source, InternDto destination, string destMember, ResolutionContext context)
+    //    {
+    //        var uni = _universityRepository.GetUniversityNameById(source.UniversityId);
+    //        return uni ?? string.Empty;
+    //    }
+    //}
 }

@@ -5,5 +5,6 @@ namespace SWD.NextIntern.Repository.Repositories.IRepositories
 {
     public interface IUniversityRepository : IEFRepository<University, University>
     {
+  
     }
 }
