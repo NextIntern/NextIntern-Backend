@@ -12,17 +12,26 @@ namespace SWD.NextIntern.Service.Services.InternService.GetByUniversityId
 {
     public class GetByUniversityIdQueryHandler : IRequestHandler<GetByUniversityIdQuery, ResponseObject<PagedListResponse<InternDto>>>
     {
-        private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
+        private readonly IUserRepository _userRepository;
+        private readonly IUniversityRepository _universityRepository;
 
-        public GetByUniversityIdQueryHandler(IUserRepository userRepository, IMapper mapper)
+        public GetByUniversityIdQueryHandler(IUserRepository userRepository, IMapper mapper, IUniversityRepository universityRepository)
         {
             _userRepository = userRepository;
             _mapper = mapper;
+            _universityRepository = universityRepository;
         }
 
         public async Task<ResponseObject<PagedListResponse<InternDto>>> Handle(GetByUniversityIdQuery request, CancellationToken cancellationToken)
         {
+            var university = await _universityRepository.FindAsync(u => u.UniversityId.ToString().Equals(request.UniversityId) && u.DeletedDate == null, cancellationToken);
+
+            if (university is null)
+            {
+                return new ResponseObject<PagedListResponse<InternDto>>(HttpStatusCode.NotFound, $"University with id {request.UniversityId} does not exist!");
+            }
+
             var queryOptions = (IQueryable<User> query) =>
             {
                 return query
@@ -36,7 +45,7 @@ namespace SWD.NextIntern.Service.Services.InternService.GetByUniversityId
 
             if (interns == null)
             {
-                return new ResponseObject<PagedListResponse<InternDto>>(HttpStatusCode.NotFound, $"University with id {request.UniversityId} does not exist!");
+                return new ResponseObject<PagedListResponse<InternDto>>(HttpStatusCode.NotFound, $"Intern with University id {request.UniversityId} does not exist!");
             }
 
             var response = new PagedListResponse<InternDto>

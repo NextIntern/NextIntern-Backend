@@ -9,6 +9,7 @@ using SWD.NextIntern.Service.Services.EvaluationFormService.Delete;
 using SWD.NextIntern.Service.Services.EvaluationFormService.Update;
 using SWD.NextIntern.Service.Services.CampaignEvaluationService.FilterCampaignEvaluation;
 using SWD.NextIntern.Service.Services.EvaluationFormService.FilterEvaluationForm;
+using SWD.NextIntern.Service.Services.EvaluationFormService.GetByUniversityId;
 namespace SWD.NextIntern.API.Controllers.EvaluationForm
 {
     [ApiController]
@@ -34,6 +35,13 @@ namespace SWD.NextIntern.API.Controllers.EvaluationForm
         public async Task<ResponseObject<PagedListResponse<EvaluationFormDto>>> GetAllEvaluationForm(int pageNo = 1, int pageSize = 10, CancellationToken cancellationToken = default)
         {
             var result = await _mediator.Send(new FilterEvaluationFormQuery(pageSize, pageNo), cancellationToken);
+            return result;
+        }
+
+        [HttpGet("university/{id}")]
+        public async Task<ResponseObject<PagedListResponse<EvaluationFormDto>>> GetEvaluationFormByUniversityId(string id, int pageNo = 1, int pageSize = 10, CancellationToken cancellationToken = default)
+        {
+            var result = await _mediator.Send(new GetEvaluationFormByUniversityIdQuery(id, pageNo, pageSize), cancellationToken);
             return result;
         }
 
