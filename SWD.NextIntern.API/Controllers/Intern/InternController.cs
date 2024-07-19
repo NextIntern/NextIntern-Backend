@@ -7,6 +7,7 @@ using SWD.NextIntern.Service.InternService.Create;
 using SWD.NextIntern.Service.Services.InternService.Delete;
 using SWD.NextIntern.Service.Services.InternService.FilterIntern;
 using SWD.NextIntern.Service.Services.InternService.GetAll;
+using SWD.NextIntern.Service.Services.InternService.GetByCampaignId;
 using SWD.NextIntern.Service.Services.InternService.GetById;
 using SWD.NextIntern.Service.Services.InternService.GetByUniversityId;
 using SWD.NextIntern.Service.Services.InternService.Update;
@@ -51,6 +52,13 @@ namespace SWD.NextIntern.API.Controllers.Intern
         public async Task<ResponseObject<PagedListResponse<InternDto>>> GetInternByUniversityId(string id, int pageNo = 1, int pageSize = 10, CancellationToken cancellationToken = default)
         {
             var result = await _mediator.Send(new GetByUniversityIdQuery(id, pageNo, pageSize), cancellationToken);
+            return result;
+        }
+
+        [HttpGet("campaign/{id}")]
+        public async Task<ResponseObject<PagedListResponse<InternDto>>> GetInternByCampaignId(string id, int pageNo = 1, int pageSize = 10, CancellationToken cancellationToken = default)
+        {
+            var result = await _mediator.Send(new GetInternByCampaignIdQuery(id, pageNo, pageSize), cancellationToken);
             return result;
         }
 
