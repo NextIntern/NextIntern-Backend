@@ -28,7 +28,8 @@ namespace SWD.NextIntern.Service.Services.CampaignQuestionResponseService.Delete
                 return new ResponseObject<string>(HttpStatusCode.NotFound, $"Campaign Question Response with id {request.Id} does not exist!");
             }
 
-            _campaignQuestionResponseRepository.Remove(response);
+            response.DeletedDate = DateTime.Now;
+
             return await _campaignQuestionResponseRepository.UnitOfWork.SaveChangesAsync(cancellationToken) > 0 ? new ResponseObject<string>(HttpStatusCode.OK, "Success!") : new ResponseObject<string>(HttpStatusCode.BadRequest, "Fail!");
         }
     }
