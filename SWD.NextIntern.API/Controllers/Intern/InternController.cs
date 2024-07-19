@@ -48,9 +48,9 @@ namespace SWD.NextIntern.API.Controllers.Intern
         }
 
         [HttpGet("university/{id}")]
-        public async Task<ResponseObject<List<InternDto>>> GetInternByUniversityId(string id, CancellationToken cancellationToken = default)
+        public async Task<ResponseObject<PagedListResponse<InternDto>>> GetInternByUniversityId(string id, int pageNo = 1, int pageSize = 10, CancellationToken cancellationToken = default)
         {
-            var result = await _mediator.Send(new GetByUniversityIdQuery(id), cancellationToken);
+            var result = await _mediator.Send(new GetByUniversityIdQuery(id, pageNo, pageSize), cancellationToken);
             return result;
         }
 

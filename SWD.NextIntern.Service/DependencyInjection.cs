@@ -59,6 +59,27 @@ namespace SWD.NextIntern.Service
                 options.WaitForJobsToComplete = true;
             });
 
+            services.AddTransient<IRequestHandler<DeleteUniversityCommand, ResponseObject<string>>, DeleteUniversityCommandHandler>();
+            services.AddTransient<IRequestHandler<DeleteInternCommand, ResponseObject<string>>, DeleteInternCommandHandler>();
+            services.AddTransient<IRequestHandler<DeleteEvaluationFormCommand, ResponseObject<string>>, DeleteEvaluationFormCommandHandler>();
+            services.AddTransient<IRequestHandler<DeleteCampaignCommand, ResponseObject<string>>, DeleteCampaignCommandHandler>();
+            services.AddTransient<IRequestHandler<DeleteCampaignEvaluationCommand, ResponseObject<string>>, DeleteCampaignEvaluationCommandHandler>();
+            services.AddTransient<IRequestHandler<DeleteInternEvaluationCommand, ResponseObject<string>>, DeleteInternEvaluationCommandHandler>();
+            services.AddTransient<IRequestHandler<DeleteFormCriteriaCommand, ResponseObject<string>>, DeleteFormCriteriaCommandHandler>();
+            services.AddTransient<IRequestHandler<DeleteCampaignQuestionCommand, ResponseObject<string>>, DeleteCampaignQuestionCommandHandler>();
+            services.AddTransient<IRequestHandler<DeleteCampaignQuestionResponseCommand, ResponseObject<string>>, DeleteCampaignQuestionResponseCommandHandler>();
+
+            services.AddTransient<DeleteCampaignCommandHandler>();
+            services.AddTransient<DeleteUniversityCommandHandler>();
+            services.AddTransient<DeleteInternCommandHandler>();
+            services.AddTransient<DeleteEvaluationFormCommandHandler>();
+            services.AddTransient<DeleteCampaignEvaluationCommandHandler>();
+            services.AddTransient<DeleteCampaignCommandHandler>();
+            services.AddTransient<DeleteInternEvaluationCommandHandler>();
+            services.AddTransient<DeleteFormCriteriaCommandHandler>();
+            services.AddTransient<DeleteCampaignQuestionCommandHandler>();
+            services.AddTransient<DeleteCampaignQuestionResponseCommandHandler>();
+
             return services;
         }
     }

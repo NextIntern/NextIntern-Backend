@@ -2,13 +2,15 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using SWD.NextIntern.Repository.Entities;
+using SWD.NextIntern.Repository.Repositories;
 using SWD.NextIntern.Repository.Repositories.IRepositories;
 using SWD.NextIntern.Service.DTOs.Responses;
+using SWD.NextIntern.Service.Services.InternEvaluationService;
 using System.Net;
 
 namespace SWD.NextIntern.Service.Services.InternService.GetByUniversityId
 {
-    public class GetByUniversityIdQueryHandler : IRequestHandler<GetByUniversityIdQuery, ResponseObject<List<InternDto>>>
+    public class GetByUniversityIdQueryHandler : IRequestHandler<GetByUniversityIdQuery, ResponseObject<PagedListResponse<InternDto>>>
     {
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
@@ -19,7 +21,7 @@ namespace SWD.NextIntern.Service.Services.InternService.GetByUniversityId
             _mapper = mapper;
         }
 
-        public async Task<ResponseObject<List<InternDto>>> Handle(GetByUniversityIdQuery request, CancellationToken cancellationToken)
+        public async Task<ResponseObject<PagedListResponse<InternDto>>> Handle(GetByUniversityIdQuery request, CancellationToken cancellationToken)
         {
             var queryOptions = (IQueryable<User> query) =>
             {
@@ -30,14 +32,23 @@ namespace SWD.NextIntern.Service.Services.InternService.GetByUniversityId
                 .Include(x => x.Mentor);
             };
 
-            var interns = await _userRepository.FindAllAsync(queryOptions, cancellationToken);
+            var interns = await _userRepository.FindAllProjectToAsync<InternDto>(request.PageNo, request.PageSize, queryOptions, cancellationToken);
 
             if (interns == null)
             {
-                return new ResponseObject<List<InternDto>>(HttpStatusCode.NotFound, $"University with id {request.UniversityId} does not exist!");
+                return new ResponseObject<PagedListResponse<InternDto>>(HttpStatusCode.NotFound, $"University with id {request.UniversityId} does not exist!");
             }
 
-            return new ResponseObject<List<InternDto>>(_mapper.Map<List<InternDto>>(interns), HttpStatusCode.OK, "Success!");
+            var response = new PagedListResponse<InternDto>
+            {
+                Items = (PagedList<InternDto>)interns,
+                TotalCount = interns.TotalCount,
+                PageCount = interns.PageCount,
+                PageNo = interns.PageNo,
+                PageSize = interns.PageSize
+            };
+
+            return new ResponseObject<PagedListResponse<InternDto>>(response, HttpStatusCode.OK, "Success!");
         }
     }
 }
