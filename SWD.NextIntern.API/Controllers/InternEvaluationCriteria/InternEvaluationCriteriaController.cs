@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SWD.NextIntern.Service.DTOs.Responses;
 using SWD.NextIntern.Service.InternEvaluationCriteriaService.Create;
+using SWD.NextIntern.Service.Services.InternEvaluationCriteriaService.CreateList;
 using SWD.NextIntern.Service.Services.InternEvaluationCriteriaService.Delete;
 using SWD.NextIntern.Service.Services.InternEvaluationCriteriaService.FilterInternEvaluationCriteria;
 using SWD.NextIntern.Service.Services.InternEvaluationCriteriaService.GetAll;
@@ -27,6 +28,14 @@ namespace SWD.NextIntern.API.Controllers.InternEvaluationCriteria
         [Authorize(Policy = "AdminPolicy")]
         [HttpPost("create")]
         public async Task<ResponseObject<string>> CreateInternEvaluationCriteria([FromBody] CreateInternEvaluationCriteriaCommand command, CancellationToken cancellationToken = default)
+        {
+            var result = await _mediator.Send(command, cancellationToken);
+            return result;
+        }
+
+        [Authorize(Policy = "AdminPolicy")]
+        [HttpPost("create-list")]
+        public async Task<ResponseObject<string>> CreateListInternEvaluationCriteria([FromBody] CreateListInternEvaluationCriteriaCommand command, CancellationToken cancellationToken = default)
         {
             var result = await _mediator.Send(command, cancellationToken);
             return result;

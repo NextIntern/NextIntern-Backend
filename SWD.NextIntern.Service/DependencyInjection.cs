@@ -1,8 +1,10 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SWD.NextIntern.Service.Common.Behaviours;
 using FluentValidation;
+using Quartz;
+using SWD.NextIntern.Service.Common.Behaviours;
 using SWD.NextIntern.Service.Common.Validation;
+using SWD.NextIntern.Service.Services.Quartzs;
 using System.Reflection;
 using SWD.NextIntern.Service.Services.CampaignEvaluationService.Delete;
 using SWD.NextIntern.Service.Services.CampaignService.Delete;
@@ -15,6 +17,7 @@ using SWD.NextIntern.Service.Services.InternEvaluationService.Delete;
 using MediatR;
 using SWD.NextIntern.Service.DTOs.Responses;
 using SWD.NextIntern.Service.Services.CampaignQuestionResponseService.Delete;
+
 
 namespace SWD.NextIntern.Service
 {
@@ -33,6 +36,29 @@ namespace SWD.NextIntern.Service
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddScoped<IValidatorProvider, ValidatorProvider>();
+
+
+            // Add Quartz services
+            services.AddQuartz(q =>
+            {
+                // Use the job factory that uses Microsoft DI
+                //q.UseMicrosoftDependencyInjectionJobFactory();
+
+                // Register the job
+                q.AddJob<UpdateCampaignStateJob>(opts => opts.WithIdentity("UpdateCampaignStateJob"));
+
+                // Register the trigger
+                q.AddTrigger(opts => opts
+                    .ForJob("UpdateCampaignStateJob")
+                    .WithIdentity("UpdateCampaignStateJob-trigger")
+                    .WithCronSchedule("0/5 * * * * ?")); // Run every 5 seconds for example
+            });
+
+            // Add Quartz.NET hosted service
+            services.AddQuartzHostedService(options =>
+            {
+                options.WaitForJobsToComplete = true;
+            });
 
             services.AddTransient<IRequestHandler<DeleteUniversityCommand, ResponseObject<string>>, DeleteUniversityCommandHandler>();
             services.AddTransient<IRequestHandler<DeleteInternCommand, ResponseObject<string>>, DeleteInternCommandHandler>();
@@ -54,6 +80,7 @@ namespace SWD.NextIntern.Service
             services.AddTransient<DeleteFormCriteriaCommandHandler>();
             services.AddTransient<DeleteCampaignQuestionCommandHandler>();
             services.AddTransient<DeleteCampaignQuestionResponseCommandHandler>();
+
 
             return services;
         }
