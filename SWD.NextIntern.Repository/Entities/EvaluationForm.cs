@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace SWD.NextIntern.Repository.Entities;
 
@@ -20,7 +19,6 @@ public partial class EvaluationForm
 
     public DateTime? DeletedDate { get; set; }
 
-    [JsonIgnore]
     public virtual ICollection<FormCriterion> FormCriteria { get; set; } = new List<FormCriterion>();
 
     [JsonIgnore]

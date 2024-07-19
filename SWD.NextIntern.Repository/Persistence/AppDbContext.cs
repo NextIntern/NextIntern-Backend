@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using SWD.NextIntern.Repository.Common;
 using SWD.NextIntern.Repository.Entities;
 
@@ -74,6 +76,7 @@ public partial class AppDbContext : DbContext, IUnitOfWork
             entity.Property(e => e.CampaignName)
                 .HasMaxLength(255)
                 .HasColumnName("campaign_name");
+            entity.Property(e => e.CampaignState).HasColumnName("campaign_state");
             entity.Property(e => e.CreateDate)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .HasColumnType("timestamp without time zone")
@@ -242,10 +245,6 @@ public partial class AppDbContext : DbContext, IUnitOfWork
 
         modelBuilder.Entity<InternEvaluation>(entity =>
         {
-            //entity.HasMany(e => e.InternEvaluationCriteria)
-            //      .WithOne(c => c.InternEvaluation)
-            //      .OnDelete(DeleteBehavior.Cascade);
-
             entity.HasKey(e => e.InternEvaluationId).HasName("intern_evaluation_pkey");
 
             entity.ToTable("intern_evaluation");
@@ -298,7 +297,6 @@ public partial class AppDbContext : DbContext, IUnitOfWork
             entity.HasOne(d => d.InternEvaluation).WithMany(p => p.InternEvaluationCriteria)
                 .HasForeignKey(d => d.InternEvaluationId)
                 .HasConstraintName("intern_evaluation_criteria_intern_evaluation_id_fkey");
-                //.OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<Role>(entity =>
@@ -405,9 +403,11 @@ public partial class AppDbContext : DbContext, IUnitOfWork
                 .HasMaxLength(100)
                 .HasColumnName("password");
             entity.Property(e => e.RoleId).HasColumnName("role_id");
+            entity.Property(e => e.State).HasColumnName("state");
             entity.Property(e => e.Telephone)
                 .HasMaxLength(50)
                 .HasColumnName("telephone");
+            entity.Property(e => e.UniversityId).HasColumnName("university_id");
             entity.Property(e => e.Username)
                 .HasMaxLength(100)
                 .HasColumnName("username");

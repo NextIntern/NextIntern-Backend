@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace SWD.NextIntern.Repository.Entities;
 
@@ -44,7 +43,10 @@ public partial class User
 
     public string? ImgUrl { get; set; }
 
-    [JsonIgnore]
+    public Guid? UniversityId { get; set; }
+
+    public int? State { get; set; } //0=Failed, 1=During, 2=Completed
+
     public virtual Campaign? Campaign { get; set; }
 
     [JsonIgnore]

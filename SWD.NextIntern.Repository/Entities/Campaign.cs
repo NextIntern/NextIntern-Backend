@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace SWD.NextIntern.Repository.Entities;
 
@@ -24,7 +23,8 @@ public partial class Campaign
 
     public DateTime? DeletedDate { get; set; }
 
-    [JsonIgnore]
+    public int? CampaignState { get; set; } //0=Not Yet, 1=Opening, 2=Closed
+  
     public virtual ICollection<CampaignEvaluation> CampaignEvaluations { get; set; } = new List<CampaignEvaluation>();
 
     [JsonIgnore]
@@ -33,6 +33,5 @@ public partial class Campaign
     [JsonIgnore]
     public virtual University? University { get; set; }
 
-    [JsonIgnore]
     public virtual ICollection<User> Users { get; set; } = new List<User>();
 }

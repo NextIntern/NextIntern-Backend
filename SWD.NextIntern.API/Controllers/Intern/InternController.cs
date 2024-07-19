@@ -8,6 +8,7 @@ using SWD.NextIntern.Service.Services.InternService.Delete;
 using SWD.NextIntern.Service.Services.InternService.FilterIntern;
 using SWD.NextIntern.Service.Services.InternService.GetAll;
 using SWD.NextIntern.Service.Services.InternService.GetById;
+using SWD.NextIntern.Service.Services.InternService.GetByUniversityId;
 using SWD.NextIntern.Service.Services.InternService.Update;
 using System.Threading;
 
@@ -43,6 +44,13 @@ namespace SWD.NextIntern.API.Controllers.Intern
         public async Task<ResponseObject<InternDto?>> GetInternById(string id, CancellationToken cancellationToken = default)
         {
             var result = await _mediator.Send(new GetInternByIdQuery(id), cancellationToken);
+            return result;
+        }
+
+        [HttpGet("university/{id}")]
+        public async Task<ResponseObject<List<InternDto>>> GetInternByUniversityId(string id, CancellationToken cancellationToken = default)
+        {
+            var result = await _mediator.Send(new GetByUniversityIdQuery(id), cancellationToken);
             return result;
         }
 
