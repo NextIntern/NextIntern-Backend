@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using SWD.NextIntern.Repository.Entities;
 using SWD.NextIntern.Repository.Persistence;
 using SWD.NextIntern.Repository.Repositories.IRepositories;
