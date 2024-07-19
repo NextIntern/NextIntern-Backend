@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace SWD.NextIntern.Repository.Entities;
 
@@ -21,6 +22,7 @@ public partial class FormCriterion
 
     public Guid? EvaluationFormId { get; set; }
 
+    [JsonIgnore]
     public virtual EvaluationForm? EvaluationForm { get; set; }
 
     public virtual ICollection<InternEvaluationCriterion> InternEvaluationCriteria { get; set; } = new List<InternEvaluationCriterion>();

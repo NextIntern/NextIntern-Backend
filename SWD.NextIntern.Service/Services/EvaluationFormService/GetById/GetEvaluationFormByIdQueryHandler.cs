@@ -28,9 +28,10 @@ namespace SWD.NextIntern.Service.Services.EvaluationFormService.GetById
             var queryOptions = (IQueryable<EvaluationForm> query) =>
             {
                 return query
-                .Include(x => x.University)
                 .Where(x => x.DeletedDate == null
-                 && x.EvaluationFormId.ToString().Equals(request.Id)); ;
+                 && x.EvaluationFormId.ToString().Equals(request.Id))
+                .Include(x => x.FormCriteria)
+                .Include(x => x.University);
             };
 
             var form = await _evaluationFormRepository.FindAsync(queryOptions, cancellationToken);
