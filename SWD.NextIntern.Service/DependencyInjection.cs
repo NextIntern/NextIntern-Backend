@@ -1,8 +1,10 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SWD.NextIntern.Service.Common.Behaviours;
 using FluentValidation;
+using Quartz;
+using SWD.NextIntern.Service.Common.Behaviours;
 using SWD.NextIntern.Service.Common.Validation;
+using SWD.NextIntern.Service.Services.Quartzs;
 using System.Reflection;
 using SWD.NextIntern.Service.Services.CampaignEvaluationService.Delete;
 using SWD.NextIntern.Service.Services.CampaignService.Delete;
@@ -15,6 +17,7 @@ using SWD.NextIntern.Service.Services.InternEvaluationService.Delete;
 using MediatR;
 using SWD.NextIntern.Service.DTOs.Responses;
 using SWD.NextIntern.Service.Services.CampaignQuestionResponseService.Delete;
+
 
 namespace SWD.NextIntern.Service
 {
@@ -34,26 +37,27 @@ namespace SWD.NextIntern.Service
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddScoped<IValidatorProvider, ValidatorProvider>();
 
-            services.AddTransient<IRequestHandler<DeleteUniversityCommand, ResponseObject<string>>, DeleteUniversityCommandHandler>();
-            services.AddTransient<IRequestHandler<DeleteInternCommand, ResponseObject<string>>, DeleteInternCommandHandler>();
-            services.AddTransient<IRequestHandler<DeleteEvaluationFormCommand, ResponseObject<string>>, DeleteEvaluationFormCommandHandler>();
-            services.AddTransient<IRequestHandler<DeleteCampaignCommand, ResponseObject<string>>, DeleteCampaignCommandHandler>();
-            services.AddTransient<IRequestHandler<DeleteCampaignEvaluationCommand, ResponseObject<string>>, DeleteCampaignEvaluationCommandHandler>();
-            services.AddTransient<IRequestHandler<DeleteInternEvaluationCommand, ResponseObject<string>>, DeleteInternEvaluationCommandHandler>();
-            services.AddTransient<IRequestHandler<DeleteFormCriteriaCommand, ResponseObject<string>>, DeleteFormCriteriaCommandHandler>();
-            services.AddTransient<IRequestHandler<DeleteCampaignQuestionCommand, ResponseObject<string>>, DeleteCampaignQuestionCommandHandler>();
-            services.AddTransient<IRequestHandler<DeleteCampaignQuestionResponseCommand, ResponseObject<string>>, DeleteCampaignQuestionResponseCommandHandler>();
+            // Add Quartz services
+            services.AddQuartz(q =>
+            {
+                // Use the job factory that uses Microsoft DI
+                //q.UseMicrosoftDependencyInjectionJobFactory();
 
-            services.AddTransient<DeleteCampaignCommandHandler>();
-            services.AddTransient<DeleteUniversityCommandHandler>();
-            services.AddTransient<DeleteInternCommandHandler>();
-            services.AddTransient<DeleteEvaluationFormCommandHandler>();
-            services.AddTransient<DeleteCampaignEvaluationCommandHandler>();
-            services.AddTransient<DeleteCampaignCommandHandler>();
-            services.AddTransient<DeleteInternEvaluationCommandHandler>();
-            services.AddTransient<DeleteFormCriteriaCommandHandler>();
-            services.AddTransient<DeleteCampaignQuestionCommandHandler>();
-            services.AddTransient<DeleteCampaignQuestionResponseCommandHandler>();
+                // Register the job
+                q.AddJob<UpdateCampaignStateJob>(opts => opts.WithIdentity("UpdateCampaignStateJob"));
+
+                // Register the trigger
+                q.AddTrigger(opts => opts
+                    .ForJob("UpdateCampaignStateJob")
+                    .WithIdentity("UpdateCampaignStateJob-trigger")
+                    .WithCronSchedule("0/5 * * * * ?")); // Run every 5 seconds for example
+            });
+
+            // Add Quartz.NET hosted service
+            services.AddQuartzHostedService(options =>
+            {
+                options.WaitForJobsToComplete = true;
+            });
 
             return services;
         }
