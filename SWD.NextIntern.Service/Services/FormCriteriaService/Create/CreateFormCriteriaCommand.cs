@@ -7,7 +7,7 @@ namespace SWD.NextIntern.Service.Services.FormCriteriaService.Create
 {
     public class CreateFormCriteriaCommand : IRequest<ResponseObject<string>>, ICommand
     {
-        public CreateFormCriteriaCommand(string formCriteriaName, string guide, int minScore, int maxScore, DateTime? deleteDate, Guid evaluationFormId)
+        public CreateFormCriteriaCommand(string formCriteriaName, string guide, int minScore, int maxScore, DateTime? deleteDate, string evaluationFormId)
         {
             FormCriteriaName = formCriteriaName;
             Guide = guide;
@@ -28,6 +28,6 @@ namespace SWD.NextIntern.Service.Services.FormCriteriaService.Create
         [JsonIgnore]
         public DateTime? DeleteDate { get; set; }
 
-        public Guid EvaluationFormId { get; set; }
+        public string EvaluationFormId { get; set; }
     }
 }

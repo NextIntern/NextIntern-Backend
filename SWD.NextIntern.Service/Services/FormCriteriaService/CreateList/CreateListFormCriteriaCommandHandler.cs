@@ -1,26 +1,24 @@
 ﻿using MediatR;
 using SWD.NextIntern.Repository.Entities;
-using SWD.NextIntern.Repository.Repositories;
 using SWD.NextIntern.Repository.Repositories.IRepositories;
 using SWD.NextIntern.Service.DTOs.Responses;
 using System.Linq.Expressions;
 using System.Net;
 
-
-namespace SWD.NextIntern.Service.Services.FormCriteriaService.Create
+namespace SWD.NextIntern.Service.Services.FormCriteriaService.CreateList
 {
-    public class CreateEvaluationFormCommandHandler : IRequestHandler<CreateFormCriteriaCommand, ResponseObject<string>>
+    public class CreateListFormCriteriaCommandHandler : IRequestHandler<CreateListFormCriteriaCommand, ResponseObject<string>>
     {
-        private readonly IEvaluationFormRepository _evaluationFormRepository;
         private readonly IFormCriteriaRepository _formCriteriaRepository;
+        private readonly IEvaluationFormRepository _evaluationFormRepository;
 
-        public CreateEvaluationFormCommandHandler(IEvaluationFormRepository evaluationFormRepository, IFormCriteriaRepository formCriteriaRepository)
+        public CreateListFormCriteriaCommandHandler(IFormCriteriaRepository formCriteriaRepository, IEvaluationFormRepository evaluationFormRepository)
         {
-            _evaluationFormRepository = evaluationFormRepository;
             _formCriteriaRepository = formCriteriaRepository;
+            _evaluationFormRepository = evaluationFormRepository;
         }
 
-        public async Task<ResponseObject<string>> Handle(CreateFormCriteriaCommand request, CancellationToken cancellationToken)
+        public async Task<ResponseObject<string>> Handle(CreateListFormCriteriaCommand request, CancellationToken cancellationToken)
         {
             Expression<Func<EvaluationForm, bool>> queryFilter = (EvaluationForm f) => f.EvaluationFormId.ToString().Equals(request.EvaluationFormId) && f.DeletedDate == null;
 
@@ -31,19 +29,23 @@ namespace SWD.NextIntern.Service.Services.FormCriteriaService.Create
                 return new ResponseObject<string>(HttpStatusCode.NotFound, $"Evaluation Form with id {request.EvaluationFormId} does not exist!");
             }
 
-            var form = new FormCriterion
+            foreach (var item in request.ListFormCriteria)
             {
-                Name = request.FormCriteriaName,
-                Guide = request.Guide,
-                MinScore = request.MinScore,
-                MaxScore = request.MaxScore,
-                DeletedDate = null,
-                EvaluationFormId = Guid.Parse(request.EvaluationFormId),
-            };
+                var form = new FormCriterion
+                {
+                    Name = item.FormCriteriaName,
+                    Guide = item.Guide,
+                    MinScore = item.MinScore,
+                    MaxScore = item.MaxScore,
+                    DeletedDate = null,
+                    EvaluationFormId = Guid.Parse(request.EvaluationFormId),
+                };
 
-            _formCriteriaRepository.Add(form);
+                _formCriteriaRepository.Add(form);
+            }
 
             return await _formCriteriaRepository.UnitOfWork.SaveChangesAsync(cancellationToken) > 0 ? new ResponseObject<string>(HttpStatusCode.Created, "Success!") : new ResponseObject<string>(HttpStatusCode.BadRequest, "Fail!");
+
         }
     }
 }

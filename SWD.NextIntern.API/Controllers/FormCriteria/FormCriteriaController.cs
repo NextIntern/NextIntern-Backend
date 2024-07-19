@@ -7,6 +7,7 @@ using SWD.NextIntern.Service.Services.FormCriteriaService.Create;
 using SWD.NextIntern.Service.Services.FormCriteriaService.Delete;
 using SWD.NextIntern.Service.Services.FormCriteriaService.Update;
 using SWD.NextIntern.Service.Services.FormCriteriaService.FilterFormCriteria;
+using SWD.NextIntern.Service.Services.FormCriteriaService.CreateList;
 namespace SWD.NextIntern.API.Controllers.FormCriteria
 {
     [ApiController]
@@ -45,6 +46,14 @@ namespace SWD.NextIntern.API.Controllers.FormCriteria
         [Authorize(Policy = "AdminPolicy")]
         [HttpPost("create")]
         public async Task<ResponseObject<string>> CreateFormCriteria([FromBody] CreateFormCriteriaCommand command, CancellationToken cancellationToken = default)
+        {
+            var result = await _mediator.Send(command, cancellationToken);
+            return result;
+        }
+
+        [Authorize(Policy = "AdminPolicy")]
+        [HttpPost("create-list")]
+        public async Task<ResponseObject<string>> CreateListFormCriteria([FromBody] CreateListFormCriteriaCommand command, CancellationToken cancellationToken = default)
         {
             var result = await _mediator.Send(command, cancellationToken);
             return result;
