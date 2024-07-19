@@ -44,7 +44,7 @@ namespace SWD.NextIntern.Service.Services.InternEvaluationService.Delete
             }
 
             internEvaluation.DeletedDate = DateTime.Now;
-            //_internEvaluationRepository.Remove(internEvaluation);
+
             return await _internEvaluationRepository.UnitOfWork.SaveChangesAsync(cancellationToken) > 0 ? new ResponseObject<string>(HttpStatusCode.OK, "Success!") : new ResponseObject<string>(HttpStatusCode.BadRequest, "Fail!");
         }
     }

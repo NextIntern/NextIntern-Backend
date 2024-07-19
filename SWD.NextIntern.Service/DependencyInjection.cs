@@ -6,6 +6,17 @@ using SWD.NextIntern.Service.Common.Behaviours;
 using SWD.NextIntern.Service.Common.Validation;
 using SWD.NextIntern.Service.Services.Quartzs;
 using System.Reflection;
+using SWD.NextIntern.Service.Services.CampaignEvaluationService.Delete;
+using SWD.NextIntern.Service.Services.CampaignService.Delete;
+using SWD.NextIntern.Service.Services.EvaluationFormService.Delete;
+using SWD.NextIntern.Service.Services.InternService.Delete;
+using SWD.NextIntern.Service.Services.UniversityService.Delete;
+using SWD.NextIntern.Service.Services.CampaignQuestionService.Delete;
+using SWD.NextIntern.Service.Services.FormCriteriaService.Delete;
+using SWD.NextIntern.Service.Services.InternEvaluationService.Delete;
+using MediatR;
+using SWD.NextIntern.Service.DTOs.Responses;
+using SWD.NextIntern.Service.Services.CampaignQuestionResponseService.Delete;
 
 
 namespace SWD.NextIntern.Service
@@ -25,6 +36,7 @@ namespace SWD.NextIntern.Service
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddScoped<IValidatorProvider, ValidatorProvider>();
+
 
             // Add Quartz services
             services.AddQuartz(q =>
@@ -47,6 +59,28 @@ namespace SWD.NextIntern.Service
             {
                 options.WaitForJobsToComplete = true;
             });
+
+            services.AddTransient<IRequestHandler<DeleteUniversityCommand, ResponseObject<string>>, DeleteUniversityCommandHandler>();
+            services.AddTransient<IRequestHandler<DeleteInternCommand, ResponseObject<string>>, DeleteInternCommandHandler>();
+            services.AddTransient<IRequestHandler<DeleteEvaluationFormCommand, ResponseObject<string>>, DeleteEvaluationFormCommandHandler>();
+            services.AddTransient<IRequestHandler<DeleteCampaignCommand, ResponseObject<string>>, DeleteCampaignCommandHandler>();
+            services.AddTransient<IRequestHandler<DeleteCampaignEvaluationCommand, ResponseObject<string>>, DeleteCampaignEvaluationCommandHandler>();
+            services.AddTransient<IRequestHandler<DeleteInternEvaluationCommand, ResponseObject<string>>, DeleteInternEvaluationCommandHandler>();
+            services.AddTransient<IRequestHandler<DeleteFormCriteriaCommand, ResponseObject<string>>, DeleteFormCriteriaCommandHandler>();
+            services.AddTransient<IRequestHandler<DeleteCampaignQuestionCommand, ResponseObject<string>>, DeleteCampaignQuestionCommandHandler>();
+            services.AddTransient<IRequestHandler<DeleteCampaignQuestionResponseCommand, ResponseObject<string>>, DeleteCampaignQuestionResponseCommandHandler>();
+
+            services.AddTransient<DeleteCampaignCommandHandler>();
+            services.AddTransient<DeleteUniversityCommandHandler>();
+            services.AddTransient<DeleteInternCommandHandler>();
+            services.AddTransient<DeleteEvaluationFormCommandHandler>();
+            services.AddTransient<DeleteCampaignEvaluationCommandHandler>();
+            services.AddTransient<DeleteCampaignCommandHandler>();
+            services.AddTransient<DeleteInternEvaluationCommandHandler>();
+            services.AddTransient<DeleteFormCriteriaCommandHandler>();
+            services.AddTransient<DeleteCampaignQuestionCommandHandler>();
+            services.AddTransient<DeleteCampaignQuestionResponseCommandHandler>();
+
 
             return services;
         }

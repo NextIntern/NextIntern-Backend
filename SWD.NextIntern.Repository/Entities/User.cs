@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace SWD.NextIntern.Repository.Entities;
 
@@ -49,13 +50,18 @@ public partial class User
 
     public virtual Campaign? Campaign { get; set; }
 
+    [JsonIgnore]
     public virtual ICollection<CampaignQuestionResponse> CampaignQuestionResponses { get; set; } = new List<CampaignQuestionResponse>();
 
+    [JsonIgnore]
     public virtual ICollection<InternEvaluation> InternEvaluations { get; set; } = new List<InternEvaluation>();
 
+    [JsonIgnore]
     public virtual ICollection<User> InverseMentor { get; set; } = new List<User>();
 
+    [JsonIgnore]
     public virtual User? Mentor { get; set; }
 
+    [JsonIgnore]
     public virtual Role? Role { get; set; }
 }
