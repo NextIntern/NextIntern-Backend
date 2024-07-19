@@ -25,5 +25,6 @@ public partial class FormCriterion
     [JsonIgnore]
     public virtual EvaluationForm? EvaluationForm { get; set; }
 
+    [JsonIgnore]
     public virtual ICollection<InternEvaluationCriterion> InternEvaluationCriteria { get; set; } = new List<InternEvaluationCriterion>();
 }

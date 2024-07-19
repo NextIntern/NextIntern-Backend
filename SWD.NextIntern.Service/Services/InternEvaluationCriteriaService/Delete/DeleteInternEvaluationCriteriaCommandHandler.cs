@@ -22,7 +22,8 @@ namespace SWD.NextIntern.Service.Services.InternEvaluationCriteriaService.Delete
                 return new ResponseObject<string>(HttpStatusCode.NotFound, $"InternEvaluationCriteriaId with id {request.Id} does not exist!");
             }
 
-            _internEvaluationCriteriaRepository.Remove(iaCriteria);
+            iaCriteria.DeletedDate = DateTime.Now;
+
             return await _internEvaluationCriteriaRepository.UnitOfWork.SaveChangesAsync(cancellationToken) > 0 ? new ResponseObject<string>(HttpStatusCode.OK, "Success!") : new ResponseObject<string>(HttpStatusCode.BadRequest, "Fail!");
         }
     }

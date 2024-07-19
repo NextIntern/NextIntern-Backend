@@ -24,6 +24,7 @@ public partial class University
 
     public string? ImgUrl { get; set; }
 
+    [JsonIgnore]
     public virtual ICollection<Campaign> Campaigns { get; set; } = new List<Campaign>();
 
     [JsonIgnore]

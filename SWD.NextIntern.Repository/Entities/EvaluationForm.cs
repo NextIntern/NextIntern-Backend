@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace SWD.NextIntern.Repository.Entities;
 
@@ -21,5 +22,6 @@ public partial class EvaluationForm
 
     public virtual ICollection<FormCriterion> FormCriteria { get; set; } = new List<FormCriterion>();
 
+    [JsonIgnore]
     public virtual University? University { get; set; }
 }
