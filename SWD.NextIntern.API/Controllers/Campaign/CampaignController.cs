@@ -9,6 +9,7 @@ using SWD.NextIntern.Service.Services.CampaignService.Delete;
 using SWD.NextIntern.Service.Services.CampaignService.FilterCampaign;
 using SWD.NextIntern.Service.Services.CampaignService.GetAll;
 using SWD.NextIntern.Service.Services.CampaignService.GetById;
+using SWD.NextIntern.Service.Services.CampaignService.GetByUniversityId;
 using SWD.NextIntern.Service.Services.CampaignService.Update;
 
 namespace SWD.NextIntern.API.Controllers.Campaign
@@ -36,6 +37,13 @@ namespace SWD.NextIntern.API.Controllers.Campaign
         public async Task<ResponseObject<PagedListResponse<CampaignDto>>> GetAllCampaignWithFilter(int pageSize = 10, int pageNo = 1, CancellationToken cancellationToken = default)
         {
             var result = await _mediator.Send(new FilterCampaignQuery(pageSize, pageNo), cancellationToken);
+            return result;
+        }
+
+        [HttpGet("university/{id}")]
+        public async Task<ResponseObject<PagedListResponse<CampaignDto>>> GetCampaignByUniversityId(string id, int pageSize = 10, int pageNo = 1, CancellationToken cancellationToken = default)
+        {
+            var result = await _mediator.Send(new GetCampaignByUniversityIdQuery(pageSize, pageNo, id), cancellationToken);
             return result;
         }
 
