@@ -1,5 +1,6 @@
 ﻿
 using MediatR;
+using Microsoft.IdentityModel.Tokens;
 using SWD.NextIntern.Repository.Entities;
 using SWD.NextIntern.Repository.IRepositories;
 using SWD.NextIntern.Repository.Repositories;
@@ -61,12 +62,16 @@ namespace SWD.NextIntern.Service.InternService.Create
                 throw new Exception("Passwords do not match.");
             }
 
-            var existCampaign = await _campaignRepository.FindAsync(c => c.CampaignId.ToString().Equals(request.CampaignId) && c.DeletedDate == null, cancellationToken);
-
-            if (existCampaign == null)
+            if (!request.CampaignId.IsNullOrEmpty())
             {
-                throw new Exception($"Campaign with id {request.CampaignId} is not exist!");
+                var existCampaign = await _campaignRepository.FindAsync(c => c.CampaignId.ToString().Equals(request.CampaignId) && c.DeletedDate == null, cancellationToken);
+
+                if (existCampaign == null)
+                {
+                    throw new Exception($"Campaign with id {request.CampaignId} is not exist!");
+                }
             }
+
 
             var existUniversity = await _universityRepository.FindAsync(c => c.UniversityId.ToString().Equals(request.UniversityId) && c.DeletedDate == null, cancellationToken);
 
@@ -90,7 +95,7 @@ namespace SWD.NextIntern.Service.InternService.Create
                 RoleId = role.RoleId,
                 ImgUrl = request.ImgUrl,
                 UniversityId = Guid.Parse(request.UniversityId),
-                CampaignId = Guid.Parse(request.CampaignId)
+                CampaignId = !request.CampaignId.IsNullOrEmpty() ? Guid.Parse(request.CampaignId) : null
             };
 
             _userRepository.Add(newIntern);
