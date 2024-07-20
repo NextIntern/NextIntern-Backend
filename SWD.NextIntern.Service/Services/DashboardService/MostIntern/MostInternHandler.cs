@@ -31,6 +31,7 @@ namespace SWD.NextIntern.Service.Services.DashboardService.MostIntern
 
             var top5List = await _dbContext.InternEvaluationCriteria
                 .Include(s => s.InternEvaluation)
+                .Include(s => s.FormCriteria)
                 .Where(s => s.DeletedDate == null)
                 .OrderByDescending(s => s.Score)
                 .Take(5)
@@ -52,6 +53,7 @@ namespace SWD.NextIntern.Service.Services.DashboardService.MostIntern
                     InternId = user.UserId,
                     Name = user.FullName,
                     InternMail = user.Email,
+                    FormCriteriaName = ie.FormCriteria.Name,
                     Score = ie.Score
                 });
             }
