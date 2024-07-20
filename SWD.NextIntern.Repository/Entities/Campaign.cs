@@ -24,8 +24,8 @@ public partial class Campaign
 
     public DateTime? DeletedDate { get; set; }
 
-    public int? CampaignState { get; set; } //0=Not Yet, 1=Opening, 2=Closed
-  
+    public int? CampaignState { get; set; } //1=Opening, 0=Closed
+
     public virtual ICollection<CampaignEvaluation> CampaignEvaluations { get; set; } = new List<CampaignEvaluation>();
 
     [JsonIgnore]
