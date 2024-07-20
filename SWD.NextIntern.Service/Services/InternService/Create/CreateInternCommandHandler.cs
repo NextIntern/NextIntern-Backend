@@ -59,6 +59,7 @@ namespace SWD.NextIntern.Service.InternService.Create
                 Address = request.Address,
                 RoleId = role.RoleId,
                 ImgUrl = request.ImgUrl,
+                UniversityId = Guid.Parse(request.UniversityId)
             };
 
             _userRepository.Add(newIntern);
