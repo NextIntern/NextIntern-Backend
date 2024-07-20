@@ -11,7 +11,7 @@ namespace SWD.NextIntern.Service.Services.InternService.Update
 {
     public class UpdateInternCommand : IRequest<ResponseObject<string>>, ICommand
     {
-        public UpdateInternCommand(string id, string fullname, DateOnly? dob, string gender, string telephone, string address, string campaignId, string roleName, DateTime? createDate, DateTime? modifyDate, DateTime? deleteDate, string imgUrl, string? universityId)
+        public UpdateInternCommand(string id, string fullname, DateOnly? dob, string gender, string telephone, string address, string campaignId, string roleName, DateTime? createDate, DateTime? modifyDate, DateTime? deleteDate, string imgUrl, string? universityId, string email)
         {
             Id = id;
             Fullname = fullname;
@@ -27,6 +27,7 @@ namespace SWD.NextIntern.Service.Services.InternService.Update
             DeleteDate = deleteDate;
             ImgUrl = imgUrl;
             UniversityId = universityId;
+            Email = email;
         }
 
         public string Id { get; set; }
@@ -43,7 +44,7 @@ namespace SWD.NextIntern.Service.Services.InternService.Update
         public string Telephone { get; set; }
 
         //[JsonIgnore]
-        //public string Email { get; set; }
+        public string Email { get; set; }
 
         public string Address { get; set; }
 

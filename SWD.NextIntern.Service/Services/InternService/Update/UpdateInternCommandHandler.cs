@@ -77,6 +77,7 @@ namespace SWD.NextIntern.Service.Services.InternService.Update
             user.Gender = request.Gender ?? user.Gender;
             user.Telephone = request.Telephone ?? user.Telephone;
             user.Address = request.Address ?? user.Address;
+            user.Email = request.Email ?? user.Email;
             //user.Mentor = mentor ?? user.Mentor;
             user.ModifyDate = DateTime.Now;
 
