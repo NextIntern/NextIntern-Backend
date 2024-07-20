@@ -34,23 +34,23 @@ namespace SWD.NextIntern.Service.Services.InternEvaluationCriteriaService.Create
             _internEvaluationRepository.Add(ieva);
             var result = await _internEvaluationRepository.UnitOfWork.SaveChangesAsync(cancellationToken);
 
-            if (result > 0) return new ResponseObject<string>(HttpStatusCode.NotFound, $"Cannot create InternEvaluation");
+            if (result > 1) return new ResponseObject<string>(HttpStatusCode.NotFound, $"Cannot create InternEvaluation");
 
             foreach (var item in request.InternEvaluationCriterias)
             {
                 var formCriteria = await _formCriteriaRepository.FindAsync(i =>
-                    i.FormCriteriaId.ToString().Equals(item.FromCriteriaId) &&
+                    i.FormCriteriaId.ToString().Equals(item.FormCriteriaId) &&
                     i.DeletedDate == null);
 
                 if (formCriteria == null)
                 {
-                    return new ResponseObject<string>(HttpStatusCode.NotFound, $"FromCriteriaId with id {item.FromCriteriaId} does not exist!");
+                    return new ResponseObject<string>(HttpStatusCode.NotFound, $"FromCriteriaId with id {item.FormCriteriaId} does not exist!");
                 }
 
                 var newIevaCriteria = new InternEvaluationCriterion
                 {
                     InternEvaluationId = ieva.InternEvaluationId,
-                    FormCriteriaId = Guid.Parse(item.FromCriteriaId),
+                    FormCriteriaId = Guid.Parse(item.FormCriteriaId),
                     Score = item.Score
                 };
 

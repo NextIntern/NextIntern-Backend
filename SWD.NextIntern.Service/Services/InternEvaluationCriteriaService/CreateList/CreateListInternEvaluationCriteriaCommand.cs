@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Newtonsoft.Json;
 using SWD.NextIntern.Service.DTOs.Responses;
 
 namespace SWD.NextIntern.Service.Services.InternEvaluationCriteriaService.CreateList
@@ -19,7 +20,7 @@ namespace SWD.NextIntern.Service.Services.InternEvaluationCriteriaService.Create
 
     public class InternEvaluationCriteriaRequest
     {
-        public string? FromCriteriaId { get; set; }
+        public string? FormCriteriaId { get; set; }
         public int? Score { get; set; }
     }
 }
