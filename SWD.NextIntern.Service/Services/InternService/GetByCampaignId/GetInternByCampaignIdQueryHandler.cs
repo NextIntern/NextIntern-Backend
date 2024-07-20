@@ -33,7 +33,7 @@ namespace SWD.NextIntern.Service.Services.InternService.GetByCampaignId
             {
                 return query
                 .Where(x => x.DeletedDate == null
-                && x.UniversityId.ToString().Equals(request.CampaignId))
+                && x.CampaignId.ToString().Equals(request.CampaignId))
                 .Include(x => x.Campaign)
                 .Include(x => x.Mentor);
             };
