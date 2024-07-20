@@ -32,6 +32,7 @@ namespace SWD.NextIntern.Service.InternService.Create
         public DateOnly? Dob { get; set; }
         public string RoleName { get; set; }
         public string? Address { get; set; }
-        public string ImgUrl { get; set; }
+        public string? ImgUrl { get; set; }
+        public string? UniversityId { get; set; }
     }
 }
