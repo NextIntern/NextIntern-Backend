@@ -34,7 +34,7 @@ namespace SWD.NextIntern.Service.Services.InternEvaluationCriteriaService.Create
             _internEvaluationRepository.Add(ieva);
             var result = await _internEvaluationRepository.UnitOfWork.SaveChangesAsync(cancellationToken);
 
-            if (result > 0) return new ResponseObject<string>(HttpStatusCode.NotFound, $"Cannot create InternEvaluation");
+            if (result < 0) return new ResponseObject<string>(HttpStatusCode.NotFound, $"Cannot create InternEvaluation");
 
             foreach (var item in request.InternEvaluationCriterias)
             {
