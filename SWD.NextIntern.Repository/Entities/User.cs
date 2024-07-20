@@ -46,7 +46,7 @@ public partial class User
 
     public Guid? UniversityId { get; set; }
 
-    public int? State { get; set; } //0=Failed, 1=During, 2=Completed
+    public int? State { get; set; } = 1; //0=Failed, 1=During, 2=Completed
 
     public virtual Campaign? Campaign { get; set; }
 
