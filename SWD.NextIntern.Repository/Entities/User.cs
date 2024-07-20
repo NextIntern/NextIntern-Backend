@@ -48,6 +48,7 @@ public partial class User
 
     public int? State { get; set; } = 1; //0=Failed, 1=During, 2=Completed
 
+    [JsonIgnore]
     public virtual Campaign? Campaign { get; set; }
 
     [JsonIgnore]
