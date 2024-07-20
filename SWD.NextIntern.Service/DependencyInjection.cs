@@ -43,9 +43,6 @@ namespace SWD.NextIntern.Service
             // Add Quartz services
             services.AddQuartz(q =>
             {
-                // Use the job factory that uses Microsoft DI
-                //q.UseMicrosoftDependencyInjectionJobFactory();
-
                 // Register the job
                 q.AddJob<UpdateCampaignStateJob>(opts => opts.WithIdentity("UpdateCampaignStateJob"));
 
@@ -53,6 +50,15 @@ namespace SWD.NextIntern.Service
                 q.AddTrigger(opts => opts
                     .ForJob("UpdateCampaignStateJob")
                     .WithIdentity("UpdateCampaignStateJob-trigger")
+                    .WithCronSchedule("0/5 * * * * ?")); // Run every 5 seconds for example
+
+                // Register the job
+                q.AddJob<UpdateInternStateJob>(opts => opts.WithIdentity("UpdateInternStateJob"));
+
+                // Register the trigger
+                q.AddTrigger(opts => opts
+                    .ForJob("UpdateInternStateJob")
+                    .WithIdentity("UpdateInternStateJob-trigger")
                     .WithCronSchedule("0/5 * * * * ?")); // Run every 5 seconds for example
             });
 
