@@ -16,6 +16,7 @@ namespace SWD.NextIntern.Service.InternService.Create
         private readonly IUserRepository _userRepository;
         private readonly IJwtService _jwtService;
         private readonly IRoleRepository _roleRepository;
+        private readonly ICampaignRepository _campaignRepository;
 
         public CreateInternCommandHandler(IUserRepository userRepository, IJwtService jwtService, IRoleRepository roleRepository)
         {
@@ -23,6 +24,18 @@ namespace SWD.NextIntern.Service.InternService.Create
             _jwtService = jwtService;
             _roleRepository = roleRepository;
         }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is CreateInternCommandHandler handler &&
+                   EqualityComparer<ICampaignRepository>.Default.Equals(_campaignRepository, handler._campaignRepository);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(_campaignRepository);
+        }
+
         public async Task<TokenResponse> Handle(CreateInternCommand request, CancellationToken cancellationToken)
         {
             var existingIntern = await _userRepository.FindAsync(i => i.Username.Equals(request.Username));
@@ -45,6 +58,13 @@ namespace SWD.NextIntern.Service.InternService.Create
                 throw new Exception("Passwords do not match.");
             }
 
+            var existCampaign = await _campaignRepository.FindAsync(c => c.CampaignId.ToString().Equals(request.CampaignId) && c.DeletedDate == null, cancellationToken);
+
+            if (existCampaign != null)
+            {
+                throw new Exception($"Campaign with id {request.CampaignId} is exist!");
+            }
+
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(request.Password);
 
             var newIntern = new User    
@@ -59,7 +79,8 @@ namespace SWD.NextIntern.Service.InternService.Create
                 Address = request.Address,
                 RoleId = role.RoleId,
                 ImgUrl = request.ImgUrl,
-                UniversityId = Guid.Parse(request.UniversityId)
+                UniversityId = Guid.Parse(request.UniversityId),
+                CampaignId = Guid.Parse(request.CampaignId)
             };
 
             _userRepository.Add(newIntern);
