@@ -17,12 +17,15 @@ namespace SWD.NextIntern.Service.InternService.Create
         private readonly IJwtService _jwtService;
         private readonly IRoleRepository _roleRepository;
         private readonly ICampaignRepository _campaignRepository;
+        private readonly IUniversityRepository _universityRepository;
 
-        public CreateInternCommandHandler(IUserRepository userRepository, IJwtService jwtService, IRoleRepository roleRepository)
+        public CreateInternCommandHandler(IUserRepository userRepository, IJwtService jwtService, IRoleRepository roleRepository, ICampaignRepository campaignRepository, IUniversityRepository universityRepository)
         {
             _userRepository = userRepository;
             _jwtService = jwtService;
             _roleRepository = roleRepository;
+            _campaignRepository = campaignRepository;
+            _universityRepository = universityRepository;
         }
 
         public override bool Equals(object? obj)
@@ -60,9 +63,16 @@ namespace SWD.NextIntern.Service.InternService.Create
 
             var existCampaign = await _campaignRepository.FindAsync(c => c.CampaignId.ToString().Equals(request.CampaignId) && c.DeletedDate == null, cancellationToken);
 
-            if (existCampaign != null)
+            if (existCampaign == null)
             {
-                throw new Exception($"Campaign with id {request.CampaignId} is exist!");
+                throw new Exception($"Campaign with id {request.CampaignId} is not exist!");
+            }
+
+            var existUniversity = await _universityRepository.FindAsync(c => c.UniversityId.ToString().Equals(request.UniversityId) && c.DeletedDate == null, cancellationToken);
+
+            if (existUniversity == null)
+            {
+                throw new Exception($"University with id {request.UniversityId} is not exist!");
             }
 
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(request.Password);
