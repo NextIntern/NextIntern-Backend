@@ -1,5 +1,4 @@
 using SWD.NextIntern.API;
-
 namespace SWD.NextIntern.Api
 {
     public class Program

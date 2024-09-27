@@ -1,0 +1,47 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Node.js CI
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+
+jobs:
+  deploy-image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Add .env file
+        run: echo "${{ secrets.ENVIROMENT_VARIABLES }}" >> .env
+
+      - name: Build & push Dockerfile image
+        uses: mr-smithers-excellent/docker-build-push@v6
+        with:
+          image: ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}
+          tags: v1, latest
+          registry: docker.io
+          dockerfile: Dockerfile
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+  # pull-image:
+  #   runs-on: self-hosted
+  #   needs: deploy-image
+
+  #   steps:
+  #     - name: Pull Docker image
+  #       run: docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}
+  #     - name: Create docker-compose.yml file
+  #       run: nano ${{ secrets.DOCKER_COMPOSE_FILE }} >> docker-compose.yml
+  #     - name: Stop Docker image
+  #       run: docker-compose down
+  #     - name: Run Docker image
+  #       run: docker-compose up -d
+  #     - name: Remove docker-compose.yml file
+  #       run: rm docker-compose.yml

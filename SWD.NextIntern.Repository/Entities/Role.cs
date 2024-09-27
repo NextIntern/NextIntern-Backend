@@ -1,4 +1,8 @@
-﻿namespace SWD.NextIntern.Repository.Entities;
+﻿using System;
+using System.Collections.Generic;
+using System.Text.Json.Serialization;
+
+namespace SWD.NextIntern.Repository.Entities;
 
 public partial class Role
 {
@@ -8,7 +12,8 @@ public partial class Role
 
     public string RoleName { get; set; } = null!;
 
-    public virtual ICollection<Intern> Interns { get; set; } = new List<Intern>();
+    public DateTime? DeletedDate { get; set; }
 
-    public virtual ICollection<Staff> Staff { get; set; } = new List<Staff>();
+    [JsonIgnore]
+    public virtual ICollection<User> Users { get; set; } = new List<User>();
 }

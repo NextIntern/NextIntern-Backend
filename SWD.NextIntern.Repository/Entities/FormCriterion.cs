@@ -1,4 +1,8 @@
-﻿namespace SWD.NextIntern.Repository.Entities;
+﻿using System;
+using System.Collections.Generic;
+using System.Text.Json.Serialization;
+
+namespace SWD.NextIntern.Repository.Entities;
 
 public partial class FormCriterion
 {
@@ -14,7 +18,13 @@ public partial class FormCriterion
 
     public int? MaxScore { get; set; }
 
-    public virtual ICollection<EvaluationFormDetail> EvaluationFormDetails { get; set; } = new List<EvaluationFormDetail>();
+    public DateTime? DeletedDate { get; set; }
 
+    public Guid? EvaluationFormId { get; set; }
+
+    [JsonIgnore]
+    public virtual EvaluationForm? EvaluationForm { get; set; }
+
+    [JsonIgnore]
     public virtual ICollection<InternEvaluationCriterion> InternEvaluationCriteria { get; set; } = new List<InternEvaluationCriterion>();
 }

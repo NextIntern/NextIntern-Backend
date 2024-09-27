@@ -1,4 +1,8 @@
-﻿namespace SWD.NextIntern.Repository.Entities;
+﻿using System;
+using System.Collections.Generic;
+using System.Text.Json.Serialization;
+
+namespace SWD.NextIntern.Repository.Entities;
 
 public partial class CampaignQuestionResponse
 {
@@ -14,7 +18,11 @@ public partial class CampaignQuestionResponse
 
     public int? Rating { get; set; }
 
+    public DateTime? DeletedDate { get; set; }
+
+    [JsonIgnore]
     public virtual CampaignQuestion? CampaignQuestion { get; set; }
 
-    public virtual Intern? Intern { get; set; }
+    [JsonIgnore]
+    public virtual User? Intern { get; set; }
 }

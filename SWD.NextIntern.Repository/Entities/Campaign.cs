@@ -1,4 +1,8 @@
-﻿namespace SWD.NextIntern.Repository.Entities;
+﻿using System;
+using System.Collections.Generic;
+using System.Text.Json.Serialization;
+
+namespace SWD.NextIntern.Repository.Entities;
 
 public partial class Campaign
 {
@@ -18,11 +22,17 @@ public partial class Campaign
 
     public DateTime? ModifyDate { get; set; }
 
+    public DateTime? DeletedDate { get; set; }
+
+    public int? CampaignState { get; set; } //1=Opening, 0=Closed
+
     public virtual ICollection<CampaignEvaluation> CampaignEvaluations { get; set; } = new List<CampaignEvaluation>();
 
+    [JsonIgnore]
     public virtual ICollection<CampaignQuestion> CampaignQuestions { get; set; } = new List<CampaignQuestion>();
 
-    public virtual ICollection<Intern> Interns { get; set; } = new List<Intern>();
-
+    [JsonIgnore]
     public virtual University? University { get; set; }
+
+    public virtual ICollection<User> Users { get; set; } = new List<User>();
 }

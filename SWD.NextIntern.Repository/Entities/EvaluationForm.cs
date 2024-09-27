@@ -1,4 +1,8 @@
-﻿namespace SWD.NextIntern.Repository.Entities;
+﻿using System;
+using System.Collections.Generic;
+using System.Text.Json.Serialization;
+
+namespace SWD.NextIntern.Repository.Entities;
 
 public partial class EvaluationForm
 {
@@ -12,7 +16,12 @@ public partial class EvaluationForm
 
     public DateTime? ModifyDate { get; set; }
 
-    public virtual ICollection<EvaluationFormDetail> EvaluationFormDetails { get; set; } = new List<EvaluationFormDetail>();
+    public bool? IsActive { get; set; }
 
+    public DateTime? DeletedDate { get; set; }
+
+    public virtual ICollection<FormCriterion> FormCriteria { get; set; } = new List<FormCriterion>();
+
+    [JsonIgnore]
     public virtual University? University { get; set; }
 }

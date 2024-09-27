@@ -1,4 +1,8 @@
-﻿namespace SWD.NextIntern.Repository.Entities;
+﻿using System;
+using System.Collections.Generic;
+using System.Text.Json.Serialization;
+
+namespace SWD.NextIntern.Repository.Entities;
 
 public partial class InternEvaluationCriterion
 {
@@ -12,7 +16,11 @@ public partial class InternEvaluationCriterion
 
     public int? Score { get; set; }
 
+    public DateTime? DeletedDate { get; set; }
+
+    [JsonIgnore]
     public virtual FormCriterion? FormCriteria { get; set; }
 
+    [JsonIgnore]
     public virtual InternEvaluation? InternEvaluation { get; set; }
 }
